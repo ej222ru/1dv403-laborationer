@@ -4,12 +4,15 @@ window.onload = function(){
 
     var max = 100;
     var min = 1;
+    var noOfGuesses = 0;
     var secret = Math.floor(Math.random() * (max - min) + 1) + min;
 	
     // I denna funktion ska du skriva koden för att hantera "spelet"
     var guess = function(number){
         console.log("Det hemliga talet: " + secret); // Du når den yttre variabeln secret innifrån funktionen.
         console.log("Du gissade: " + number); // Detta nummer är det som användaren gissade på.
+        noOfGuesses += 1;
+        console.log("Antal gissningar: " + noOfGuesses); 
 
         var retArr = [];
        
@@ -22,7 +25,7 @@ window.onload = function(){
             retArr[4] = [false, "Inget giltigt tal!"]
 
             if (isNaN(number))
-                throw new Error(retArr[4, 1]);
+                throw new Error(retArr[4] [1]);
             else if ((number < 1) || (number > 100))
                 return retArr[3];
             else if (number === secret)
