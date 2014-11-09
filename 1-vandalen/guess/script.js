@@ -2,6 +2,8 @@
 
 window.onload = function(){
 
+    var max = 100;
+    var min = 1;
     var secret = Math.floor(Math.random() * (max - min) + 1) + min;
 	
     // I denna funktion ska du skriva koden för att hantera "spelet"
