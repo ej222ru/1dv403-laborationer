@@ -14,6 +14,10 @@ window.onload = function(){
         noOfGuesses += 1;
         console.log("Antal gissningar: " + noOfGuesses); 
 
+        console.log(typeof number);
+        console.log(typeof +number);
+
+
         var retArr = [];
        
         try {
@@ -26,13 +30,13 @@ window.onload = function(){
 
             if (isNaN(number))
                 throw new Error(retArr[4] [1]);
-            else if ((number < 1) || (number > 100))
+            else if ((+number < 1) || (+number > 100))
                 return retArr[3];
-            else if (number === secret)
+            else if (+number === secret)
                 return retArr[0];
-            else if (number < secret)
+            else if (+number < secret)
                 return retArr[1];
-            else if (number > secret)
+            else if (+number > secret)
                 return retArr[2];
         }
         catch (error)
