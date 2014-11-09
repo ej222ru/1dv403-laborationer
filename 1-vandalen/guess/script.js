@@ -21,7 +21,7 @@ window.onload = function(){
             retArr[3] = [false, "Talet är utanför intervallet 0 - 100"]
             retArr[4] = [false, "Inget giltigt tal!"]
 
-            if (isNan(number))
+            if (isNaN(number))
                 throw new Error(retArr[4, 1]);
             else if ((number < 1) || (number > 100))
                 return retArr[3];
