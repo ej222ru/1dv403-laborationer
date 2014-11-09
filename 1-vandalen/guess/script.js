@@ -14,10 +14,6 @@ window.onload = function(){
         noOfGuesses += 1;
         console.log("Antal gissningar: " + noOfGuesses); 
 
-        console.log(typeof number);
-        console.log(typeof +number);
-
-
         var retArr = [];
        
         try {
