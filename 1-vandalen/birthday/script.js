@@ -5,13 +5,24 @@ window.onload = function(){
 	
 	var birthday = function(date){
 		
+		var year = date.substr(0,4);
+		var month = date.substr(5,2);
+		var day = date.substr(8,2);
+		var hyphen1 = date.substr(4,1);
+		var hyphen2 = date.substr(7,1);
+		if (isNaN(year) || isNaN(year) || isNaN(year) || (hyphen1 !== '-') || (hyphen2 !== '-'))
+		{
+			throw new Error("Du måste mata in ´datum på formatet YYYY-MM-DD!");
+		}
+		var today = new Date();
+		var bDate = new Date(today.getUTCFullYear(), month, day, today.getHours(), today.getMinutes(), today.getSeconds(), today.getMilliseconds());
 
-
-			// Din kod här.
-
-
-
-
+		var timeDiff = bDate.getTime() - today.getTime();
+		var Days = timeDiff / (1000*60*60*24);
+		if (Days < 0){
+			throw new Error("Du har redan haft födelsedag i år!");
+		}
+		return Days;
 	};
 	// ------------------------------------------------------------------------------
 
