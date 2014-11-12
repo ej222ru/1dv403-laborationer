@@ -9,36 +9,49 @@ window.onload = function(){
 	
     // I denna funktion ska du skriva koden för att hantera "spelet"
     var guess = function(number){
+        
         console.log("Det hemliga talet: " + secret); // Du når den yttre variabeln secret innifrån funktionen.
         console.log("Du gissade: " + number); // Detta nummer är det som användaren gissade på.
-        noOfGuesses += 1;
-        console.log("Antal gissningar: " + noOfGuesses); 
+        
 
         var retArr = [];
-       
+        var ret;
+        var validGuess = true;
+        
         try {
 
-            retArr[0] = [true, "Grattis du vann! Det hemliga talet var X och du behövde Y gissningar för att hitta det."]
+            retArr[0] = [true, "Grattis du vann! Det hemliga talet var " + secret + " och du behövde " + noOfGuesses + " gissningar för att hitta det."]
             retArr[1] = [false, "Det hemliga talet är högre!"]
             retArr[2] = [false, "Det hemliga talet är lägre!"]
             retArr[3] = [false, "Talet är utanför intervallet 0 - 100"]
             retArr[4] = [false, "Inget giltigt tal!"]
 
-            if (isNaN(number))
+            if (isNaN(number)){
+                validGuess = false;
                 throw new Error(retArr[4] [1]);
-            else if ((+number < 1) || (+number > 100))
-                return retArr[3];
+            }
+            else if ((+number < 1) || (+number > 100)){
+                validGuess = false;
+                ret = retArr[3];
+            }
             else if (+number === secret)
-                return retArr[0];
+                ret = retArr[0];
             else if (+number < secret)
-                return retArr[1];
+                ret =  retArr[1];
             else if (+number > secret)
-                return retArr[2];
+                ret = retArr[2];
+    
+            if (validGuess){
+                noOfGuesses += 1;
+            }                
         }
         catch (error)
         {
             console.log(error.message);
-            return  retArr[4];
+            ret = retArr[4];
+        }
+        finally {
+            return ret;
         }
 	};
 	
