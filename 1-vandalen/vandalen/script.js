@@ -5,24 +5,16 @@ var makePerson = function(persArr){
 
     var i=0;
     var retObj = {minAge:200, maxAge:0,averageAge:0,names:""};
-    var nameArr = [];
+    var nameArr = persArr.map(function(obj){return obj.name;});
 
-    for (i=0;i<persArr.length;i+=1){
+    var ages = persArr.map(function(obj){return obj.age;});
+    retObj.maxAge = Math.max.apply(null,ages);
+    retObj.minAge = Math.min.apply(null,ages);
+    retObj.averageAge =  Math.round(ages.reduce(function(elemA,elemB){return elemA+elemB;}) / ages.length);    
+    console.log(retObj.maxAge);
+    console.log(retObj.minAge);
+    console.log(retObj.averageAge);
 
-        if (retObj.minAge > persArr[i].age)
-        {
-            retObj.minAge = persArr[i].age;
-        }
-        if (retObj.maxAge < persArr[i].age)
-        {
-            retObj.maxAge = persArr[i].age;
-        }
-        retObj.averageAge += persArr[i].age;
-        nameArr[i] = persArr[i].name;
-    }
-
-    retObj.averageAge = Math.round(retObj.averageAge / persArr.length);
-   
     nameArr.sort(String.localeCompare); // Funkar för Å,Ä,Ö på FF men inte WebKit
     var arr = nameArr.map(function(name){return " " + name;});
     retObj.names = arr.toString();
