@@ -8,19 +8,19 @@ var makePerson = function(persArr){
     try{
         // Validating input
         for (i=0;i<persArr.length;i+=1){
-            if (typeof (persArr[i].age) == "undefined")
+            if (typeof (persArr[i].age) === "undefined")
             {
                 // I just log here since the name tests will fail if I throw an exception
                 console.log("Input object is missing property age");
                 // throw new Error("Input object is missing property age");
             }
-            if (typeof (persArr[i].name) == "undefined")
+            if (typeof (persArr[i].name) === "undefined")
             {
                 throw new Error("Input object is missing property name");
             }
             
-            if ((typeof (persArr[i].age) != "undefined") && 
-                (((typeof +persArr[i].age) != "number") || (Math.round(persArr[i].age) != persArr[i].age))) {
+            if ((typeof (persArr[i].age) !== "undefined") && 
+                (((typeof +persArr[i].age) !== "number") || (Math.round(persArr[i].age) != persArr[i].age))) {
                     
                throw new Error("Input property age is not an integer number");
             }
@@ -32,7 +32,7 @@ var makePerson = function(persArr){
                // throw new Error("Input property age is not an integer number");
             }
             */
-            if ((typeof (persArr[i].name) != "string")) {
+            if ((typeof (persArr[i].name) !== "string")) {
                throw new Error("Input property name is not a string");
             }        
         }    
@@ -44,7 +44,7 @@ var makePerson = function(persArr){
         retObj.minAge = Math.min.apply(null,ages);
         retObj.averageAge =  Math.round(ages.reduce(function(elemA,elemB){return elemA+elemB;}) / ages.length);    
 
-        nameArr.sort(String.localeCompare); // Funkar för Å,Ä,Ö på FF men inte WebKit
+        nameArr.sort( function (s0, s1) { return s0.localeCompare(s1)});
         var arr = nameArr.map(function(name){return " " + name;});
         retObj.names = arr.toString();
         retObj.names = retObj.names.trim();
