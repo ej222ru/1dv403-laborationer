@@ -13,15 +13,32 @@ window.onload = function(){
 		if (isNaN(year) || isNaN(month) || isNaN(day) || (hyphen1 !== '-') || (hyphen2 !== '-'))
 		{
 			throw new Error("Du måste mata in ´datum på formatet YYYY-MM-DD!");
+		} 
+		var bNextBirtday = new Date(date);  
+
+		var dateTest = bNextBirtday instanceof Date;
+		if ((!dateTest) ||  isNaN( bNextBirtday.getTime()))
+		{
+			throw new Error("Du måste mata in giltigt datum!");
 		}
 		var today = new Date();
-		var bDate = new Date(today.getUTCFullYear(), month-1, day, today.getHours(), today.getMinutes(), today.getSeconds(), today.getMilliseconds());
+		bNextBirtday.setFullYear(today.getFullYear());
 
-
-		var timeDiff = bDate.getTime() - today.getTime();
-		var Days = timeDiff / (1000*60*60*24);
+		var timeDiff = bNextBirtday.getTime() - today.getTime();
+		
+		var Days = Math.ceil(timeDiff / (1000*60*60*24));
 		if (Days < 0){
-			throw new Error("Du har redan haft födelsedag i år!");
+
+			bNextBirtday.setFullYear(today.getFullYear()+1);
+			timeDiff = bNextBirtday.getTime() - today.getTime();
+			Days = Math.ceil(timeDiff / (1000*60*60*24));
+			var nextLeapYearTest = today.getFullYear()+1 + "-02-29";
+			var leapYearDate = new Date(nextLeapYearTest);
+			var testLeapYear = ((leapYearDate instanceof Date) &&  !isNaN( leapYearDate.getTime()));
+			if (testLeapYear){
+				Days +=1;
+			}
+				
 		}
 		return Days;
 	};
