@@ -2,12 +2,35 @@
 <html lang="sv">
 <head>
 	<meta charset="UTF-8" />
- 	<title>JavaScript - LabbyMezzage</title>
+ 	<title>JavaScript - LabbyMezzage</title>	
+    <link rel="stylesheet" type="text/css" href="css/style.css">       	
+        <script> 
+            document.createElement("header"); 
+            document.createElement("hgroup"); 
+            document.createElement("footer"); 
+            document.createElement("article"); 
+            document.createElement("main"); 
+            document.createElement("section"); 
+            document.createElement("nav"); 
+            document.createElement("aside"); 
+            document.createElement("address"); 
+        </script>
+        
 </head>
     <body>
 
-    	  <script src="script.js"></script>
-    	  <script src="message.js"></script>
-    	  
+        <div id="container">
+    	    <script src="script.js"></script>
+    	    <script src="message.js"></script>
+                <h1>LabbyMessssssage</h1> 	  
+                    <form id="message-box" >
+                        <fieldset>
+                            <div>            
+                                <label for="message"></label><textarea name="message" id="messageInput"></textarea>
+                            </div>        
+                        </fieldset>
+                         <button id="sendButton" type="submit">Send</button>        
+                    </form>
+        </div>           
     </body>
 </html>
