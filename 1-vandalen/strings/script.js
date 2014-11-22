@@ -25,6 +25,7 @@ window.onload = function(){
     	}
     	retStr += char;
     }
+    console.log(retStr);
     return retStr;
 }    
 	// ------------------------------------------------------------------------------
