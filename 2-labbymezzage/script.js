@@ -2,36 +2,29 @@
 
 var MessageBoard = {
     
+
     messages : [],
     
     init:function(){
-        
-        var mess1 = new Message("Min text 1",new Date());
-        var mess2 = new Message("Min text 2",new Date());
-        var mess3 = new Message("Min text 3",new Date());
-    
-        MessageBoard.messages.push(mess1);
-        MessageBoard.messages.push(mess2);
-        MessageBoard.messages.push(mess3);
-        
-        for (var i=0;i<MessageBoard.messages.length; i+=1)
-        {
-            alert(MessageBoard.messages[i] );
 
-        }
-    /*    
-        alert(mess);
-        alert(mess.getText());
-        mess.setText("Ny text \n hej å hå \n vad nurå");
-        alert(mess);
-        alert(mess.getDate());
-        alert(mess.getHTMLText());
-    */
+        var myButton = document.getElementById("sendButton");
+        myButton.addEventListener("click", function(e){
+            var f = this.parentNode;
+            var text = f.message.value;
+            var newMsg = new Message(text,new Date());
+            f.message.value = "";
+ //           console.log("Antal meddelanden: " + MessageBoard.messages.length);
+            MessageBoard.messages.push(newMsg);
+//            console.log("Antal meddelanden: " + MessageBoard.messages.length);
     
-        
-        
+            for (var i=0;i<MessageBoard.messages.length; i+=1)
+            {
+               console.log(MessageBoard.messages[i].toString() );
+            }
+            e.preventDefault();             
+        });
     }
 }; 
 
-window.onload = MessageBoard.init;
+window.addEventListener("load", MessageBoard.init);
 
