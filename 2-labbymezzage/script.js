@@ -36,7 +36,8 @@ var MessageBoard = {
                console.log(MessageBoard.messages[i].toString() );
             }
             MessageBoard.renderMessages();
-            e.preventDefault();             
+ //             MessageBoard.renderMessage(MessageBoard.messages.length-1);
+              e.preventDefault();             
         });
     }
 }; 
