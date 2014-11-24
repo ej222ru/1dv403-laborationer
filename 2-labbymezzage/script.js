@@ -34,6 +34,8 @@ var MessageBoard = {
         }
         time.innerHTML = hours + ":" + minutes + ":" + seconds;
         text.appendChild(time);
+        
+
       
     },
     
@@ -59,6 +61,11 @@ var MessageBoard = {
  //             MessageBoard.renderMessage(MessageBoard.messages.length-1);
               e.preventDefault();             
         });
+        imgClose.alt="Close",
+        imgClose.onclick = function(){
+            MessageBoard.removeMessage(index);
+        },        
+        
     }
 }; 
 

@@ -1,0 +1,92 @@
+@import url("http://meyerweb.com/eric/tools/css/reset/reset.css");
+
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, main, menu, nav, section{ 
+ display: block; 
+} 
+
+body { 
+    background-color: #C9C9C9;
+}
+
+
+#container{
+
+    max-width: 416px;
+    margin: 0 auto;
+    background-color: #F3E789;   
+    border: 2px solid #3D402A;
+    font-family: Bodoni;       
+}
+
+#message-box textarea{ 
+
+    max-width: 326px;
+    width: 326px;    
+    height: 100px;
+    background-color: #C4F592;    
+    border: 1px solid;
+    padding: 10px;    
+    
+}
+#message-box{
+    max-width:380px;  
+    margin: 20px;
+    background-color: white;    
+    border: 1px solid;
+    
+}
+
+#fieldsetArea{
+    border: 0px;
+}
+#messageArea{
+    max-width:380px;  
+    width: 346px;       
+    margin: 0px;
+    border: 0px solid;
+}
+#messageArea p{
+    display: block;    
+    max-width:346px;    
+    background-color: #7CB061;
+    text-align: left;
+    border: 1px solid;
+    padding: 5px;    
+    overflow: auto;
+    color: #1B7326;
+}
+#messageArea p p{
+    text-align: right;
+    font-size: 8px;
+    border: 0px solid;
+    padding: 0px;
+    margin-top: -4px;
+    margin-bottom: -4px;
+    
+}
+#msgCount {
+    text-align: right;
+}
+#msgTime{
+    text-align: right;
+    font-size: 8px;
+    border: 0px solid;
+}
+#sendButton{
+    margin-left: 316px;
+    background-color: Green;
+}
+
+p {    
+    text-align: right;
+}
+h1 {
+    font-family: "Impact, fantasy";
+    font-size: 40px;
+    text-align: center;
+    color:red;
+    text-shadow: 2px 2px #0000ff;
+    transform: skewX(-30deg);
+    
+}
