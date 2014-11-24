@@ -4,6 +4,20 @@ var MessageBoard = {
     
 
     messages : [],
+
+    renderMessages: function(){
+        document.getElementById("messageArea").innerHTML = "";
+        for (var i=0; i<MessageBoard.messages.length;i++){
+            MessageBoard.renderMessage(i);
+        }
+    },
+
+    renderMessage: function(index){
+        var messageArea = document.getElementById("messageArea");
+        var text = document.createElement("p");
+        text.innerHTML = MessageBoard.messages[index].getHTMLText();
+        messageArea.appendChild(text);
+    },
     
     init:function(){
 
@@ -21,6 +35,7 @@ var MessageBoard = {
             {
                console.log(MessageBoard.messages[i].toString() );
             }
+            MessageBoard.renderMessages();
             e.preventDefault();             
         });
     }
