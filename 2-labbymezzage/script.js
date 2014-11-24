@@ -9,7 +9,7 @@ var MessageBoard = {
         document.getElementById("messageArea").innerHTML = "";
         for (var i=0; i<MessageBoard.messages.length;i++){
             MessageBoard.renderMessage(i);
-        }
+        };
     },
 
     renderMessage: function(index){
@@ -17,6 +17,24 @@ var MessageBoard = {
         var text = document.createElement("p");
         text.innerHTML = MessageBoard.messages[index].getHTMLText();
         messageArea.appendChild(text);
+        var time = document.createElement("p");
+        time.setAttribute("id", "msgTime");
+        var date = MessageBoard.messages[index].getDate();
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+        var seconds = date.getSeconds();
+        if (hours < 10){
+            hours = "0"+ hours;
+        }
+        if (minutes < 10){
+            minutes = "0"+ minutes;
+        }
+        if (seconds < 10){
+            seconds = "0"+ seconds;
+        }
+        time.innerHTML = hours + ":" + minutes + ":" + seconds;
+        text.appendChild(time);
+      
     },
     
     init:function(){
@@ -34,8 +52,10 @@ var MessageBoard = {
             for (var i=0;i<MessageBoard.messages.length; i+=1)
             {
                console.log(MessageBoard.messages[i].toString() );
-            }
+            };
             MessageBoard.renderMessages();
+            var count = document.getElementById("msgCount");
+            count.innerHTML = "Antal meddelanden: " + MessageBoard.messages.length;
  //             MessageBoard.renderMessage(MessageBoard.messages.length-1);
               e.preventDefault();             
         });
