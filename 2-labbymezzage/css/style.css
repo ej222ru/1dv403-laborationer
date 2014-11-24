@@ -78,6 +78,23 @@ body {
     background-color: Green;
 }
 
+#imgClose {
+    background-image: url(pics/remove_32.png); 
+    background-repeat: no-repeat; 
+    background-position: top right;    
+    width: 24px;
+    height: 24px;
+    display: block;
+    float:right;
+    border: solid 1px ;  
+}
+.not{
+    background-image: url(pics/SPbaun6.ico); 
+    background-repeat: no-repeat; 
+    background-position: top left;
+    text-indent: 40px;
+}
+
 p {    
     text-align: right;
 }

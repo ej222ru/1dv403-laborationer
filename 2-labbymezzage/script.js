@@ -17,6 +17,11 @@ var MessageBoard = {
         var text = document.createElement("p");
         text.innerHTML = MessageBoard.messages[index].getHTMLText();
         messageArea.appendChild(text);
+
+        var remPic = document.createElement("p");
+        remPic.setAttribute("id", "imgClose");
+        text.appendChild(remPic);
+        
         var time = document.createElement("p");
         time.setAttribute("id", "msgTime");
         var date = MessageBoard.messages[index].getDate();
@@ -36,7 +41,14 @@ var MessageBoard = {
         text.appendChild(time);
         
 
-      
+    },
+    
+    removeMessage: function(){
+/*        document.getElementById("messageArea").innerHTML = "";
+        for (var i=0; i<MessageBoard.messages.length;i++){
+            MessageBoard.renderMessage(i);
+        };
+*/        
     },
     
     init:function(){
@@ -61,11 +73,12 @@ var MessageBoard = {
  //             MessageBoard.renderMessage(MessageBoard.messages.length-1);
               e.preventDefault();             
         });
-        imgClose.alt="Close",
-        imgClose.onclick = function(){
+//        imgClose.alt="Close",
+/*        imgClose.onclick = function(){
             MessageBoard.removeMessage(index);
         },        
-        
+*/
+
     }
 }; 
 
