@@ -17,16 +17,26 @@ var MessageBoard = {
         var text = document.createElement("p");
         var remLink = document.createElement("a");
         var remPic = document.createElement("img");
+        var timeLink = document.createElement("a");
+        var timePic = document.createElement("img");
         
         remPic.setAttribute("id", "imgClose");
         remPic.setAttribute("src", "css/pics/remove_16.png");
-        
+
+        timePic.setAttribute("id", "imgClose");
+        timePic.setAttribute("src", "css/pics/time_16.png");
+                
 //        remLink.setAttribute("class", "Close");
         remLink.setAttribute("alt", "Close");
         remLink.setAttribute("href", "#");
         remLink.appendChild(remPic);    
         text.appendChild(remLink); 
 
+        timeLink.setAttribute("alt", "Time");
+        timeLink.setAttribute("href", "#");
+        timeLink.appendChild(timePic);    
+        text.appendChild(timeLink); 
+        
         text.innerHTML += MessageBoard.messages[index].getHTMLText();
         messageArea.appendChild(text);
 
@@ -62,7 +72,12 @@ var MessageBoard = {
         var count = document.getElementById("msgCount");
         count.innerHTML = "Antal meddelanden: " + MessageBoard.messages.length;        
     },
-    
+    alertTime: function(index){
+        var date = MessageBoard.messages[index].getDate();
+        var text = "Inlägget skapades den " + date.getDate();
+        alert(text);
+        
+    },    
     init:function(){
 
         var myButton = document.getElementById("sendButton");
@@ -104,14 +119,20 @@ var MessageBoard = {
             console.log(e.target);
             console.log(e.currentTarget);
             console.log(e.target.parentNode);
-            console.log(e.target.parentNode.parentNode.lastChild);   
+            console.log(e.target.parentNode.parentNode.lastChild);  
+
+                        
             console.log(e.target.parentNode.parentNode.lastChild.firstChild);   
             console.log(e.target.parentNode.parentNode.lastChild.firstChild.nodeValue);   
                                 
-        
-            var index = e.target.parentNode.parentNode.lastChild.firstChild.nodeValue;
-            
-            MessageBoard.removeMessage(index);
+            if (e.target.parentNode.getAttribute("alt") === "Close"){
+                var index = e.target.parentNode.parentNode.lastChild.firstChild.nodeValue;
+                MessageBoard.removeMessage(index);
+            }
+            if (e.target.parentNode.getAttribute("alt") === "Time"){
+                var index = e.target.parentNode.parentNode.lastChild.firstChild.nodeValue;
+                MessageBoard.alertTime(index);
+            }           
         };  
     }
 }; 

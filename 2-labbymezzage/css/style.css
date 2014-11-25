@@ -84,9 +84,9 @@ body {
     height: 16px;
     float:right;
 }
-#IIIimgClose {
-  
 
+#messageID {
+  visibility: hidden;
 }
 .not{
         background-image: url(pics/remove_16.png); 
