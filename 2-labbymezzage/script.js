@@ -31,8 +31,6 @@ var MessageBoard = {
         messageArea.appendChild(text);
 
 
-
-
         var time = document.createElement("p");
         time.setAttribute("id", "msgTime");
         var date = MessageBoard.messages[index].getDate();
@@ -61,6 +59,8 @@ var MessageBoard = {
     removeMessage: function(index){
         MessageBoard.messages.splice(index, 1);
         MessageBoard.renderMessages();
+        var count = document.getElementById("msgCount");
+        count.innerHTML = "Antal meddelanden: " + MessageBoard.messages.length;        
     },
     
     init:function(){
@@ -71,10 +71,8 @@ var MessageBoard = {
             var text = f.message.value;
             var newMsg = new Message(text,new Date());
             f.message.value = "";
- //           console.log("Antal meddelanden: " + MessageBoard.messages.length);
             MessageBoard.messages.push(newMsg);
-//            console.log("Antal meddelanden: " + MessageBoard.messages.length);
-    
+
             for (var i=0;i<MessageBoard.messages.length; i+=1)
             {
                console.log(MessageBoard.messages[i].toString() );
@@ -106,7 +104,6 @@ var MessageBoard = {
             console.log(e.target);
             console.log(e.currentTarget);
             console.log(e.target.parentNode);
-            console.log(e.target.parentNode.nodeValue);
             console.log(e.target.parentNode.parentNode.lastChild);   
             console.log(e.target.parentNode.parentNode.lastChild.firstChild);   
             console.log(e.target.parentNode.parentNode.lastChild.firstChild.nodeValue);   
