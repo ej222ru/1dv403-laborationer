@@ -15,13 +15,28 @@ var MessageBoard = {
     renderMessage: function(index){
         var messageArea = document.getElementById("messageArea");
         var text = document.createElement("p");
-        text.innerHTML = MessageBoard.messages[index].getHTMLText();
+        var remLink = document.createElement("a");
+        var remPic = document.createElement("img");
+        remPic.setAttribute("src", "css/pics/remove_16.png");
+        remLink.setAttribute("id", "imgClose");
+        remLink.setAttribute("alt", "Close");
+        remLink.setAttribute("href", "#");
+        remLink.appendChild(remPic);    
+        text.appendChild(remLink);    
+
+ 
+        
+        text.innerHTML += MessageBoard.messages[index].getHTMLText();
         messageArea.appendChild(text);
 
+
+/*
         var remPic = document.createElement("p");
         remPic.setAttribute("id", "imgClose");
         text.appendChild(remPic);
-        
+*/
+
+
         var time = document.createElement("p");
         time.setAttribute("id", "msgTime");
         var date = MessageBoard.messages[index].getDate();
