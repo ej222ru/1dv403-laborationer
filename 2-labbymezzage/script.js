@@ -145,7 +145,7 @@ var MessageBoard = {
             console.log(e.currentTarget);
             console.log(e.target.parentNode);
             if (!e) var e = window.event;
-            if (e.keyCode == 13){
+            if ((e.keyCode == 13) && !e.shiftKey){
                 
                 var f = this.parentNode.parentNode.parentNode;
                 var text = f.message.value;
