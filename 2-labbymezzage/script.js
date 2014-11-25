@@ -67,12 +67,13 @@ var MessageBoard = {
     },
     
     removeMessage: function(index){
-        alert("Vill du verkligen radera meddelandet?");
-        
-        MessageBoard.messages.splice(index, 1);
-        MessageBoard.renderMessages();
-        var count = document.getElementById("msgCount");
-        count.innerHTML = "Antal meddelanden: " + MessageBoard.messages.length;        
+
+        if (window.confirm("Vill du verkligen radera meddelandet?")) { 
+            MessageBoard.messages.splice(index, 1);
+            MessageBoard.renderMessages();
+            var count = document.getElementById("msgCount");
+            count.innerHTML = "Antal meddelanden: " + MessageBoard.messages.length;        
+        }
     },
     alertTime: function(index){
         var date = MessageBoard.messages[index].getDate();

@@ -27,8 +27,8 @@ Message.prototype.toString = function(){
 }
 Message.prototype.getHTMLText= function(){
     var t = this.getText();
-//    return t.replace(/\n/g,"<br/>");
-    return t.split('\n').join("<br/>");
+    return t.replace(/[\n\r]/g,"<br />");
+//    return t.split('\n').join("<br/>");
 }
 Message.prototype.getDateText= function(){
     return  this.getDate() + " (" + this.getText() + ")";
