@@ -74,7 +74,10 @@ var MessageBoard = {
     },
     alertTime: function(index){
         var date = MessageBoard.messages[index].getDate();
-        var text = "Inlägget skapades den " + date.getDate();
+        var monthNames = [ "Januari", "Februari", "Mars", "April", "Maj", "Juni",
+            "Juli", "Augusti", "September", "Oktober", "November", "December" ];
+    
+        var text = "Inlägget skapades den " + date.getDate() + " " +  monthNames[date.getMonth()] + " " + date.getFullYear() + " klockan " + date.toLocaleTimeString(); 
         alert(text);
         
     },    
