@@ -17,24 +17,20 @@ var MessageBoard = {
         var text = document.createElement("p");
         var remLink = document.createElement("a");
         var remPic = document.createElement("img");
+        
+        remPic.setAttribute("id", "imgClose");
         remPic.setAttribute("src", "css/pics/remove_16.png");
-        remLink.setAttribute("id", "imgClose");
+        
+//        remLink.setAttribute("class", "Close");
         remLink.setAttribute("alt", "Close");
         remLink.setAttribute("href", "#");
         remLink.appendChild(remPic);    
-        text.appendChild(remLink);    
+        text.appendChild(remLink); 
 
- 
-        
         text.innerHTML += MessageBoard.messages[index].getHTMLText();
         messageArea.appendChild(text);
 
 
-/*
-        var remPic = document.createElement("p");
-        remPic.setAttribute("id", "imgClose");
-        text.appendChild(remPic);
-*/
 
 
         var time = document.createElement("p");
@@ -54,16 +50,17 @@ var MessageBoard = {
         }
         time.innerHTML = hours + ":" + minutes + ":" + seconds;
         text.appendChild(time);
-        
+      
+        var messageID = document.createElement("p");
+        messageID.setAttribute("id", "messageID");        
+        messageID.innerHTML = index;
+        text.appendChild(messageID);        
 
     },
     
-    removeMessage: function(){
-/*        document.getElementById("messageArea").innerHTML = "";
-        for (var i=0; i<MessageBoard.messages.length;i++){
-            MessageBoard.renderMessage(i);
-        };
-*/        
+    removeMessage: function(index){
+        MessageBoard.messages.splice(index, 1);
+        MessageBoard.renderMessages();
     },
     
     init:function(){
@@ -88,12 +85,37 @@ var MessageBoard = {
  //             MessageBoard.renderMessage(MessageBoard.messages.length-1);
               e.preventDefault();             
         });
-        var remove = document.getElementById("messageArea")
-        remove.onclick = function(){
+//        var remove = document.getElementById("messageArea");
+/*        var remove = document.getElementsByClassName("imgClose");
+          remove.onclick = function(){
             var index = this;
             MessageBoard.removeMessage(index);
         };       
-
+        var remove2 = document.getElementsByClassName("Close");
+          remove2.onclick = function(){
+            var index = this;
+            MessageBoard.removeMessage(index);
+        };       
+        var remove3 = document.getElementsByClassName("msgTag");
+          remove3.onclick = function(){
+            var index = this;
+            MessageBoard.removeMessage(index);
+        };       
+*/        var remove4 = document.getElementById("messageArea");
+          remove4.onclick = function(e){
+            console.log(e.target);
+            console.log(e.currentTarget);
+            console.log(e.target.parentNode);
+            console.log(e.target.parentNode.nodeValue);
+            console.log(e.target.parentNode.parentNode.lastChild);   
+            console.log(e.target.parentNode.parentNode.lastChild.firstChild);   
+            console.log(e.target.parentNode.parentNode.lastChild.firstChild.nodeValue);   
+                                
+        
+            var index = e.target.parentNode.parentNode.lastChild.firstChild.nodeValue;
+            
+            MessageBoard.removeMessage(index);
+        };  
     }
 }; 
 
