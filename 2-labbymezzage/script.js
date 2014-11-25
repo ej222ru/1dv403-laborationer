@@ -20,7 +20,7 @@ var MessageBoard = {
         var timeLink = document.createElement("a");
         var timePic = document.createElement("img");
         
-        remPic.setAttribute("id", "imgClose");
+        remPic.setAttribute("id", "imgClose");   // Varför funkar inte class ?? hur många element med id=imgClose kan man skapa?
         remPic.setAttribute("src", "css/pics/remove_16.png");
 
         timePic.setAttribute("id", "imgClose");
