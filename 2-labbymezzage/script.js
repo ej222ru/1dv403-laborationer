@@ -88,11 +88,11 @@ var MessageBoard = {
  //             MessageBoard.renderMessage(MessageBoard.messages.length-1);
               e.preventDefault();             
         });
-//        imgClose.alt="Close",
-/*        imgClose.onclick = function(){
+        var remove = document.getElementById("messageArea")
+        remove.onclick = function(){
+            var index = this;
             MessageBoard.removeMessage(index);
-        },        
-*/
+        };       
 
     }
 }; 
