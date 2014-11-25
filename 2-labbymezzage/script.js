@@ -67,6 +67,8 @@ var MessageBoard = {
     },
     
     removeMessage: function(index){
+        alert("Vill du verkligen radera meddelandet?");
+        
         MessageBoard.messages.splice(index, 1);
         MessageBoard.renderMessages();
         var count = document.getElementById("msgCount");
@@ -117,8 +119,8 @@ var MessageBoard = {
             var index = this;
             MessageBoard.removeMessage(index);
         };       
-*/        var remove4 = document.getElementById("messageArea");
-          remove4.onclick = function(e){
+*/      var remove4 = document.getElementById("messageArea");
+        remove4.onclick = function(e){
             console.log(e.target);
             console.log(e.currentTarget);
             console.log(e.target.parentNode);
@@ -137,6 +139,31 @@ var MessageBoard = {
                 MessageBoard.alertTime(index);
             }           
         };  
+        var remove5 = document.getElementById("messageInput");
+        remove5.onkeypress = function(e){
+            console.log(e.target);
+            console.log(e.currentTarget);
+            console.log(e.target.parentNode);
+            if (!e) var e = window.event;
+            if (e.keyCode == 13){
+                
+                var f = this.parentNode.parentNode.parentNode;
+                var text = f.message.value;
+                var newMsg = new Message(text,new Date());
+                f.message.value = "";
+                MessageBoard.messages.push(newMsg);
+    
+                for (var i=0;i<MessageBoard.messages.length; i+=1)
+                {
+                   console.log(MessageBoard.messages[i].toString() );
+                };
+                MessageBoard.renderMessages();
+                var count = document.getElementById("msgCount");
+                count.innerHTML = "Antal meddelanden: " + MessageBoard.messages.length;
+     //             MessageBoard.renderMessage(MessageBoard.messages.length-1);
+                e.preventDefault();                  
+            };
+        };
     }
 }; 
 
