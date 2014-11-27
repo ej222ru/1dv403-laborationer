@@ -49,11 +49,11 @@ body {
 #messageArea div{
  
     display: block;    
-    max-width:346px;    
+    max-width:346px;  
+    min-height: 20px;    
     background-color: #7CB061;
     border: 1px solid;
     padding: 5px;    
-    overflow: auto;
     color: #1B7326;
     margin: 10px;
     position: relative;
@@ -63,8 +63,9 @@ body {
     font-size: 8px;
     border: 0px solid;
     padding: 0px;
+    min-height: 10px; 
     margin-top: -4px;
-    margin-bottom: -4px;
+    margin-bottom: -4px;    
     
 }
 #messageArea div .msgTime {
@@ -72,8 +73,6 @@ body {
     font-size: 8px;
     border: 0px solid;
     padding: 0px;
-    margin-top: -4px;
-    margin-bottom: -4px;
     position: absolute;
     right: 0px;
 }
@@ -97,10 +96,6 @@ body {
     height: 16px;
     float:right;
     position: relative; 
-}
-
-#messageID {
-  visibility: hidden;
 }
 
 p {    
