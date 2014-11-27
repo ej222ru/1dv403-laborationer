@@ -13,36 +13,36 @@ var MessageBoard = {
     },
 
     renderMessage: function(index){
-        var messageArea = document.getElementById("messageArea");
-        var text = document.createElement("p");
-        var remLink = document.createElement("a");
-        var remPic = document.createElement("img");
-        var timeLink = document.createElement("a");
-        var timePic = document.createElement("img");
+        var messageArea = document.getElementById("messageArea"),
+            text = document.createElement("div"),
+            remLink = document.createElement("a"),
+            remPic = document.createElement("img"),
+            timeLink = document.createElement("a"),
+            timePic = document.createElement("img"),
+            time = document.createElement("div");
         
-        remPic.setAttribute("id", "imgClose");   // Varför funkar inte class ?? hur många element med id=imgClose kan man skapa?
+        text.setAttribute("data-messageID", index);        
+
+        remPic.classList.add("imgClose");
         remPic.setAttribute("src", "css/pics/remove_16.png");
 
-        timePic.setAttribute("id", "imgClose");
+        timePic.classList.add("imgTime");
         timePic.setAttribute("src", "css/pics/time_16.png");
                 
-//        remLink.setAttribute("class", "Close");
-        remLink.setAttribute("alt", "Close");
+        remLink.setAttribute("title", "Close");
         remLink.setAttribute("href", "#");
         remLink.appendChild(remPic);    
         text.appendChild(remLink); 
 
-        timeLink.setAttribute("alt", "Time");
+        timeLink.setAttribute("title", "Time");
         timeLink.setAttribute("href", "#");
         timeLink.appendChild(timePic);    
         text.appendChild(timeLink); 
         
         text.innerHTML += MessageBoard.messages[index].getHTMLText();
-        messageArea.appendChild(text);
 
 
-        var time = document.createElement("p");
-        time.setAttribute("id", "msgTime");
+        time.classList.add("msgTime");        
         var date = MessageBoard.messages[index].getDate();
         var hours = date.getHours();
         var minutes = date.getMinutes();
@@ -58,20 +58,16 @@ var MessageBoard = {
         }
         time.innerHTML = hours + ":" + minutes + ":" + seconds;
         text.appendChild(time);
-      
-        var messageID = document.createElement("p");
-        messageID.setAttribute("id", "messageID");        
-        messageID.innerHTML = index;
-        text.appendChild(messageID);        
 
+        messageArea.appendChild(text);      
     },
     
     removeMessage: function(index){
-
+        var count;
         if (window.confirm("Vill du verkligen radera meddelandet?")) { 
             MessageBoard.messages.splice(index, 1);
             MessageBoard.renderMessages();
-            var count = document.getElementById("msgCount");
+            count = document.getElementById("msgCount");
             count.innerHTML = "Antal meddelanden: " + MessageBoard.messages.length;        
         }
     },
@@ -85,7 +81,7 @@ var MessageBoard = {
         
     },    
     init:function(){
-
+        document.getElementById("messageInput").value = "";
         var myButton = document.getElementById("sendButton");
         myButton.addEventListener("click", function(e){
             var f = this.parentNode;
@@ -94,57 +90,28 @@ var MessageBoard = {
             f.message.value = "";
             MessageBoard.messages.push(newMsg);
 
-            for (var i=0;i<MessageBoard.messages.length; i+=1)
-            {
-               console.log(MessageBoard.messages[i].toString() );
-            };
             MessageBoard.renderMessages();
             var count = document.getElementById("msgCount");
             count.innerHTML = "Antal meddelanden: " + MessageBoard.messages.length;
  //             MessageBoard.renderMessage(MessageBoard.messages.length-1);
               e.preventDefault();             
         });
-//        var remove = document.getElementById("messageArea");
-/*        var remove = document.getElementsByClassName("imgClose");
-          remove.onclick = function(){
-            var index = this;
-            MessageBoard.removeMessage(index);
-        };       
-        var remove2 = document.getElementsByClassName("Close");
-          remove2.onclick = function(){
-            var index = this;
-            MessageBoard.removeMessage(index);
-        };       
-        var remove3 = document.getElementsByClassName("msgTag");
-          remove3.onclick = function(){
-            var index = this;
-            MessageBoard.removeMessage(index);
-        };       
-*/      var remove4 = document.getElementById("messageArea");
-        remove4.onclick = function(e){
-            console.log(e.target);
-            console.log(e.currentTarget);
-            console.log(e.target.parentNode);
-            console.log(e.target.parentNode.parentNode.lastChild);  
-
-                        
-            console.log(e.target.parentNode.parentNode.lastChild.firstChild);   
-            console.log(e.target.parentNode.parentNode.lastChild.firstChild.nodeValue);   
-                                
-            if (e.target.parentNode.getAttribute("alt") === "Close"){
-                var index = e.target.parentNode.parentNode.lastChild.firstChild.nodeValue;
+ 
+        var remove = document.getElementById("messageArea");
+        remove.onclick = function(e){
+            var index;
+            if (e.target.parentNode.getAttribute("title") === "Close"){
+                index = e.target.parentNode.parentNode.getAttribute("data-messageID");
                 MessageBoard.removeMessage(index);
             }
-            if (e.target.parentNode.getAttribute("alt") === "Time"){
-                var index = e.target.parentNode.parentNode.lastChild.firstChild.nodeValue;
+            if (e.target.parentNode.getAttribute("title") === "Time"){
+                index = e.target.parentNode.parentNode.getAttribute("data-messageID");
                 MessageBoard.alertTime(index);
             }           
         };  
-        var remove5 = document.getElementById("messageInput");
-        remove5.onkeypress = function(e){
-            console.log(e.target);
-            console.log(e.currentTarget);
-            console.log(e.target.parentNode);
+        var checkKey = document.getElementById("messageInput");
+        checkKey.onkeypress = function(e){
+
             if (!e) var e = window.event;
             if ((e.keyCode == 13) && !e.shiftKey){
                 

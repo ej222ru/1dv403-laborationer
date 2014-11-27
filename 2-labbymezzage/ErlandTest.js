@@ -4,115 +4,136 @@ var MessageBoard = {
     
 
     messages : [],
-  
 
-    init:function(){
-//        NodeList.protoype.forEach = Array.prototype.forEach;
-           function sendMessage(){
-                var inMsg = msgBox.childNodes[0].nodeValue;
-                console.log(inMsg);
-                return;
-            } 
-        var div = document.getElementById("messageInput");
-        if (div.nodeType === 1){
-   //         alert(div.firstChild.nodeValue);
-   //            alert(div.childNodes[0].nodeValue); 
-            
+    renderMessages: function(){
+        document.getElementById("messageArea").innerHTML = "";
+        for (var i=0; i<MessageBoard.messages.length;i++){
+            MessageBoard.renderMessage(i);
         };
+    },
 
-        var msgBox = document.querySelector("#messageInput");
-        console.log(msgBox.childNodes.length);
-        if (msgBox.nodeType === 1){
-//            var nodeName = msgBox.childNodes[0].nodeName;
-//            console.log(nodeName)
-//
-//            console.log(msgBox.firstChild.nodeValue);
-//            console.log(msgBox.childNodes[0].nodeValue);
-//            msgBox.childNodes[0].nodeValue = "Hallå!!!";
-//            console.log(msgBox.childNodes[0].nodeValue);       
-            
-            
-            var myButton = document.getElementById("message-box");
-            var that = this;
-            myButton.addEventListener("click", function(e){
+    renderMessage: function(index){
+        var messageArea = document.getElementById("messageArea"),
+            text = document.createElement("div"),
+            remLink = document.createElement("a"),
+            remPic = document.createElement("img"),
+            timeLink = document.createElement("a"),
+            timePic = document.createElement("img"),
+            time = document.createElement("div");
+        
+        text.setAttribute("data-messageID", index);        
 
-                console.log(this);
-                var te = this.message.value;
-                console.log(te);
-                var MI = this.querySelector("#messageInput");
-                if (MI.firstChild.nodeType === 3){
-                    console.log(MI.lastChild.nodeValue);
-                    console.log(MI.firstChild.value);
-                    var inp = ny.message.value;
-                    console.log(inp);
-                    
-                    
-                }
-                var MImsg = MI.childNodes[0].nodeValue;
-  //              console.log(MImsg);
-                   
-                 
-                var msgBox2 = document.querySelector("#messageInput");                
-                var inMsg = msgBox2.childNodes[0].nodeValue;
-//                var myMsg = document.getElementById("message-box");
-//                console.log(myMsg.firstChild.nodeValue);
-//              console.log(myMsg.lastChild.nodeValue);                
- //               console.log(inMsg);
-  //               e.preventDefault();               
-               // return;
-            }); 
-//            var that = this;
-/*            myButton.onclick =  function(){
-                var inMsg = msgBox.childNodes[0].nodeValue;
-                var myMsg = that.document.getElementById("message-box");
-                console.log(myMsg.firstChild.nodeValue);
-              console.log(myMsg.lastChild.nodeValue);                
-                console.log(inMsg);
+        remPic.classList.add("imgClose");
+        remPic.setAttribute("src", "css/pics/remove_16.png");
+
+        timePic.classList.add("imgTime");
+        timePic.setAttribute("src", "css/pics/time_16.png");
                 
-                return;
-            } 
-*/
-/*            var text = msgBox.childNodes;
-            msgBox.forEach(function(node){
-                alert(node.nodeType);               
-            });
-*/                
-/*            text.forEach(function(node){
-                alert(node.nodeValue);                
-            });
-*/
+        remLink.setAttribute("title", "Close");
+        remLink.setAttribute("href", "#");
+        remLink.appendChild(remPic);    
+        text.appendChild(remLink); 
 
-        };
+        timeLink.setAttribute("title", "Time");
+        timeLink.setAttribute("href", "#");
+        timeLink.appendChild(timePic);    
+        text.appendChild(timeLink); 
+        
+        text.innerHTML += MessageBoard.messages[index].getHTMLText();
 
-        
-        
-        
-        var mess1 = new Message("Min text 1",new Date());
-        var mess2 = new Message("Min text 2",new Date());
-        var mess3 = new Message("Min text 3",new Date());
-    
-        MessageBoard.messages.push(mess1);
-        MessageBoard.messages.push(mess2);
-        MessageBoard.messages.push(mess3);
-        
-        for (var i=0;i<MessageBoard.messages.length; i+=1)
-        {
- //           alert(MessageBoard.messages[i] );
 
+        time.classList.add("msgTime");        
+        var date = MessageBoard.messages[index].getDate();
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+        var seconds = date.getSeconds();
+        if (hours < 10){
+            hours = "0"+ hours;
         }
-    /*    
-        alert(mess);
-        alert(mess.getText());
-        mess.setText("Ny text \n hej å hå \n vad nurå");
-        alert(mess);
-        alert(mess.getDate());
-        alert(mess.getHTMLText());
-    */
+        if (minutes < 10){
+            minutes = "0"+ minutes;
+        }
+        if (seconds < 10){
+            seconds = "0"+ seconds;
+        }
+        time.innerHTML = hours + ":" + minutes + ":" + seconds;
+        text.appendChild(time);
+
+        messageArea.appendChild(text);      
+    },
     
+    removeMessage: function(index){
+        var count;
+        if (window.confirm("Vill du verkligen radera meddelandet?")) { 
+            MessageBoard.messages.splice(index, 1);
+            MessageBoard.renderMessages();
+            count = document.getElementById("msgCount");
+            count.innerHTML = "Antal meddelanden: " + MessageBoard.messages.length;        
+        }
+    },
+    alertTime: function(index){
+        var date = MessageBoard.messages[index].getDate();
+        var monthNames = [ "Januari", "Februari", "Mars", "April", "Maj", "Juni",
+            "Juli", "Augusti", "September", "Oktober", "November", "December" ];
+    
+        var text = "Inlägget skapades den " + date.getDate() + " " +  monthNames[date.getMonth()] + " " + date.getFullYear() + " klockan " + date.toLocaleTimeString(); 
+        alert(text);
         
-        
+    },    
+    init:function(){
+        document.getElementById("messageInput").value = "";
+        var myButton = document.getElementById("sendButton");
+        myButton.addEventListener("click", function(e){
+            var f = this.parentNode;
+            var text = f.message.value;
+            var newMsg = new Message(text,new Date());
+            f.message.value = "";
+            MessageBoard.messages.push(newMsg);
+
+            MessageBoard.renderMessages();
+            var count = document.getElementById("msgCount");
+            count.innerHTML = "Antal meddelanden: " + MessageBoard.messages.length;
+ //             MessageBoard.renderMessage(MessageBoard.messages.length-1);
+              e.preventDefault();             
+        });
+ 
+        var remove = document.getElementById("messageArea");
+        remove.onclick = function(e){
+            var index;
+            if (e.target.parentNode.getAttribute("title") === "Close"){
+                index = e.target.parentNode.parentNode.getAttribute("data-messageID");
+                MessageBoard.removeMessage(index);
+            }
+            if (e.target.parentNode.getAttribute("title") === "Time"){
+                index = e.target.parentNode.parentNode.getAttribute("data-messageID");
+                MessageBoard.alertTime(index);
+            }           
+        };  
+        var checkKey = document.getElementById("messageInput");
+        checkKey.onkeypress = function(e){
+
+            if (!e) var e = window.event;
+            if ((e.keyCode == 13) && !e.shiftKey){
+                
+                var f = this.parentNode.parentNode.parentNode;
+                var text = f.message.value;
+                var newMsg = new Message(text,new Date());
+                f.message.value = "";
+                MessageBoard.messages.push(newMsg);
+    
+                for (var i=0;i<MessageBoard.messages.length; i+=1)
+                {
+                   console.log(MessageBoard.messages[i].toString() );
+                };
+                MessageBoard.renderMessages();
+                var count = document.getElementById("msgCount");
+                count.innerHTML = "Antal meddelanden: " + MessageBoard.messages.length;
+     //             MessageBoard.renderMessage(MessageBoard.messages.length-1);
+                e.preventDefault();                  
+            };
+        };
     }
 }; 
 
-// window.addEventListener("load", MessageBoard.init);
+window.addEventListener("load", MessageBoard.init);
 
