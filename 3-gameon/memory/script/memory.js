@@ -3,6 +3,13 @@
 var MemoryGame = {
     pictures : [],
     
+    turnCard: function(index){
+        var count = document.getElementById("msgCount");
+        console.log(index);
+    },
+    
+    
+    
     renderMemeoryTable: function(rows, cols){
         
 
@@ -28,17 +35,18 @@ var MemoryGame = {
             memoryTableBody.appendChild(memoryTableRow); 
             for (j=0;j<cols;j+=1){
                 memoryTableCell = document.createElement("td");
+                memoryTableCell.setAttribute("data-cardID", i*cols+j+1);        
 
-                picLink = document.createElement("a"),
-                memoryPic = document.createElement("img"),            
+                picLink = document.createElement("a");
+                memoryPic = document.createElement("img");
+                memoryPic.classList.add("imgCard");                
+                memoryPic.setAttribute("src", "memory/pics/0.png");
+                
                 memoryTableCell.appendChild(picLink); 
                 picLink.appendChild(memoryPic); 
                 
-               memoryPic.setAttribute("src", "../pics/1.png");
                 picLink.setAttribute("title", "Card");
                 picLink.setAttribute("href", "#");               
-
-
 
                 memoryTableRow.appendChild(memoryTableCell); 
             }
@@ -52,7 +60,14 @@ var MemoryGame = {
         MemoryGame.pictures = RandomGenerator.getPictureArray(rows, columns);
         console.log(MemoryGame.pictures);
         
-        
+        var card = document.getElementById("container");
+        card.onclick = function(e){
+            var index;
+            if (e.target.parentNode.getAttribute("title") === "Card"){
+                index = e.target.parentNode.parentNode.getAttribute("data-cardID");
+                MemoryGame.turnCard(index);
+            }
+        };          
         
         var test = MemoryGame.renderMemeoryTable(rows, columns);
 

@@ -20,22 +20,24 @@ body {
 }
 
 .memoryBoard{
-    background-color: #BFA0FF;
-    padding: 30px;
+    background-color: #BFA;
+    padding: 20px;
     border: 2px solid #3D402A;
     
     
 }
 
 .memoryTable {
-    background-color: white;      
+    background-color: white;    
     border: solid 1px black ;
     border-spacing: 4px 4px;    
 }
 
 .memoryTable th, td, tr{
-    border: solid 1px black ;
     height: 24px;
     width: 24px;
-
+}
+.imgCard {
+    width: 24px;
+    height: 24px;
 }
