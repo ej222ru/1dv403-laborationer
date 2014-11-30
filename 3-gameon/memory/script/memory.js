@@ -1,7 +1,10 @@
 "use strict";
 
 var MemoryGame = {
+    rows : 4,
+    columns : 4,    
     pictures : [],
+    done: 0,
     clicks: 0,
     flipped: 0,
     turnBackAtTimeoutNode1: 0,
@@ -38,15 +41,25 @@ var MemoryGame = {
             };
      
             if (this.flipped === 2){
+                this.clicks += 1;
                 if (this.pictures[index] === this.pictures[this.turnBackAtTimeoutNode1.getAttribute("data-cardID")]){
                     this.flipped = 0;
+                    this.done += 1;
                 }
                 else{
                     // start 1 sec timer, flip back turned cards at timeout
                     setTimeout(MemoryGame.flippedCardsTimeout, 1000);
                 }
             }
-        }        
+        }      
+        if (this.done === this.rows * this.columns / 2 ){
+            var container = document.getElementById("container");
+            var result = document.createElement("div");
+            var text = document.createElement("p");
+            text.innerHTML = "Du klarade det på " + this.clicks + " försök!";
+            result.appendChild(text); 
+            container.appendChild(result); 
+        }
     },
     
     
@@ -99,10 +112,9 @@ var MemoryGame = {
     },
     init:function(){
         
-        var rows = 4;
-        var columns = 4;
+
         
-        MemoryGame.pictures = RandomGenerator.getPictureArray(rows, columns);
+        MemoryGame.pictures = RandomGenerator.getPictureArray(MemoryGame.rows, MemoryGame.columns);
         console.log(MemoryGame.pictures);
         
         var node = document.getElementById("container");
@@ -116,7 +128,7 @@ var MemoryGame = {
             }
         };          
         
-        MemoryGame.renderMemoryTable(rows, columns);
+        MemoryGame.renderMemoryTable(MemoryGame.rows, MemoryGame.columns);
 
     }
 }
