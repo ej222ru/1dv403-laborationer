@@ -11,11 +11,11 @@ var MemoryGame = {
     turnBackAtTimeoutNode2: 0,
 
     flippedCardsTimeout: function(){
-        if (MemoryGame.flipped === 2){
+   //     if (MemoryGame.flipped === 2){
             MemoryGame.turnBackAtTimeoutNode1.setAttribute("src", "memory/pics/0.png"); 
             MemoryGame.turnBackAtTimeoutNode2.setAttribute("src", "memory/pics/0.png"); 
             MemoryGame.flipped = 0;
-        }
+//        }
     },
     turnCard: function(e, index){
         var secondSameIndex = false;

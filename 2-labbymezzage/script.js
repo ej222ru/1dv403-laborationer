@@ -80,10 +80,7 @@ var MessageBoard = {
         alert(text);
         
     },    
-    init:function(){
-        document.getElementById("messageInput").value = "";
-        var myButton = document.getElementById("sendButton");
-        myButton.addEventListener("click", function(e){
+    alertButton : function(e){
             var f = this.parentNode;
             var text = f.message.value;
             var newMsg = new Message(text,new Date());
@@ -95,7 +92,12 @@ var MessageBoard = {
             count.innerHTML = "Antal meddelanden: " + MessageBoard.messages.length;
  //             MessageBoard.renderMessage(MessageBoard.messages.length-1);
               e.preventDefault();             
-        });
+        },
+        
+    init:function(){
+        document.getElementById("messageInput").value = "";
+        var myButton = document.getElementById("sendButton");
+        myButton.addEventListener("click", MessageBoard.alertButton);
  
         var remove = document.getElementById("messageArea");
         remove.onclick = function(e){
