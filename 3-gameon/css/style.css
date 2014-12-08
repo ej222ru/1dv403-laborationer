@@ -34,10 +34,14 @@ body {
 }
 
 .memoryTable th, td, tr{
-    height: 24px;
-    width: 24px;
+
 }
+
+.memoryTable a{
+    border: 1px solid black;
+}
+
+
 .imgCard {
-    width: 24px;
-    height: 24px;
+
 }

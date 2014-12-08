@@ -34,7 +34,7 @@ var MemoryGame = {
         if (!secondSameIndex){       
             if (this.flipped < 2){
                 this.flipped +=1;
-                e.target.parentNode.parentNode.getAttribute("data-cardID");
+                e.target.parentNode.getAttribute("data-cardID");
                 e.target.setAttribute("data-cardID", index);
                 var str = "memory/pics/" + this.pictures[index] + ".png";
                 e.target.setAttribute("src", str);          
@@ -65,8 +65,7 @@ var MemoryGame = {
     
     
     renderMemoryTable: function(rows, cols){
-        
-
+ 
         var i = 0;
         var j = 0;
         
@@ -90,23 +89,39 @@ var MemoryGame = {
             for (j=0;j<cols;j+=1){
                 memoryTableCell = document.createElement("td");
                 memoryTableCell.setAttribute("data-cardID", i*cols+j);        
-
+// varför inte sätta id på a-taggen istället??
 
                 picLink = document.createElement("a");
                 picLink.setAttribute("title", "Card");
                 picLink.setAttribute("href", "#");               
+                picLink.setAttribute("data-cardID", i*cols+j);        
+
+
 
 
                 memoryPic = document.createElement("img");
                 memoryPic.classList.add("imgCard");                
                 memoryPic.setAttribute("src", "memory/pics/0.png");
-                memoryPic.classList.add("card");
+//                memoryPic.classList.add("card");
                 
-                memoryTableCell.appendChild(picLink); 
                 picLink.appendChild(memoryPic); 
+                memoryTableCell.appendChild(picLink); 
                 
 
                 memoryTableRow.appendChild(memoryTableCell); 
+                
+// funkar detta 
+
+    picLink.onclick = function(e){
+// varför finns den i currentTarget
+// this verkar funka också
+        var index = e.currentTarget.getAttribute("data-cardID");
+        if (MemoryGame.flipped < 2){
+            MemoryGame.turnCard(e, index);
+        }    
+    }
+    
+    
             }
         }
     },
@@ -117,6 +132,21 @@ var MemoryGame = {
         MemoryGame.pictures = RandomGenerator.getPictureArray(MemoryGame.rows, MemoryGame.columns);
         console.log(MemoryGame.pictures);
         
+        var checkKey = document.getElementById("container");
+        checkKey.onkeypress = function(e){
+            if (!e) var e = window.event;
+            if ((e.keyCode == 13) && !e.shiftKey){  
+                var index;
+                if (e.target.parentNode.getAttribute("title") === "Card"){
+                    index = e.target.parentNode.parentNode.getAttribute("data-cardID");
+                    if (MemoryGame.flipped < 2){
+                        MemoryGame.turnCard(e, index);
+                    }
+                }
+            }
+        };
+
+/*                
         var node = document.getElementById("container");
         node.onclick = function(e){
             var index;
@@ -127,7 +157,8 @@ var MemoryGame = {
                 }
             }
         };          
-        
+*/
+
         MemoryGame.renderMemoryTable(MemoryGame.rows, MemoryGame.columns);
 
     }
