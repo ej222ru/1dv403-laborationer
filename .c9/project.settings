@@ -21,7 +21,7 @@
     },
     "run": {
         "@path": "/.c9/runners",
-        "@runner": "Node.js (default)",
+        "@runner": "Apache httpd (PHP, HTML)",
         "configs": {
             "@inited": "true",
             "json()": {}

@@ -18,13 +18,20 @@ body {
     border: 2px solid #3D402A;
     float: left;
 }
-
+#container div{
+    border: 2px solid #3D402A;
+    float: left;
+}
 .memoryBoard{
     background-color: #BFA;
     padding: 24px;
     border: 2px solid #3D402A;
     
     
+}
+
+#sendButton{
+    margin:auto;
 }
 
 .memoryTable {
