@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+	<meta charset="UTF-8" />
+ 	<title>The quiz</title>	
+    <link rel="stylesheet" type="text/css" href="css/style.css">       	
+
+        
+</head>
+    <body>
+        <div id="container">
+            <input type="button" id="getQButton" value="Hämta fråga"/>
+            <div id="qaaArea">
+                <div>
+                    <textarea class="textArea" name="question" id="questionOutput"></textarea>
+                </div>    
+                <textarea class="textArea" name="answer" id="answerInput">"Skriv ditt svar här"</textarea>
+            </div>    
+            <input type="button" id="sendAButton" value="Skicka svar"/>
+            <div class="textArea" name="result" id="resultOutput"></div>
+            <div class="textArea2" name="total" id="totalResult"></div>
+    	    <script src="js/TheQuiz.js"></script>
+       	</div>    
+    </body>
+</html>

@@ -1,0 +1,72 @@
+@import url("http://meyerweb.com/eric/tools/css/reset/reset.css");
+
+
+body { 
+    background-color: #1B7326;
+    margin: 4px; 
+
+}
+
+
+#container{
+    max-width: 380px;
+    margin: 0 auto;
+    margin-top: 10px auto;
+    padding: 10px;
+    background-color: #E493E8;   
+    border: 2px solid #3D402A;
+}
+
+
+input{
+    display: block;
+    text-align: center;
+    margin-left:140px;
+    border: 0px;
+}
+
+#qaaArea{
+    max-width: 410px;
+}
+
+
+
+.textArea{
+    width: 410px;    
+    border: 2px solid #3D402A;    
+    margin: 4px;
+    padding: 4px;
+    overflow: auto;
+}
+
+#resultArea{
+    display: block;
+    width: 410px;  
+    min-height: 140px;
+    border: 2px solid #3D402A;    
+    margin: 4px;
+    padding: 4px;
+}
+
+.textArea {
+
+    display: block;    
+    max-width:346px;  
+    min-height: 20px;    
+    border: 1px solid;
+    padding: 5px;    
+    margin: 10px;
+    position: relative;
+}
+.textArea .correct {
+    background-color: #7CB061;
+
+}
+.textArea .incorrect {
+    background-color: red;
+} 
+#totalResult {
+    color: transparent;
+    text-align: center;
+}
+
