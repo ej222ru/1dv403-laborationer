@@ -98,6 +98,8 @@ function QaA() {
                     resultRow.innerHTML = "Du svarade fel!" + "<br />" + "Du har svarat fel **   " + that.currentErr + "   ** gånger på denna fråga" + "<br />" + "Ge ett nytt svar";
                     rArea.innerHTML = "";
                     rArea.appendChild(resultRow);
+                    var aArea = document.getElementById("answerInput");
+                    aArea.focus();
 
                     aArea.value = "";
                 }
