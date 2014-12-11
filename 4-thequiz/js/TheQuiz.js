@@ -29,9 +29,12 @@ function QaA() {
                 var qArea = document.getElementById("questionOutput");
                 qArea.value = that.responseObject.question;
                 that.currentQ += 1;
-                var getQButton = document.getElementById("sendAButton");  
-                getQButton.style.color = "black";      
-                getQButton.style.background = "green";  
+                var getAButton = document.getElementById("sendAButton");  
+                getAButton.style.color = "black";      
+                getAButton.style.background = "green";  
+                var aArea = document.getElementById("answerInput");
+                aArea.focus();
+                
            
             }
         };
