@@ -100,11 +100,9 @@ function Memory(_rows, _columns, _game) {
                 memoryTableCell = document.createElement("td");
                 memoryTableCell.setAttribute("data-cardID", i*cols+j);        
 
-
                 picLink = document.createElement("a");
                 picLink.setAttribute("title", "Card");
                 picLink.setAttribute("href", "#");               
-
 
                 memoryPic = document.createElement("img");
                 memoryPic.classList.add("imgCard");                
@@ -113,7 +111,6 @@ function Memory(_rows, _columns, _game) {
                 
                 memoryTableCell.appendChild(picLink); 
                 picLink.appendChild(memoryPic); 
-                
 
                 memoryTableRow.appendChild(memoryTableCell); 
             }
@@ -129,23 +126,14 @@ function Memory(_rows, _columns, _game) {
         
         this.pictures = RandomGenerator.getPictureArray(this.rows, this.columns);
         console.log(this.pictures);
-//        var node = document.getElementById("container");
+
         var node = document.getElementById(this.game);
         node.onclick = function(e){
             var index;
             if (e.target.parentNode.getAttribute("title") === "Card"){
                 index = e.target.parentNode.parentNode.getAttribute("data-cardID");
-                console.log(e.target.parentNode.parentNode);
-                console.log(e.target.parentNode.parentNode.parentNode);
-                console.log(e.target.parentNode.parentNode.parentNode.parentNode);
-                console.log(e.target.parentNode.parentNode.parentNode.parentNode.parentNode);
-                console.log(e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode);
-                console.log(e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode);
+
                if (that.flipped < 2){
-                    that.turnCard(e, index);
-                }
-  
-                if (that.flipped < 2){
                     that.turnCard(e, index);
                 }
             }
@@ -169,8 +157,6 @@ var MemoryGame = {
 
       mem1.start();
       mem2.start();
-
-    
 
     }      
 };
