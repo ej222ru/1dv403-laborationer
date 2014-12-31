@@ -55,7 +55,7 @@ function QaA() {
         
         var answerObject = {
             "answer" :aArea.value
-        }        
+        };        
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function(){
             if (xhr.readyState === 4){
@@ -69,7 +69,7 @@ function QaA() {
                     resultRow.classList.add("correct");
                     resultRow.innerHTML = "Du svarade rätt!" + "<br />";
                     if (that.nextURL !== undefined){
-                        resultRow.innerHTML += "Klicka på 'Hämta fråga' för nästa fråga"
+                        resultRow.innerHTML += "Klicka på 'Hämta fråga' för nästa fråga";
                     }
                     rArea.innerHTML = "";
                     rArea.appendChild(resultRow);
@@ -118,7 +118,7 @@ function QaA() {
 
         if (that.nextURL !== "undefined"){
             xhr.open("POST", that.responseObject.nextURL,true);
-            xhr.setRequestHeader('Content-Type', 'application/json')
+            xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.send(JSON.stringify(answerObject));    
         }
         return false;    
@@ -141,16 +141,16 @@ function QaA() {
         getAButton.style.background = "transparent";  
         var getQButton = document.getElementById("getQButton");  
         getQButton.style.background = "green";            
-    }
+    };
 }
 
 var myQaA = {
     init: function(){
       var QaA1 = new QaA();
-      var that = this;
+ //     var that = this;
       QaA1.start();
       
 
     }      
-}
+};
 window.addEventListener("load", myQaA.init);

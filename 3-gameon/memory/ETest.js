@@ -4,7 +4,8 @@ function Memory(_rows, _columns, _game) {
 
         var that = this;
         this.rows = _rows;
-        this.columns = _columns;    
+        this.columns = _columns;  
+        this.game = _game;
         this.pictures = [];
         this.done = 0;
         this.clicks =  0;
@@ -72,13 +73,13 @@ function Memory(_rows, _columns, _game) {
     
     
     
-    this.renderMemoryTable = function(rows, cols){
+    this.renderMemoryTable = function(rows, cols, id){
         
 
         var i = 0;
         var j = 0;
         
-        var container = document.getElementById("container"),
+        var gameInstance = document.getElementById(id),
             memoryBoard = document.createElement("div"),
             memoryTable = document.createElement("table"),
             memoryTableBody =  document.createElement("tbody"),
@@ -89,7 +90,7 @@ function Memory(_rows, _columns, _game) {
             memoryBoard.classList.add("memoryBoard");
             memoryTable.classList.add("memoryTable");
             
-        container.appendChild(memoryBoard); 
+        gameInstance.appendChild(memoryBoard); 
         memoryBoard.appendChild(memoryTable); 
         memoryTable.appendChild(memoryTableBody); 
         for (i=0;i<rows;i+=1){
@@ -120,14 +121,16 @@ function Memory(_rows, _columns, _game) {
     };
   
     this.start = function(){
-        var BoardCollection = document.getElementById("");
+        that = this;
+        var BoardCollection = document.getElementById("BoardCollection");
         var GameInstance = document.createElement("div");
-        GameInstance.setAttribute("Board");  // ordning 
-        BoardCollection = div.appendChild(GameInstance);
+        GameInstance.setAttribute("id", this.game);  // ordning 
+        BoardCollection.appendChild(GameInstance);
         
-        this.pictures = RandomGenerator.getPictureArray(rows, columns);
+        this.pictures = RandomGenerator.getPictureArray(this.rows, this.columns);
         console.log(this.pictures);
-        var node = document.getElementById("container");
+//        var node = document.getElementById("container");
+        var node = document.getElementById(this.game);
         node.onclick = function(e){
             var index;
             if (e.target.parentNode.getAttribute("title") === "Card"){
@@ -142,30 +145,33 @@ function Memory(_rows, _columns, _game) {
                     that.turnCard(e, index);
                 }
   
-                if (this.flipped < 2){
-                    this.turnCard(e, index);
+                if (that.flipped < 2){
+                    that.turnCard(e, index);
                 }
             }
         };   
-        this.renderMemoryTable(that.rows, that.columns);
+        this.renderMemoryTable(this.rows, this.columns, this.game);
     }
 }
 
        
-        
-
-    };
 
 var MemoryGame = {
     init: function(){
-      var mem1 = new Memory(3,3,"game1");
-//      var mem2 = new Memory(2,2,"game2");
-      var that = this;
+        
+        
+    var GameCollection = document.createElement("div"); 
+    GameCollection.setAttribute("id", "BoardCollection");    
+    document.getElementById("container").appendChild(GameCollection);
+        
+      var mem1 = new Memory(4,4,1);
+      var mem2 = new Memory(4,4,2);
+
       mem1.start();
-//      mem2.start();
+      mem2.start();
 
     
 
     }      
-}
+};
 window.addEventListener("load", MemoryGame.init);
