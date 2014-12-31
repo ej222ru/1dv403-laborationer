@@ -2,10 +2,12 @@
 
 function Memory(_rows, _columns, _game) {
 
+        Window.call(this);
         var that = this;
         this.rows = _rows;
         this.columns = _columns;  
         this.game = _game;
+        
         this.pictures = [];
         this.done = 0;
         this.clicks =  0;
@@ -143,6 +145,8 @@ function Memory(_rows, _columns, _game) {
 }
 
        
+Memory.prototype = new Window();
+
 
 var MemoryGame = {
     init: function(){
