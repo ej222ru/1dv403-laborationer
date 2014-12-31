@@ -2,6 +2,7 @@
 
 function Window() {
     var Window = document.createElement("div"); 
+    Window.setAttribute("id", "Window")
     Window.classList.add("Window");    
     document.getElementById("container").appendChild(Window);
     

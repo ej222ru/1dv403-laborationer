@@ -121,7 +121,7 @@ function Memory(_rows, _columns, _game) {
   
     this.start = function(){
         that = this;
-        var BoardCollection = document.getElementById("BoardCollection");
+        var BoardCollection = document.getElementById("Window");
         var GameInstance = document.createElement("div");
         GameInstance.setAttribute("id", this.game);  // ordning 
         BoardCollection.appendChild(GameInstance);
@@ -146,6 +146,7 @@ function Memory(_rows, _columns, _game) {
 
        
 Memory.prototype = new Window();
+
 
 
 var MemoryGame = {
