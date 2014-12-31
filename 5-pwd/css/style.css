@@ -1,0 +1,47 @@
+@import url("http://meyerweb.com/eric/tools/css/reset/reset.css");
+
+
+
+
+#content{
+    max-width: 960px; 
+    margin-left:auto;
+    margin-right:auto;
+    
+}
+
+#container{
+
+    height: 640px;   
+    background-color: #E493E8;   
+    border: 2px solid #3D402A;
+
+/*    overflow: auto; 
+    background-color: #F3E789;   
+*/
+}
+
+#appArea{
+
+    height: 48px;
+    border: 2px solid #3D402A;
+/*    opacity: 0.5; */
+    margin-top: -46px;
+}
+
+.Window{
+    height: 540px;
+    width: 420px;
+    background-color: yellow;   
+    border: solid black 1px;
+}
+.appIcon{
+    height: 40px;
+    width: 40px;
+    border: solid black 1px;
+    background-color: yellow;   
+    
+}
+#memoryIcon{
+
+}
