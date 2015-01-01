@@ -6,7 +6,7 @@ function Memory(_rows, _columns, _game) {
         var that = this;
         this.rows = _rows;
         this.columns = _columns;  
-        this.game = _game;
+        this.game = "Window"+_game;
         
         this.pictures = [];
         this.done = 0;

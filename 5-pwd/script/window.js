@@ -3,13 +3,13 @@
 function Window(_instance) {
     var that = this;
     var windowInst = document.createElement("div"); 
-    windowInst.setAttribute("id", _instance)
+    windowInst.setAttribute("id", "Window"+_instance);
     windowInst.classList.add("Window");    
     document.getElementById("container").appendChild(windowInst);
 
     var topLabel = document.createElement("div"); 
     topLabel.classList.add("topLabel");    
-    document.getElementById(_instance).appendChild(topLabel);
+    document.getElementById("Window"+_instance).appendChild(topLabel);
 
     var remLink = document.createElement("a");
     var remPic = document.createElement("img");    
@@ -23,9 +23,10 @@ function Window(_instance) {
     
     var bottomLabel = document.createElement("div"); 
     bottomLabel.classList.add("bottomLabel");    
-    document.getElementById(_instance).appendChild(bottomLabel);
+    document.getElementById("Window"+_instance).appendChild(bottomLabel);
 
-
+    document.getElementById("Window"+_instance).style.left = (_instance*20) + 'px';
+    document.getElementById("Window"+_instance).style.top  = (_instance*20) + 'px';
 
     
 }
