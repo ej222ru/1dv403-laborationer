@@ -30,8 +30,8 @@
 }
 
 .Window{
-    height: 540px;
-    width: 420px;
+    height: 300px;
+    width: 200px;
     background-color: yellow;   
     border: solid black 1px;
 }

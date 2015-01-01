@@ -2,7 +2,7 @@
 
 function Memory(_rows, _columns, _game) {
 
-        Window.call(this);
+        Window.call(this, _game);
         var that = this;
         this.rows = _rows;
         this.columns = _columns;  
@@ -121,7 +121,7 @@ function Memory(_rows, _columns, _game) {
   
     this.start = function(){
         that = this;
-        var BoardCollection = document.getElementById("Window");
+        var BoardCollection = document.getElementById(this.game);
         var GameInstance = document.createElement("div");
         GameInstance.setAttribute("id", this.game);  // ordning 
         BoardCollection.appendChild(GameInstance);

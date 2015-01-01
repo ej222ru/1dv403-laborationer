@@ -1,16 +1,22 @@
 "use strict";
 
-function Window() {
-    var Window = document.createElement("div"); 
-    Window.setAttribute("id", "Window")
-    Window.classList.add("Window");    
-    document.getElementById("container").appendChild(Window);
+function Window(_instance) {
+    
+    var windowInst = document.createElement("div"); 
+    windowInst.setAttribute("id", _instance)
+    windowInst.classList.add("Window");    
+    document.getElementById("container").appendChild(windowInst);
     
     
 }
 
+Window.prototype.getId = function(){
+    var Id;
+    return ++Id;
+};
 
 var Projekt = {
+    instanceId: 0,
     init: function(){
         
         var appArea = document.getElementById("appArea");
@@ -34,10 +40,10 @@ var Projekt = {
     },    
     
     createMemoryGame: function(){
-             var mem = new Memory(4,4,1);
-        
- //            var mem = new Memory(4,4,1);
-              mem.start();
+         var mem = new Memory(4,4,++Projekt.instanceId);
+    
+//            var mem = new Memory(4,4,1);
+          mem.start();
     }
 };
 
