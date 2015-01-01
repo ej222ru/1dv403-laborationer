@@ -1,7 +1,12 @@
 @import url("http://meyerweb.com/eric/tools/css/reset/reset.css");
 
-
-
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, main, menu, nav, section{ 
+ display: block; 
+} 
+body{
+    background-color: black;
+}
 
 #content{
     max-width: 960px; 
@@ -13,7 +18,7 @@
 #container{
 
     height: 640px;   
-    background-color: #E493E8;   
+    background-color: #A2A3AB;   
     border: 2px solid #3D402A;
 
 /*    overflow: auto; 
@@ -23,10 +28,11 @@
 
 #appArea{
 
-    height: 48px;
+    height: 56px;
     border: 2px solid #3D402A;
 /*    opacity: 0.5; */
-    margin-top: -46px;
+    margin-top: -71px;
+    border-top: 14px solid black;
 }
 
 .Window{
@@ -49,12 +55,14 @@
 }
 
 .appIcon{
-    height: 40px;
-    width: 40px;
+    height: 50px;
+    width: 50px;
     border: solid black 1px;
     background-color: yellow;
-    overflow: left;
+    float: left;
+    margin: 4px;
     
+ 
 }
 #memoryIcon{
 
