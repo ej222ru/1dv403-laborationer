@@ -30,16 +30,30 @@
 }
 
 .Window{
-    height: 300px;
+    height: 200px;
     width: 200px;
     background-color: yellow;   
     border: solid black 1px;
+    padding: 4px;
+    margin: 4px;
 }
+.topLabel{
+    height: 24px;
+    border-bottom: solid black 1px;
+    background-color: brown;
+}
+.bottomLabel{
+    height: 24px;   
+    border-top : solid black 1px;    
+    background-color: brown;
+}
+
 .appIcon{
     height: 40px;
     width: 40px;
     border: solid black 1px;
-    background-color: yellow;   
+    background-color: yellow;
+    overflow: left;
     
 }
 #memoryIcon{

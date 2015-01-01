@@ -33,9 +33,12 @@ footer, header, hgroup, main, menu, nav, section{
 }
 
 .memoryTable {
-    background-color: white;    
+/*    background-color: white; */   
     border: solid 1px black ;
-    border-spacing: 4px 4px;    
+    border-spacing: 4px 4px;
+/*    margin: 0 auto; */
+    display:flex; 
+    justify-content: center;     
 }
 
 .memoryTable th, td, tr{
@@ -43,7 +46,7 @@ footer, header, hgroup, main, menu, nav, section{
 }
 
 .memoryTable a{
-    border: 1px solid black;
+ /*   border: 1px solid black; */
 }
 
 

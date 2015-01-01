@@ -82,18 +82,19 @@ function Memory(_rows, _columns, _game) {
         var j = 0;
         
         var gameInstance = document.getElementById(id),
-            memoryBoard = document.createElement("div"),
+ //           memoryBoard = document.createElement("div"),
             memoryTable = document.createElement("table"),
             memoryTableBody =  document.createElement("tbody"),
             memoryTableRow,
             memoryTableCell,
             memoryPic,
             picLink;
-            memoryBoard.classList.add("memoryBoard");
+//            memoryBoard.classList.add("memoryBoard");
             memoryTable.classList.add("memoryTable");
             
-        gameInstance.appendChild(memoryBoard); 
-        memoryBoard.appendChild(memoryTable); 
+ //       gameInstance.appendChild(memoryBoard); 
+        gameInstance.appendChild(memoryTable); 
+ //       memoryBoard.appendChild(memoryTable); 
         memoryTable.appendChild(memoryTableBody); 
         for (i=0;i<rows;i+=1){
             memoryTableRow = document.createElement("tr");                    
