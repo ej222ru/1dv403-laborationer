@@ -30,11 +30,6 @@ function Window(_instance) {
     
 }
 
-Window.prototype.getId = function(){
-    var Id;
-    return ++Id;
-};
-
 var Projekt = {
     instanceId: 0,
     rssIcon: function(){
@@ -100,15 +95,16 @@ var Projekt = {
         Projekt.memoryIcon();        
     
     
-        var remove = document.getElementById("container");
-        remove.onclick = function(e){
-            
-            console.log(e.target.parentNode.parentNode.parentNode);
-           var node = e.target.parentNode.parentNode.parentNode;  
-           console.log(node.getAttribute("id"));
-           
-           node.parentNode.removeChild (node);
- //           windowInst.setAttribute("display", "none");
+        var removeWindow = document.getElementById("container");
+        removeWindow.onclick = function(e){
+            console.log(e.target);
+            console.log(e.target.parentNode);
+            if (e.target.parentNode.getAttribute("title") === "Close"){            
+//            console.log(e.target.parentNode.parentNode.parentNode);
+                var node = e.target.parentNode.parentNode.parentNode;  
+//            console.log(node.getAttribute("id"));
+                node.parentNode.removeChild (node);
+            };
         }; 
         
     },    
