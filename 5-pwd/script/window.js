@@ -1,7 +1,7 @@
 "use strict";
 
 function Window(_instance) {
-    
+    var that = this;
     var windowInst = document.createElement("div"); 
     windowInst.setAttribute("id", _instance)
     windowInst.classList.add("Window");    
@@ -10,10 +10,23 @@ function Window(_instance) {
     var topLabel = document.createElement("div"); 
     topLabel.classList.add("topLabel");    
     document.getElementById(_instance).appendChild(topLabel);
+
+    var remLink = document.createElement("a");
+    var remPic = document.createElement("img");    
+    remPic.classList.add("imgClose");
+    remPic.setAttribute("src", "css/pics/remove_16.png");    
+    remLink.setAttribute("title", "Close");
+    remLink.setAttribute("href", "#");
+    remLink.appendChild(remPic);    
+    topLabel.appendChild(remLink);     
+    
     
     var bottomLabel = document.createElement("div"); 
     bottomLabel.classList.add("bottomLabel");    
     document.getElementById(_instance).appendChild(bottomLabel);
+
+
+
     
 }
 
@@ -85,7 +98,18 @@ var Projekt = {
         Projekt.imageGallerIcon();        
         Projekt.rssIcon();        
         Projekt.memoryIcon();        
-
+    
+    
+        var remove = document.getElementById("container");
+        remove.onclick = function(e){
+            
+            console.log(e.target.parentNode.parentNode.parentNode);
+           var node = e.target.parentNode.parentNode.parentNode;  
+           console.log(node.getAttribute("id"));
+           
+           node.parentNode.removeChild (node);
+ //           windowInst.setAttribute("display", "none");
+        }; 
         
     },    
     
