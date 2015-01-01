@@ -25,7 +25,7 @@ function Window(_instance) {
     bottomLabel.classList.add("bottomLabel");    
     document.getElementById("Window"+_instance).appendChild(bottomLabel);
 
-    document.getElementById("Window"+_instance).style.left = (_instance*20) + 'px';
+    document.getElementById("Window"+_instance).style.left = (-_instance*200) + 'px';
     document.getElementById("Window"+_instance).style.top  = (_instance*20) + 'px';
 
     
@@ -100,6 +100,12 @@ var Projekt = {
         removeWindow.onclick = function(e){
             console.log(e.target);
             console.log(e.target.parentNode);
+            var Window = e.target.parentNode;   
+            console.log(Window);
+//            document.getElementById(Window.getAttribute("id")).focus();
+            // z-index
+  //          Window.focus();
+            
             if (e.target.parentNode.getAttribute("title") === "Close"){            
 //            console.log(e.target.parentNode.parentNode.parentNode);
                 var node = e.target.parentNode.parentNode.parentNode;  
