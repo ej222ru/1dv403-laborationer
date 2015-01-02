@@ -5,6 +5,7 @@ function Window(_instance) {
     var windowInst = document.createElement("div"); 
     windowInst.setAttribute("id", "Window"+_instance);
     windowInst.classList.add("Window");    
+    windowInst.setAttribute("title", "Window");
     document.getElementById("content").appendChild(windowInst);
 
     var topLabel = document.createElement("div"); 
@@ -24,63 +25,52 @@ function Window(_instance) {
     var bottomLabel = document.createElement("div"); 
     bottomLabel.classList.add("bottomLabel");    
     document.getElementById("Window"+_instance).appendChild(bottomLabel);
-   if (_instance >1){
-        document.getElementById("Window"+_instance).style.left = (-(_instance-1)*160) + 'px';
-        document.getElementById("Window"+_instance).style.top  = ((_instance-1)*20) + 'px';
-    }
 
-    var posWindow = getObjectPosition(document.getElementById("Window"+_instance));
-    var posContent = getObjectPosition(document.getElementById("content"));
+    calculateWindowPosition(_instance);
 
-    if ((posWindow.xl < posContent.xl) ||
-        (posWindow.xr > posContent.xr) || 
-        (posWindow.yt < posContent.yt) ||
-        (posWindow.yb > posContent.yb)){
+
+    function calculateWindowPosition(_instance) {
+        
+        var posContent = getObjectPosition(document.getElementById("content"));
+        var newWindow = document.getElementById("Window"+_instance);        
+        newWindow.style.left = posContent.xl + (Projekt.newStartPositions * 200)+(++Projekt.xl)*20 + 'px';
+        console.log(Projekt.yt);
+        console.log(Projekt.xt);
+        console.log(newWindow.style.left);        
+        newWindow.style.top = posContent.yt + (++Projekt.yt*20) + 'px';          
+
+        var posWindow = getObjectPosition(newWindow);
+        if ((posWindow.xl < posContent.xl) ||
+            (posWindow.xr > posContent.xr) || 
+            (posWindow.yt < posContent.yt) ||
+            (posWindow.yb > posContent.yb)){
             
-            startNewPosition(document.getElementById("Window"+_instance));
-        }
-
-
-
-/*    
-    function getObjectPosition(object) {
-      var left = 0;
-      var top = 0;
-    
-      while (object.offsetParent) {
-    
-        left += object.offsetLeft;
-        top += object.offsetTop;
-    
-        object = object.offsetParent;
-      }
-    
-      left += object.offsetLeft;
-      top += object.offsetTop;
-    
-      return {
-          x : left,
-          y : top
-      };
-    }  
-*/
-
-    function calculateWindowPosition(object) {
-        
+                startNewPosition(document.getElementById("Window"+_instance));
+        }        
         
     }
     
-    function startNewPosition(object) {
-    
-/*        
-      return {
-          xl : object.offsetLeft,
-          xr : object.offsetRight,
-          yt : object.offsetTop,
-          yb : object.offsetBottom
-      };
-      */
+    function startNewPosition(newWindow) {
+        Projekt.newStartPositions +=1;
+        Projekt.yt = 0;
+        Projekt.xl = 0;
+        
+        
+        var posContent = getObjectPosition(document.getElementById("content"));
       
+        newWindow.style.left = (posContent.xl + (Projekt.newStartPositions * 200) + 20) + 'px';
+        newWindow.style.top = (posContent.yt + (++Projekt.yt*20)) + 'px';    
+
+        var posWindow = getObjectPosition(newWindow);        
+        if ((posWindow.xl < posContent.xl) ||
+            (posWindow.xr > posContent.xr) || 
+            (posWindow.yt < posContent.yt) ||
+            (posWindow.yb > posContent.yb)){
+                
+                Projekt.newStartPositions = 0;                
+                newWindow.style.left = (posContent.xl + (Projekt.newStartPositions * 200) + 60) + 'px';    
+                newWindow.style.top = (posContent.yt + (++Projekt.yt*30)) + 'px';    
+        }        
     }  
     
     function getObjectPosition(object) {
@@ -93,104 +83,4 @@ function Window(_instance) {
         };
     }    
 }
-
-var Projekt = {
-    instanceId: 0,
-    zIndex: 1,
-    rssIcon: function(){
-        var appArea = document.getElementById("appArea");
-        
-        var rssIcon = document.createElement("div");
-        rssIcon.setAttribute("id", "rssIcon");
-        rssIcon.classList.add("appIcon");
-        appArea.appendChild(rssIcon); 
-  
-        var linkRssIcon = document.createElement("a");
-        linkRssIcon.setAttribute("href", "#");
-        linkRssIcon.setAttribute("id", "linkRssIcon");
-        rssIcon.appendChild(linkRssIcon);  
-        
-        var rssIconImage = document.createElement("img");
-        rssIconImage.setAttribute("src", "css/pics/feed.png");
-        linkRssIcon.appendChild(rssIconImage);
-        document.getElementById("linkRssIcon").addEventListener("click", Projekt.createRssFeed);
-        
-    },   
-    imageGallerIcon: function(){
-        var appArea = document.getElementById("appArea");
-        
-        var imageGalleriIcon = document.createElement("div");
-        imageGalleriIcon.setAttribute("id", "imageGalleriIcon");
-        imageGalleriIcon.classList.add("appIcon");
-        appArea.appendChild(imageGalleriIcon); 
-  
-        var linkImageGalleriIcon = document.createElement("a");
-        linkImageGalleriIcon.setAttribute("href", "#");
-        linkImageGalleriIcon.setAttribute("id", "linkImageGalleriIcon");
-        imageGalleriIcon.appendChild(linkImageGalleriIcon);  
-        
-        var imageGalleriIconImage = document.createElement("img");
-        imageGalleriIconImage.setAttribute("src", "css/pics/pictures.png");
-        linkImageGalleriIcon.appendChild(imageGalleriIconImage);
-        document.getElementById("linkImageGalleriIcon").addEventListener("click", Projekt.createImageGallery);
-        
-    },    
-    memoryIcon: function(){
-        var appArea = document.getElementById("appArea");
-        
-        var memoryIcon = document.createElement("div");
-        memoryIcon.setAttribute("id", "memoryIcon");
-        memoryIcon.classList.add("appIcon");
-        appArea.appendChild(memoryIcon); 
-  
-        var linkMemoryIcon = document.createElement("a");
-        linkMemoryIcon.setAttribute("href", "#");
-        linkMemoryIcon.setAttribute("id", "linkMemoryIcon");
-        memoryIcon.appendChild(linkMemoryIcon);  
-        
-        var memoryIconImage = document.createElement("img");
-        memoryIconImage.setAttribute("src", "css/pics/memoryIcon.png");
-        linkMemoryIcon.appendChild(memoryIconImage);
-        document.getElementById("linkMemoryIcon").addEventListener("click", Projekt.createMemoryGame);
-        
-    },
-    init: function(){
-        Projekt.imageGallerIcon();        
-        Projekt.rssIcon();        
-        Projekt.memoryIcon();        
-    
-    
-        var removeWindow = document.getElementById("content");
-        removeWindow.onclick = function(e){
-            console.log(e.target);
-            console.log(e.target.parentNode);
-            var Window = e.target.parentNode;   
-            console.log(Window);
-            document.getElementById(Window.getAttribute("id")).style.zIndex = ++Projekt.zIndex;            
-
-            if (e.target.parentNode.getAttribute("title") === "Close"){            
-                var node = e.target.parentNode.parentNode.parentNode;  
-                node.parentNode.removeChild (node);
-            };
-        }; 
-        
-    },    
-    
-    createImageGallery: function(){
-//         var mem = new Memory(4,4,++Projekt.instanceId);
-//          mem.start();
-    },
-    createRssFeed: function(){
-//         var mem = new Memory(4,4,++Projekt.instanceId);
-//          mem.start();
-    },
-    createMemoryGame: function(){
-         var mem = new Memory(4,4,++Projekt.instanceId);
-          mem.start();
-    }    
-};
-
-
-
-window.addEventListener("load", Projekt.init);
 

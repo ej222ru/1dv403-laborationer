@@ -3,6 +3,9 @@
 var Projekt = {
     instanceId: 0,
     zIndex: 1,
+    xl: 0,
+    yt: 0,
+    newStartPositions: 0,
     rssIcon: function(){
         var appArea = document.getElementById("appArea");
         
@@ -68,12 +71,18 @@ var Projekt = {
     
         var removeWindow = document.getElementById("content");
         removeWindow.onclick = function(e){
-            console.log(e.target);
-            console.log(e.target.parentNode);
-            var Window = e.target.parentNode;   
-            console.log(Window);
-            document.getElementById(Window.getAttribute("id")).style.zIndex = ++Projekt.zIndex;            
+            var Window = null; 
+            if (e.target.getAttribute("title") === "Window")
+                Window = e.target;
+            if (e.target.parentNode.getAttribute("title") === "Window")
+                Window = e.target.parentNode;
+            if (e.target.parentNode.parentNode.getAttribute("title") === "Window")
+                Window = e.target.parentNode.parentNode;
+                
 
+            if (Window){            
+                document.getElementById(Window.getAttribute("id")).style.zIndex = ++Projekt.zIndex;            
+            }
             if (e.target.parentNode.getAttribute("title") === "Close"){            
                 var node = e.target.parentNode.parentNode.parentNode;  
                 node.parentNode.removeChild (node);

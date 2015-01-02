@@ -42,11 +42,9 @@ body{
     border: solid black 1px;
     padding: 4px;
 /*    margin: 4px;*/
-    position: relative;;
+    position: absolute;;
     float: left;
 }
-#block1 { z-index: 60; position: absolute; top: 26px; left: 160px; margin: 0; padding: 0; }
-#block2 { z-index: 50; position: absolute; top: 203px; left: 80px; margin: 0; padding: 0; }
 
 .Window hide{
     display: none;

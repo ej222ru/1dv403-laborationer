@@ -148,22 +148,3 @@ function Memory(_rows, _columns, _game) {
        
 Memory.prototype = new Window();
 
-
-
-var MemoryGame = {
-    init: function(){
-        
-        
-    var GameCollection = document.createElement("div"); 
-    GameCollection.setAttribute("id", "BoardCollection");    
-    document.getElementById("content").appendChild(GameCollection);
-        
-      var mem1 = new Memory(4,4,1);
-      var mem2 = new Memory(4,4,2);
-
-      mem1.start();
-      mem2.start();
-
-    }      
-};
-// window.addEventListener("load", MemoryGame.init);
