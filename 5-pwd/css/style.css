@@ -41,7 +41,7 @@ body{
     background-color: #CDCFD9;   
     border: solid black 1px;
     padding: 4px;
-    margin: 4px;
+/*    margin: 4px;*/
     position: relative;;
     float: left;
 }
