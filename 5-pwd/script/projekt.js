@@ -1,99 +1,5 @@
 "use strict";
 
-function Window(_instance) {
-    var that = this;
-    var windowInst = document.createElement("div"); 
-    windowInst.setAttribute("id", "Window"+_instance);
-    windowInst.classList.add("Window");    
-    document.getElementById("content").appendChild(windowInst);
-
-    var topLabel = document.createElement("div"); 
-    topLabel.classList.add("topLabel");    
-    document.getElementById("Window"+_instance).appendChild(topLabel);
-
-    var remLink = document.createElement("a");
-    var remPic = document.createElement("img");    
-    remPic.classList.add("imgClose");
-    remPic.setAttribute("src", "css/pics/remove_16.png");    
-    remLink.setAttribute("title", "Close");
-    remLink.setAttribute("href", "#");
-    remLink.appendChild(remPic);    
-    topLabel.appendChild(remLink);     
-    
-    
-    var bottomLabel = document.createElement("div"); 
-    bottomLabel.classList.add("bottomLabel");    
-    document.getElementById("Window"+_instance).appendChild(bottomLabel);
-   if (_instance >1){
-        document.getElementById("Window"+_instance).style.left = (-(_instance-1)*160) + 'px';
-        document.getElementById("Window"+_instance).style.top  = ((_instance-1)*20) + 'px';
-    }
-
-    var posWindow = getObjectPosition(document.getElementById("Window"+_instance));
-    var posContent = getObjectPosition(document.getElementById("content"));
-
-    if ((posWindow.xl < posContent.xl) ||
-        (posWindow.xr > posContent.xr) || 
-        (posWindow.yt < posContent.yt) ||
-        (posWindow.yb > posContent.yb)){
-            
-            startNewPosition(document.getElementById("Window"+_instance));
-        }
-
-
-
-/*    
-    function getObjectPosition(object) {
-      var left = 0;
-      var top = 0;
-    
-      while (object.offsetParent) {
-    
-        left += object.offsetLeft;
-        top += object.offsetTop;
-    
-        object = object.offsetParent;
-      }
-    
-      left += object.offsetLeft;
-      top += object.offsetTop;
-    
-      return {
-          x : left,
-          y : top
-      };
-    }  
-*/
-
-    function calculateWindowPosition(object) {
-        
-        
-    }
-    
-    function startNewPosition(object) {
-    
-/*        
-      return {
-          xl : object.offsetLeft,
-          xr : object.offsetRight,
-          yt : object.offsetTop,
-          yb : object.offsetBottom
-      };
-      */
-      
-    }  
-    
-    function getObjectPosition(object) {
-
-        return {
-          xl : object.offsetLeft,
-          xr : object.offsetLeft + object.offsetWidth,
-          yt : object.offsetTop,
-          yb : object.offsetTop + object.offsetHeight
-        };
-    }    
-}
-
 var Projekt = {
     instanceId: 0,
     zIndex: 1,
@@ -177,11 +83,11 @@ var Projekt = {
     },    
     
     createImageGallery: function(){
-//         var mem = new Memory(4,4,++Projekt.instanceId);
+//         var mem = new Image(4,4,++Projekt.instanceId);
 //          mem.start();
     },
     createRssFeed: function(){
-//         var mem = new Memory(4,4,++Projekt.instanceId);
+//         var mem = new Rss(4,4,++Projekt.instanceId);
 //          mem.start();
     },
     createMemoryGame: function(){

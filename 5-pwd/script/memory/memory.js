@@ -64,12 +64,12 @@ function Memory(_rows, _columns, _game) {
             }
         }      
         if (this.done === this.rows * this.columns / 2 ){
-            var container = document.getElementById("container");
+            var content = document.getElementById("content");
             var result = document.createElement("div");
             var text = document.createElement("p");
             text.innerHTML = "Du klarade det på " + this.clicks + " försök!";
             result.appendChild(text); 
-            container.appendChild(result); 
+            content.appendChild(result); 
         }
     };
     
@@ -156,7 +156,7 @@ var MemoryGame = {
         
     var GameCollection = document.createElement("div"); 
     GameCollection.setAttribute("id", "BoardCollection");    
-    document.getElementById("container").appendChild(GameCollection);
+    document.getElementById("content").appendChild(GameCollection);
         
       var mem1 = new Memory(4,4,1);
       var mem2 = new Memory(4,4,2);

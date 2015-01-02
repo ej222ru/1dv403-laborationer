@@ -8,14 +8,14 @@ body{
     background-color: black;
 }
 
-#content{
+#container{
     max-width: 960px; 
     margin-left:auto;
     margin-right:auto;
     
 }
 
-#container{
+#content{
 
     height: 640px;   
     background-color: #A2A3AB;   
