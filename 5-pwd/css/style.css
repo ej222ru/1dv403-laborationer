@@ -19,27 +19,36 @@ body{
 
     height: 640px;   
     background-color: #A2A3AB;   
-    border: 2px solid #3D402A;
+    border: 2px solid yellow;
 
 /*    overflow: auto; 
     background-color: #F3E789;   
 */
 }
+#divider{
 
+    height: 85px;
+    background-color: black;
+    
+/*    border: 2px solid #3D402A;
+    border: 2px solid yellow;
+    border-top: 14px solid black;
+*/    
+}
 #appArea{
 
     height: 56px;
     border: 2px solid #3D402A;
 /*    opacity: 0.5; */
     margin-top: -71px;
-    border-top: 14px solid black;
+    border: 2px solid yellow;
 }
 
 .Window{
     height: 200px;
     width: 200px;
     background-color: #CDCFD9;   
-    border: solid black 1px;
+    border: solid yellow 3px;
     padding: 4px;
 /*    margin: 4px;*/
     position: absolute;;
@@ -48,6 +57,8 @@ body{
 .appName{
     width: 120;
     float: left;
+    padding-left: 8px;
+    padding-top: 4px;
 }
 .Window hide{
     display: none;
@@ -60,6 +71,9 @@ body{
 .imgClose {
     width: 16px;
     height: 16px;
+    margin-right: 6px;
+    margin-top: 4px;
+    
     float:right;
     position: relative;
 }
