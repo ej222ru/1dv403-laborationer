@@ -45,7 +45,10 @@ body{
     position: absolute;;
     float: left;
 }
-
+.appName{
+    width: 120;
+    float: left;
+}
 .Window hide{
     display: none;
 }

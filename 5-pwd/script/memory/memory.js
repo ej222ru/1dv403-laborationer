@@ -2,7 +2,7 @@
 
 function Memory(_rows, _columns, _game) {
 
-        Window.call(this, _game);
+        Window.call(this, "MemoryGame", _game);
         var that = this;
         this.rows = _rows;
         this.columns = _columns;  

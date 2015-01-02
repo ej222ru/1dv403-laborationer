@@ -1,6 +1,6 @@
 "use strict";
 
-function Window(_instance) {
+function Window(_name, _instance) {
     var that = this;
     var windowInst = document.createElement("div"); 
     windowInst.setAttribute("id", "Window"+_instance);
@@ -11,6 +11,11 @@ function Window(_instance) {
     var topLabel = document.createElement("div"); 
     topLabel.classList.add("topLabel");    
     document.getElementById("Window"+_instance).appendChild(topLabel);
+
+    var name = document.createElement("div");
+    name.classList.add("appName");    
+    name.innerHTML = _name;
+    topLabel.appendChild(name);     
 
     var remLink = document.createElement("a");
     var remPic = document.createElement("img");    
