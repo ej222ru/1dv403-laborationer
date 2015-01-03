@@ -45,7 +45,7 @@ body{
 }
 
 .Window{
-    height: 200px;
+    height: 300px;
     width: 200px;
     background-color: #CDCFD9;   
     border: solid yellow 3px;
@@ -81,7 +81,7 @@ body{
     height: 16px;   
     border-top : solid black 1px;    
     background-color: #525357;
-    position: relative; bottom: -160px; 
+    position: relative; bottom: -260px; 
 }
 
 .appIcon{
