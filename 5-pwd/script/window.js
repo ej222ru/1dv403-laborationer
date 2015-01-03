@@ -29,6 +29,7 @@ function Window(_name, _instance) {
     
     var bottomLabel = document.createElement("div"); 
     bottomLabel.classList.add("bottomLabel");    
+    bottomLabel.setAttribute("title", "Status");
     document.getElementById("Window"+_instance).appendChild(bottomLabel);
 
     calculateWindowPosition(_instance);

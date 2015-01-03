@@ -92,12 +92,12 @@ var Projekt = {
     },    
     
     createImageGallery: function(){
-//         var mem = new Image(4,4,++Projekt.instanceId);
-//          mem.start();
+        var imageGallery = new ImageGallery(++Projekt.instanceId);
+        imageGallery.start();
     },
     createRssFeed: function(){
-//         var mem = new Rss(4,4,++Projekt.instanceId);
-//          mem.start();
+        var Rss = new RSS(++Projekt.instanceId);
+        Rss.start();
     },
     createMemoryGame: function(){
          var mem = new Memory(4,4,++Projekt.instanceId);
