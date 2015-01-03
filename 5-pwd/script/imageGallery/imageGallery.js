@@ -5,11 +5,12 @@ function ImageGallery(_instance) {
     Window.call(this, "ImageGallery", _instance);
     this.responseObject = 0;    
     this.windowId = "Window"+_instance;    
-    this.nextURL = "http://homepage.lnu.se/staff/tstjo/labbyServer/rssproxy/?url="+escape("http://www.dn.se/m/rss/senaste-nytt");        
+    this.nextURL = "http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer";        
     this.thumbURL = 0;
     this.thumbHeight = 0;
-    this.thumbHeight = 0;
-    this.thumbHeight = 0;
+    this.thumbWidth = 0;
+    this.pictureHeight = 0;
+    this.pictureWidth = 0;
     
     
     this.start = function(){
@@ -57,7 +58,6 @@ function ImageGallery(_instance) {
         };   
         this.renderMemoryTable(this.rows, this.columns, this.game);
 */        
-    };    
 }
        
 ImageGallery.prototype = new Window();
