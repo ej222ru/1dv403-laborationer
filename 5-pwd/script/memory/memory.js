@@ -2,31 +2,25 @@
 
 function Memory(_rows, _columns, _game) {
 
-        Window.call(this, "MemoryGame", _game);
-        var that = this;
-        this.rows = _rows;
-        this.columns = _columns;  
-        this.game = "Window"+_game;
-        
-        this.pictures = [];
-        this.done = 0;
-        this.clicks =  0;
-        this.flipped =  0;
-        this.turnBackAtTimeoutNode1 = 0;
-        this.turnBackAtTimeoutNode2 = 0;
-    
+    Window.call(this, "MemoryGame", _game);
+    var that = this;
+    this.rows = _rows;
+    this.columns = _columns;  
+    this.game = "Window"+_game;
+    this.pictures = [];
+    this.done = 0;
+    this.clicks =  0;
+    this.flipped =  0;
+    this.turnBackAtTimeoutNode1 = 0;
+    this.turnBackAtTimeoutNode2 = 0;
 
     
     this.turnCard = function(e, index){
         
-        
         this.flippedCardsTimeout = function (){
-    //        if (this.flipped === 2){
                 that.turnBackAtTimeoutNode1.setAttribute("src", "script/memory/pics/0.png"); 
                 that.turnBackAtTimeoutNode2.setAttribute("src", "script/memory/pics/0.png"); 
                 that.flipped = 0;
-    //        }
-         
         };        
         var secondSameIndex = false;
         if (this.flipped === 0){
@@ -136,7 +130,8 @@ function Memory(_rows, _columns, _game) {
             if (e.target.parentNode.getAttribute("title") === "Card"){
                 index = e.target.parentNode.parentNode.getAttribute("data-cardID");
 
-               if (that.flipped < 2){
+                if ((that.flipped < 2) && (e.target.getAttribute("src") === "script/memory/pics/0.png"))
+                {
                     that.turnCard(e, index);
                 }
             }
