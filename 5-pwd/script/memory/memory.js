@@ -1,12 +1,12 @@
 "use strict";
 
-function Memory(_rows, _columns, _game) {
+function Memory(_rows, _columns, _instance) {
 
-    Window.call(this, "MemoryGame", _game);
+    Window.call(this, "MemoryGame", _instance);
     var that = this;
     this.rows = _rows;
     this.columns = _columns;  
-    this.game = "Window"+_game;
+    this.game = "Window"+_instance;
     this.pictures = [];
     this.done = 0;
     this.clicks =  0;
@@ -76,19 +76,15 @@ function Memory(_rows, _columns, _game) {
         var j = 0;
         
         var gameInstance = document.getElementById(id),
- //           memoryBoard = document.createElement("div"),
             memoryTable = document.createElement("table"),
             memoryTableBody =  document.createElement("tbody"),
             memoryTableRow,
             memoryTableCell,
             memoryPic,
             picLink;
-//            memoryBoard.classList.add("memoryBoard");
             memoryTable.classList.add("memoryTable");
             
- //       gameInstance.appendChild(memoryBoard); 
         gameInstance.appendChild(memoryTable); 
- //       memoryBoard.appendChild(memoryTable); 
         memoryTable.appendChild(memoryTableBody); 
         for (i=0;i<rows;i+=1){
             memoryTableRow = document.createElement("tr");                    
@@ -116,13 +112,12 @@ function Memory(_rows, _columns, _game) {
   
     this.start = function(){
         that = this;
-        var BoardCollection = document.getElementById(this.game);
-        var GameInstance = document.createElement("div");
-        GameInstance.setAttribute("id", this.game);  // ordning 
-        BoardCollection.appendChild(GameInstance);
+        var windowInstance = document.getElementById(this.game);
+//        var gameInstance = document.createElement("div");
+//        gameInstance.setAttribute("id", this.game);
+//        windowInstance.appendChild(gameInstance);
         
         this.pictures = RandomGenerator.getPictureArray(this.rows, this.columns);
-        console.log(this.pictures);
 
         var node = document.getElementById(this.game);
         node.onclick = function(e){
