@@ -1,0 +1,13 @@
+
+.rssFeed {
+/*    background-color: white; */ 
+    height: 120px;
+    font-size: 6px;
+    padding: 2px;
+/*    border: solid 2px blue ; */
+    border-spacing: 4px 4px;
+/*    margin: 0 auto; */
+/*    display:flex; */
+    justify-content: center;
+    overflow: auto;
+}

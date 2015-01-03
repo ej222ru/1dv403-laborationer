@@ -28,14 +28,16 @@ function RSSWindow(_instance) {
                console.log(xhr.responseText); 
 //                that.responseObject = JSON.parse(xhr.responseText);
                 var newMessage = document.createElement("div");
-                newMessage.setAttribute()
+//                newMessage.setAttribute()
                 newMessage.classList.add("rssText");
-                newMessage.value = xhr.responseText;
+//                newMessage.value = xhr.responseText;
+//                newMessage.innerHTML = xhr.responseText;
                 console.log(windowInstance);
-                console.log(newMessage.value);
+//                console.log(newMessage.value);
+                console.log(newMessage.innerHTML);
                 
-                windowInstance.appendChild(newMessage);
-
+//                windowInstance.appendChild(newMessage);
+                windowInstance.innerHTML += xhr.responseText;     
 //                that.rssInstance.appendChild(newMessage);     
            
             }
