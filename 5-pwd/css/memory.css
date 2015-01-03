@@ -22,7 +22,7 @@ footer, header, hgroup, main, menu, nav, section{
 
 .memoryBoard{
     background-color: #BFA;
-    padding: 24px;
+    padding: 12px;
     border: 2px solid #3D402A;
     
     
@@ -41,15 +41,13 @@ footer, header, hgroup, main, menu, nav, section{
     justify-content: center;     
 }
 
-.memoryTable th, td, tr{
 
+td{
+    height: 32px;
+    width: 32px;
 }
-
-.memoryTable a{
- /*   border: 1px solid black; */
-}
-
 
 .imgCard {
-
+    margin-left: 4px;
+    margin-top: 4px;
 }
