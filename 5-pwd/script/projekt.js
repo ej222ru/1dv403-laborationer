@@ -22,7 +22,7 @@ var Projekt = {
         var rssIconImage = document.createElement("img");
         rssIconImage.setAttribute("src", "css/pics/feed.png");
         linkRssIcon.appendChild(rssIconImage);
-        document.getElementById("linkRssIcon").addEventListener("click", Projekt.createRssFeed);
+        document.getElementById("linkRssIcon").addEventListener("click", Projekt.createRSSFeed);
         
     },   
     imageGallerIcon: function(){
@@ -92,16 +92,16 @@ var Projekt = {
     },    
     
     createImageGallery: function(){
-        var imageGallery = new ImageGallery(++Projekt.instanceId);
-        imageGallery.start();
+        var myImageGallery = new ImageGallery(++Projekt.instanceId);
+        myImageGallery.start();
     },
-    createRssFeed: function(){
-        var Rss = new RSS(++Projekt.instanceId);
-        Rss.start();
+    createRSSFeed: function(){
+        var myRSS = new RSSWindow(++Projekt.instanceId);
+        myRSS.start();
     },
     createMemoryGame: function(){
-         var mem = new Memory(4,4,++Projekt.instanceId);
-          mem.start();
+         var myMemory = new Memory(4,4,++Projekt.instanceId);
+          myMemory.start();
     }    
 };
 

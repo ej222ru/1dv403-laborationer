@@ -1,8 +1,8 @@
 "use strict";
 
-function RSS(_instance) {
+function ImageGallery(_instance) {
 
-    Window.call(this, "RSS", _instance);
+    Window.call(this, "ImageGallery", _instance);
     var that = this;
     
     this.start = function(){
@@ -33,5 +33,5 @@ function RSS(_instance) {
     };    
 }
        
-RSS.prototype = new Window();
+ImageGallery.prototype = new Window();
 

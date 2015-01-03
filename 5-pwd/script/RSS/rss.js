@@ -1,8 +1,8 @@
 "use strict";
 
-function ImageGallery(_instance) {
+function RSSWindow(_instance) {
 
-    Window.call(this, "ImageGallery", _instance);
+    Window.call(this, "RSS", _instance);
     var that = this;
     
     this.start = function(){
@@ -30,8 +30,8 @@ function ImageGallery(_instance) {
         };   
         this.renderMemoryTable(this.rows, this.columns, this.game);
 */        
-    }    
+    };    
 }
        
-ImageGallery.prototype = new Window();
+RSSWindow.prototype = new Window();
 
