@@ -1,17 +1,19 @@
 "use strict";
 
 function ImageGallery(_instance) {
-
+    var that = this;
+    
     Window.call(this, "ImageGallery", _instance);
-    this.responseObject = 0;    
+    this.instanceId = _instance;
+    this.responseObjects;    
     this.windowId = "Window"+_instance;    
-    this.nextURL = "http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer";        
+    this.nextURL = "http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/";        
     this.thumbURL = 0;
     this.thumbHeight = 0;
     this.thumbWidth = 0;
     this.pictureHeight = 0;
     this.pictureWidth = 0;
-    
+ 
     
     this.start = function(){
         var windowInstance = document.getElementById(this.windowId);
@@ -20,44 +22,42 @@ function ImageGallery(_instance) {
         
         xhr.onreadystatechange = function(){
             if ((xhr.readyState === 4) && (xhr.status === 200)) {
-                this.responseObject = JSON.parse(xhr.responseText);
-                console.log(this.responseObject);
-/*                
-                var newMessage = document.createElement("div");
-                newMessage.classList.add("rssText");
-                windowInstance.innerHTML += xhr.responseText;     
-*/                
+                console.log(xhr.responseText);   
+                that.responseObjects = JSON.parse(xhr.responseText);
+                that.addThumbs(that.responseObjects, that.instanceId);  
+
             }
         };
         
         xhr.open("GET", this.nextURL, true);
         xhr.send(null);
+        
+        
+
+
     };            
+    this.addThumbs = function(_thumbObjArray, _instance){
+        var windowInstance = document.getElementById(that.windowId);
         
+        console.log(_thumbObjArray[0].thumbURL);
+        var newThumb = document.createElement("div");
+        newThumb.classList.add("imgGallery");
+        windowInstance.appendChild(newThumb);
         
-/*        
-        var BoardCollection = document.getElementById(this.game);
-        var GameInstance = document.createElement("div");
-        GameInstance.setAttribute("id", this.game);  // ordning 
-        BoardCollection.appendChild(GameInstance);
-        
-        this.pictures = RandomGenerator.getPictureArray(this.rows, this.columns);
-        console.log(this.pictures);
+        var newThumbLink = document.createElement("a");
+        newThumbLink.classList.add("thumbPicLink");
+        newThumbLink.setAttribute("href", "#");
 
-        var node = document.getElementById(this.game);
-        node.onclick = function(e){
-            var index;
-            if (e.target.parentNode.getAttribute("title") === "Card"){
-                index = e.target.parentNode.parentNode.getAttribute("data-cardID");
+        newThumb.appendChild(newThumbLink);
 
-                if ((that.flipped < 2) && (e.target.getAttribute("src") === "script/memory/pics/0.png"))
-                {
-                    that.turnCard(e, index);
-                }
-            }
-        };   
-        this.renderMemoryTable(this.rows, this.columns, this.game);
-*/        
+        var newThumbImg = document.createElement("img");
+        newThumbImg.classList.add("thumbPicImg");
+        newThumbImg.setAttribute("src", _thumbObjArray[0].thumbURL);
+        
+        newThumbLink.appendChild(newThumbImg);
+
+      
+    };        
 }
        
 ImageGallery.prototype = new Window();
