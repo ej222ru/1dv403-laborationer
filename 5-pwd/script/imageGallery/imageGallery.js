@@ -3,10 +3,37 @@
 function ImageGallery(_instance) {
 
     Window.call(this, "ImageGallery", _instance);
-    var that = this;
+    this.responseObject = 0;    
+    this.windowId = "Window"+_instance;    
+    this.nextURL = "http://homepage.lnu.se/staff/tstjo/labbyServer/rssproxy/?url="+escape("http://www.dn.se/m/rss/senaste-nytt");        
+    this.thumbURL = 0;
+    this.thumbHeight = 0;
+    this.thumbHeight = 0;
+    this.thumbHeight = 0;
+    
     
     this.start = function(){
-        that = this;
+        var windowInstance = document.getElementById(this.windowId);
+
+        var xhr = new XMLHttpRequest();
+        
+        xhr.onreadystatechange = function(){
+            if ((xhr.readyState === 4) && (xhr.status === 200)) {
+                this.responseObject = JSON.parse(xhr.responseText);
+                console.log(this.responseObject);
+/*                
+                var newMessage = document.createElement("div");
+                newMessage.classList.add("rssText");
+                windowInstance.innerHTML += xhr.responseText;     
+*/                
+            }
+        };
+        
+        xhr.open("GET", this.nextURL, true);
+        xhr.send(null);
+    };            
+        
+        
 /*        
         var BoardCollection = document.getElementById(this.game);
         var GameInstance = document.createElement("div");
