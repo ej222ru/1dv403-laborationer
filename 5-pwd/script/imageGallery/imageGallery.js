@@ -38,10 +38,12 @@ function ImageGallery(_instance) {
     };            
     this.addThumbs = function(_thumbObjArray, _instance){
         var windowInstance = document.getElementById(that.windowId);
-        
+        var index = 0;
         console.log(_thumbObjArray[0].thumbURL);
         var newThumb = document.createElement("div");
         newThumb.classList.add("imgGallery");
+        newThumb.setAttribute("title", "thumbPicImg");        
+        newThumb.setAttribute("ThumbId", index);        
         windowInstance.appendChild(newThumb);
         
         var newThumbLink = document.createElement("a");
@@ -52,11 +54,29 @@ function ImageGallery(_instance) {
 
         var newThumbImg = document.createElement("img");
         newThumbImg.classList.add("thumbPicImg");
-        newThumbImg.setAttribute("src", _thumbObjArray[0].thumbURL);
+        newThumbImg.setAttribute("title","thumbPicImg");
+        newThumbImg.setAttribute("src", _thumbObjArray[index].thumbURL);
         
         newThumbLink.appendChild(newThumbImg);
 
-      
+        newThumbImg.onclick = function(e){
+ //        newThumbLink.onclick = function(e){
+            var index;
+            if (e.target.getAttribute("title") === "thumbPicImg"){
+                index = e.target.parentNode.parentNode.getAttribute("ThumbId");
+
+                var windowInst = document.createElement("div"); 
+                windowInst.setAttribute("id", "PicWindow"+index);
+                windowInst.classList.add("FullSizePicture");    
+                windowInst.setAttribute("title", "PicWindow");
+                document.getElementById("content").appendChild(windowInst);
+        
+
+
+            }
+        };   
+
+
     };        
 }
        
