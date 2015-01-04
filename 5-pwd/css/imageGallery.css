@@ -11,4 +11,12 @@
     justify-content: center;
     overflow: auto;
 }
-
+.image{
+    
+    justify-content: center;    
+    border-spacing: 4px 4px;
+    margin: 8px;
+    border: 4px solid yellow;
+    justify-content: center;  
+    overflow: auto;    
+}
