@@ -54,6 +54,7 @@ body{
     position: absolute;;
     float: left;
 }
+
 .appName{
     width: 120;
     float: left;
@@ -81,9 +82,9 @@ body{
     height: 16px;   
     border-top : solid black 1px;    
     background-color: #525357;
-    position: relative; bottom: -260px; 
+    padding-top: 4px; 
+   position: relative; bottom: 4px;
 }
-
 .appIcon{
     height: 50px;
     width: 50px;

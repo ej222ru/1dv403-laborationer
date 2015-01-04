@@ -6,6 +6,7 @@ function Memory(_rows, _columns, _instance) {
     var that = this;
     this.rows = _rows;
     this.columns = _columns;  
+    this.instance = _instance;
     this.game = "Window"+_instance;
     this.pictures = [];
     this.done = 0;
@@ -83,8 +84,8 @@ function Memory(_rows, _columns, _instance) {
             memoryPic,
             picLink;
             memoryTable.classList.add("memoryTable");
-            
-        gameInstance.appendChild(memoryTable); 
+
+        gameInstance.appendChild(memoryTable);             
         memoryTable.appendChild(memoryTableBody); 
         for (i=0;i<rows;i+=1){
             memoryTableRow = document.createElement("tr");                    
@@ -113,6 +114,8 @@ function Memory(_rows, _columns, _instance) {
     this.start = function(){
         that = this;
         var windowInstance = document.getElementById(this.game);
+        var windowInstanceMain = document.getElementById("WindowMain"+this.instance);
+        
 //        var gameInstance = document.createElement("div");
 //        gameInstance.setAttribute("id", this.game);
 //        windowInstance.appendChild(gameInstance);
@@ -131,7 +134,7 @@ function Memory(_rows, _columns, _instance) {
                 }
             }
         };   
-        this.renderMemoryTable(this.rows, this.columns, this.game);
+        this.renderMemoryTable(this.rows, this.columns, "WindowMain"+this.instance);
     }
 }
 

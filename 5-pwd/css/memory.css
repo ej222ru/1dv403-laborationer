@@ -31,17 +31,20 @@ footer, header, hgroup, main, menu, nav, section{
 #sendButton{
     margin:auto;
 }
+.memoryTableMain{
 
+}
 .memoryTable {
-/*    background-color: white; */   
-    border: solid 1px black ;
+    height: 258px;
     border-spacing: 4px 4px;
-/*    margin: 0 auto; */
     display:flex; 
     justify-content: center;     
 }
 
-
+tbody{
+    border-top: 40px solid transparent;
+    margin: 10px;
+}
 td{
     height: 32px;
     width: 32px;

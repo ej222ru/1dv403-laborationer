@@ -37,7 +37,7 @@ function ImageGallery(_instance) {
 
     };            
     this.addThumbs = function(_thumbObjArray, _instance){
-        var windowInstance = document.getElementById(that.windowId);
+        var windowInstance = document.getElementById("WindowMain"+that.instanceId);
         var index = 0;
         console.log(_thumbObjArray[0].thumbURL);
         
@@ -79,12 +79,16 @@ function ImageGallery(_instance) {
 
                     var windowInstance = new ImageGallery(++Projekt.instanceId);  
                     var imageWindow = document.getElementById("Window"+Projekt.instanceId);                    
+                    var imageWindowMain = document.getElementById("WindowMain"+Projekt.instanceId);                    
 //                    var imageWindow = document.createElement("div"); 
-                    imageWindow.setAttribute("id", "PicWindow"+index);
+//                    imageWindow.setAttribute("id", "PicWindow"+index);
 //                    imageWindow.classList.add("FullSizePicture");    
 //                    imageWindow.setAttribute("title", "PicWindow");
-                    imageWindow.style.height = (_thumbObjArray[index].height+80)+"px";
+                    imageWindow.style.height = (_thumbObjArray[index].height+52)+"px";
                     imageWindow.style.width = (_thumbObjArray[index].width+8)+"px";
+//                    imageWindowMain.style.height = (_thumbObjArray[index].height+80)+"px";
+//                    imageWindowMain.style.width = (_thumbObjArray[index].width+8)+"px";
+                    
 //                    imageWindow.style.zIndex = ++Projekt.zIndex;     
 /*                    
                     var topLabel = document.createElement("div"); 
@@ -104,7 +108,7 @@ function ImageGallery(_instance) {
                     var imageLink = document.createElement("a");
                     imageLink.classList.add("imageLink");
                     imageLink.setAttribute("href", "#");
-                    imageWindow.appendChild(imageLink);
+                    imageWindowMain.appendChild(imageLink);
             
                     var image = document.createElement("img");
                     image.classList.add("image");
@@ -113,8 +117,7 @@ function ImageGallery(_instance) {
                     imageLink.appendChild(image);                    
                     
                     
-                    document.getElementById("content").appendChild(imageWindow);
-    
+
                 }
             };  
         };    
