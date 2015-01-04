@@ -26,10 +26,14 @@ tbody{
     margin: 10px;
 }
 td{
-    height: 32px;
-    width: 32px;
+    height: 64px;
+    width: 64px;
 }
-
+/*
+.memoryPicWrapper img{
+    width: 64px;  
+   height: auto;
+}*/
 .imgCard {
     margin-left: 4px;
     margin-top: 4px;

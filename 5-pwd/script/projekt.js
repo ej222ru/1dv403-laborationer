@@ -100,7 +100,7 @@ var Projekt = {
         myRSS.start();
     },
     createMemoryGame: function(){
-         var myMemory = new Memory(6,6,++Projekt.instanceId);
+         var myMemory = new Memory(4,4,++Projekt.instanceId);
           myMemory.start();
     }    
 };

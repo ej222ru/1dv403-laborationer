@@ -18,10 +18,6 @@ function Window(_iconURL, _name, _instance) {
 
     topLabel.appendChild(icon);     
     
-
-    
-    
-
     var name = document.createElement("div");
     name.classList.add("appName");    
     name.innerHTML = _name;

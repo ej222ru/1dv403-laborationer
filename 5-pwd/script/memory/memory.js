@@ -39,7 +39,7 @@ function Memory(_rows, _columns, _instance) {
         if (!secondSameIndex){       
             if (this.flipped < 2){
                 this.flipped +=1;
-                e.target.parentNode.parentNode.getAttribute("data-cardID");
+                e.target.parentNode.parentNode.parentNode.getAttribute("data-cardID");
                 e.target.setAttribute("data-cardID", index);
                 var str = "script/memory/pics/" + this.pictures[index] + ".png";
                 e.target.setAttribute("src", str);          
@@ -81,6 +81,7 @@ function Memory(_rows, _columns, _instance) {
             memoryTableBody =  document.createElement("tbody"),
             memoryTableRow,
             memoryTableCell,
+            memoryPicWrapper,
             memoryPic,
             picLink;
             memoryTable.classList.add("memoryTable");
@@ -94,6 +95,11 @@ function Memory(_rows, _columns, _instance) {
                 memoryTableCell = document.createElement("td");
                 memoryTableCell.setAttribute("data-cardID", i*cols+j);        
 
+                
+                memoryPicWrapper = document.createElement("div");
+                memoryPicWrapper.classList.add("memoryPicWrapper");                  
+                memoryTableCell.appendChild(memoryPicWrapper); 
+                
                 picLink = document.createElement("a");
                 picLink.setAttribute("title", "Card");
                 picLink.setAttribute("href", "#");               
@@ -101,10 +107,10 @@ function Memory(_rows, _columns, _instance) {
                 memoryPic = document.createElement("img");
                 memoryPic.classList.add("imgCard");                
                 memoryPic.setAttribute("src", "script/memory/pics/0.png");
-                memoryPic.classList.add("card");
-                
-                memoryTableCell.appendChild(picLink); 
-                picLink.appendChild(memoryPic); 
+                picLink.appendChild(memoryPic);                
+
+                memoryPicWrapper.appendChild(picLink); 
+
 
                 memoryTableRow.appendChild(memoryTableCell); 
             }
@@ -121,12 +127,13 @@ function Memory(_rows, _columns, _instance) {
 //        windowInstance.appendChild(gameInstance);
         
         this.pictures = RandomGenerator.getPictureArray(this.rows, this.columns);
+console.log(this.pictures); 
 
         var node = document.getElementById(this.game);
         node.onclick = function(e){
             var index;
             if (e.target.parentNode.getAttribute("title") === "Card"){
-                index = e.target.parentNode.parentNode.getAttribute("data-cardID");
+                index = e.target.parentNode.parentNode.parentNode.getAttribute("data-cardID");
 
                 if ((that.flipped < 2) && (e.target.getAttribute("src") === "script/memory/pics/0.png"))
                 {
