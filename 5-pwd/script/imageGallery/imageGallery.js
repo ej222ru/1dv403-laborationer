@@ -3,7 +3,7 @@
 function ImageGallery(_instance) {
     var that = this;
     
-    Window.call(this, "ImageGallery", _instance);
+    Window.call(this,"css/pics/pictures.png", "ImageGallery", _instance);
     this.instanceId = _instance;
     this.responseObjects;    
     this.windowId = "Window"+_instance;    
@@ -37,8 +37,16 @@ function ImageGallery(_instance) {
 
     };            
     this.addThumbs = function(_thumbObjArray, _instance){
-        var windowInstance = document.getElementById("WindowMain"+that.instanceId);
-
+        var windowInstanceMain = document.getElementById("WindowMain"+that.instanceId);
+        var maxThumbWidth = 0;
+        var maxThumbHeight = 0;
+        var index = 0;        
+        for (index; index < _thumbObjArray.length; index+=1) {
+            if (_thumbObjArray[index].thumbWidth > maxThumbWidth)
+                maxThumbWidth = _thumbObjArray[index].thumbWidth;
+            if (_thumbObjArray[index].thumbHeight > maxThumbHeight)
+                maxThumbHeight = _thumbObjArray[index].thumbHeight;
+        }
 /*        
         _thumbObjArray[index].thumbURL
         _thumbObjArray[index].thumbWidth
@@ -47,32 +55,44 @@ function ImageGallery(_instance) {
         _thumbObjArray[index].Width
         _thumbObjArray[index].Height
 */
-        var newThumb = document.createElement("div");
-        newThumb.classList.add("imgGallery");
+        var thumbGallery = document.createElement("div");
+        thumbGallery.classList.add("imgGallery");
     
-        windowInstance.appendChild(newThumb);
-        
-        var index = 0;
-        for (index; index < _thumbObjArray.length; index+=1) {
+        windowInstanceMain.appendChild(thumbGallery);
 
 
+        for (index=0; index < _thumbObjArray.length; index+=1) {
             
-            var newThumbLink = document.createElement("a");
-            newThumbLink.classList.add("thumbPicLink");
-            newThumbLink.setAttribute("href", "#");
+            var thumbCell = document.createElement("div");
+            thumbCell.classList.add("thumbCell");
+            thumbCell.style.height = (maxThumbHeight+2)+"px";
+            thumbCell.style.width = (maxThumbWidth+2)+"px";
+            
+            thumbGallery.appendChild(thumbCell);
+            
+            var thumbWrapper = document.createElement("div");            
+            thumbWrapper.classList.add("thumbWrapper");
+            thumbWrapper.style.width = _thumbObjArray[index].thumbWidth+"px";              
+            thumbCell.appendChild(thumbWrapper);
+            
+            var thumbLink = document.createElement("a");
+            thumbLink.classList.add("thumbPicLink");
+            thumbLink.setAttribute("href", "#");
     
 //            windowInstance.appendChild(newThumbLink);
-            newThumb.appendChild(newThumbLink);
+            thumbWrapper.appendChild(thumbLink);
     
-            var newThumbImg = document.createElement("img");
-            newThumbImg.classList.add("thumbPicImg");
-            newThumbImg.setAttribute("title","thumbPicImg");
-            newThumbImg.setAttribute("ThumbId", index);                
-            newThumbImg.setAttribute("src", _thumbObjArray[index].thumbURL);
+            var thumbImg = document.createElement("img");
+            thumbImg.classList.add("thumbPicImg");
+            thumbImg.setAttribute("title","thumbPicImg");
+            thumbImg.setAttribute("ThumbId", index);                
+            thumbImg.setAttribute("src", _thumbObjArray[index].thumbURL);
+          
+ 
             
-            newThumbLink.appendChild(newThumbImg);
+            thumbLink.appendChild(thumbImg);
         
-            newThumbImg.onclick = function(e){
+            thumbImg.onclick = function(e){
                 var index;
                 if (e.target.getAttribute("title") === "thumbPicImg"){
                     index = e.target.getAttribute("ThumbId");

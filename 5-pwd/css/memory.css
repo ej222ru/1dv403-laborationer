@@ -5,20 +5,6 @@ footer, header, hgroup, main, menu, nav, section{
  display: block; 
 } 
 
-/*
-#container{
-    max-width: 416px;
-    margin: 0 auto;
-    background-color: #E493E8;   
-    border: 2px solid #3D402A;
-    float: left;
-}
-#container div{
-    border: 2px solid #3D402A;
-    float: left;
-}
-*/
-
 
 .memoryBoard{
     background-color: #BFA;
@@ -28,14 +14,8 @@ footer, header, hgroup, main, menu, nav, section{
     
 }
 
-#sendButton{
-    margin:auto;
-}
-.memoryTableMain{
-
-}
 .memoryTable {
-    height: 258px;
+    height: 356px;
     border-spacing: 4px 4px;
     display:flex; 
     justify-content: center;     

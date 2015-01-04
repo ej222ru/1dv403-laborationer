@@ -45,8 +45,8 @@ body{
 }
 
 .Window{
-    height: 300px;
-    width: 200px;
+    height: 400px;
+    width: 300px;
     background-color: #CDCFD9;   
     border: solid yellow 3px;
     padding: 4px;
@@ -83,7 +83,7 @@ body{
     border-top : solid black 1px;    
     background-color: #525357;
     padding-top: 4px; 
-   position: relative; bottom: 4px;
+    bottom: 4px;
 }
 .appIcon{
     height: 50px;
@@ -92,9 +92,14 @@ body{
     background-color: yellow;
     float: left;
     margin: 4px;
-    
- 
 }
+.labelIcon{
+    height: auto;
+    max-width: 16px;
+    float: left;
+    margin: 4px;
+}
+
 #memoryIcon{
 
 }

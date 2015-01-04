@@ -1,6 +1,6 @@
 "use strict";
 
-function Window(_name, _instance) {
+function Window(_iconURL, _name, _instance) {
     var that = this;
     var windowInst = document.createElement("div"); 
     windowInst.setAttribute("id", "Window"+_instance);
@@ -11,6 +11,16 @@ function Window(_name, _instance) {
     var topLabel = document.createElement("div"); 
     topLabel.classList.add("topLabel");    
     windowInst.appendChild(topLabel);
+
+    var icon = document.createElement("img");    
+    icon.classList.add("labelIcon");
+    icon.setAttribute("src", _iconURL);    
+
+    topLabel.appendChild(icon);     
+    
+
+    
+    
 
     var name = document.createElement("div");
     name.classList.add("appName");    
@@ -45,7 +55,7 @@ function Window(_name, _instance) {
         
         var posContent = getObjectPosition(document.getElementById("content"));
         var newWindow = document.getElementById("Window"+_instance);        
-        newWindow.style.left = posContent.xl + (Projekt.newStartPositions * 200)+(++Projekt.xl)*20 + 'px';
+        newWindow.style.left = posContent.xl + (Projekt.newStartPositions * 300)+(++Projekt.xl)*20 + 'px';
         console.log(Projekt.yt);
         console.log(Projekt.xt);
         console.log(newWindow.style.left);        
@@ -70,7 +80,7 @@ function Window(_name, _instance) {
         
         var posContent = getObjectPosition(document.getElementById("content"));
       
-        newWindow.style.left = (posContent.xl + (Projekt.newStartPositions * 200) + 20) + 'px';
+        newWindow.style.left = (posContent.xl + (Projekt.newStartPositions * 300) + 20) + 'px';
         newWindow.style.top = (posContent.yt + (++Projekt.yt*20)) + 'px';    
 
         var posWindow = getObjectPosition(newWindow);        
@@ -80,7 +90,7 @@ function Window(_name, _instance) {
             (posWindow.yb > posContent.yb)){
                 
                 Projekt.newStartPositions = 0;                
-                newWindow.style.left = (posContent.xl + (Projekt.newStartPositions * 200) + 60) + 'px';    
+                newWindow.style.left = (posContent.xl + (Projekt.newStartPositions * 300) + 60) + 'px';    
                 newWindow.style.top = (posContent.yt + (++Projekt.yt*30)) + 'px';    
         }        
     }  

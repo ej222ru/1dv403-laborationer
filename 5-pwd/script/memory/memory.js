@@ -2,7 +2,7 @@
 
 function Memory(_rows, _columns, _instance) {
 
-    Window.call(this, "MemoryGame", _instance);
+    Window.call(this, "css/pics/memoryIcon.png", "MemoryGame", _instance);
     var that = this;
     this.rows = _rows;
     this.columns = _columns;  

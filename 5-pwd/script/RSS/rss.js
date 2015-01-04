@@ -2,13 +2,15 @@
 
 function RSSWindow(_instance) {
 
-    Window.call(this, "RSS", _instance);
-    this.windowId = "Window"+_instance;    
+    Window.call(this,"css/pics/feed.png",  "RSS", _instance);
+    this.windowId = "Window"+_instance;  
+    this.windowMainId = "WindowMain"+_instance;  
+    
     this.nextURL = "http://homepage.lnu.se/staff/tstjo/labbyServer/rssproxy/?url="+escape("http://www.dn.se/m/rss/senaste-nytt");        
 
     
     this.start = function(){
-        var windowInstance = document.getElementById(this.windowId);
+        var windowMainInstance = document.getElementById(this.windowMainId);
 
         var xhr = new XMLHttpRequest();
         
@@ -16,7 +18,7 @@ function RSSWindow(_instance) {
             if ((xhr.readyState === 4) && (xhr.status === 200)) {
                 var newMessage = document.createElement("div");
                 newMessage.classList.add("rssText");
-                windowInstance.innerHTML += xhr.responseText;     
+                windowMainInstance.innerHTML += xhr.responseText;     
             }
         };
         

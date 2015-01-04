@@ -1,15 +1,21 @@
 
 .rssFeed {
 /*    background-color: white; */ 
-    height: 220px;
+    height: 342px;
     font-size: 8px;
     padding: 2px;
+    margin-bottom: 4px;
+    margin-top: 4px;    
 /*    border: solid 2px blue ; */
-    border-spacing: 4px 4px;
 /*    margin: 0 auto; */
 /*    display:flex; */
-    justify-content: center;
     overflow: auto;
+}
+.rssFeed a{
+
+}
+.rssFeed p{
+    margin-bottom: 2px;
 }
 .rss_title{
     font-style: bold;
