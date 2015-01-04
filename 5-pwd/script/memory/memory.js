@@ -6,7 +6,6 @@ function Memory(_rows, _columns, _instance) {
     var that = this;
     this.rows = _rows;
     this.columns = _columns;  
-    this.game = "Window"+_instance;
     this.pictures = [];
     this.done = 0;
     this.clicks =  0;
@@ -58,10 +57,11 @@ function Memory(_rows, _columns, _instance) {
             }
         }      
         if (this.done === this.rows * this.columns / 2 ){
-            var content = document.getElementById("content");
+            var content = document.getElementById(this.windowMainId);
             var result = document.createElement("div");
             var text = document.createElement("p");
             text.innerHTML = "Du klarade det på " + this.clicks + " försök!";
+            text.style.color = white;
             result.appendChild(text); 
             content.appendChild(result); 
         }

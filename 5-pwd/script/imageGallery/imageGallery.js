@@ -4,10 +4,8 @@ function ImageGallery(_instance) {
     var that = this;
     
     Window.call(this,"css/pics/pictures.png", "ImageGallery", _instance);
-    this.instanceId = _instance;
     this.responseObjects;    
-    this.windowId = "Window"+_instance;    
-    this.nextURL = "http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/";        
+     this.nextURL = "http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/";        
     this.thumbURL = 0;
     this.thumbHeight = 0;
     this.thumbWidth = 0;
@@ -40,7 +38,7 @@ function ImageGallery(_instance) {
 
     };            
     this.addThumbs = function(_thumbObjArray, _instance){
-        var windowInstanceMain = document.getElementById("WindowMain"+that.instanceId);
+        var windowInstanceMain = document.getElementById(that.windowMainId);
         var maxThumbWidth = 0;
         var maxThumbHeight = 0;
         var index = 0;        
@@ -50,14 +48,7 @@ function ImageGallery(_instance) {
             if (_thumbObjArray[index].thumbHeight > maxThumbHeight)
                 maxThumbHeight = _thumbObjArray[index].thumbHeight;
         }
-/*        
-        _thumbObjArray[index].thumbURL
-        _thumbObjArray[index].thumbWidth
-        _thumbObjArray[index].thumbHeight
-        _thumbObjArray[index].URL
-        _thumbObjArray[index].Width
-        _thumbObjArray[index].Height
-*/
+
         var thumbGallery = document.createElement("div");
         thumbGallery.classList.add("imgGallery");
     
@@ -82,7 +73,6 @@ function ImageGallery(_instance) {
             thumbLink.classList.add("thumbPicLink");
             thumbLink.setAttribute("href", "#");
     
-//            windowInstance.appendChild(newThumbLink);
             thumbWrapper.appendChild(thumbLink);
     
             var thumbImg = document.createElement("img");
@@ -91,8 +81,6 @@ function ImageGallery(_instance) {
             thumbImg.setAttribute("ThumbId", index);                
             thumbImg.setAttribute("src", _thumbObjArray[index].thumbURL);
           
- 
-            
             thumbLink.appendChild(thumbImg);
         
             thumbImg.onclick = function(e){
@@ -106,7 +94,11 @@ function ImageGallery(_instance) {
                     var imageWindowMain = document.getElementById("WindowMain"+Projekt.instanceId);                    
                     imageWindow.style.height = (_thumbObjArray[index].height+52)+"px";
                     imageWindow.style.width = (_thumbObjArray[index].width+8)+"px";
-               
+                    imageWindowMain.style.height = (_thumbObjArray[index].height+6)+"px";
+                    imageWindowMain.style.width = (_thumbObjArray[index].width+8)+"px";
+                    var loadIcon = document.getElementById("loadIcon"+Projekt.instanceId);
+                    loadIcon.parentNode.removeChild(loadIcon);
+                
                     var imageLink = document.createElement("a");
                     imageLink.classList.add("imageLink");
                     imageLink.setAttribute("href", "#");
