@@ -140,7 +140,7 @@ console.log(this.pictures);
         };   
         this.renderMemoryTable(this.rows, this.columns, this.windowMainId);
         var loadIcon = document.getElementById("loadIcon"+this.instanceId);
-        loadIcon.parentNode.removeChild(loadIcon);        
+        loadIcon.style.visibility = 'hidden';       
     }
 }
 

@@ -3,13 +3,67 @@
 function Window(_iconURL, _name, _instance) {
     this.instanceId = _instance;
     this.windowId = "Window"+_instance;   
-    this.windowMainId = "WindowMain"+_instance;   
+    this.windowMainId = "WindowMain"+_instance;  
     
+    this.calculateWindowPosition = function(_instance) {
+        
+        var posContent = this.getObjectPosition(document.getElementById("content"));
+        var newWindow = document.getElementById(that.windowId);        
+        newWindow.style.left = posContent.xl + (Projekt.newStartPositions * 300)+(++Projekt.xl)*20 + 'px';
+        console.log(Projekt.yt);
+        console.log(Projekt.xt);
+        console.log(newWindow.style.left);        
+        newWindow.style.top = posContent.yt + (++Projekt.yt*20) + 'px';          
+
+        var posWindow = this.getObjectPosition(newWindow);
+        if ((posWindow.xl < posContent.xl) ||
+            (posWindow.xr > posContent.xr) || 
+            (posWindow.yt < posContent.yt) ||
+            (posWindow.yb > posContent.yb)){
+            
+                this.startNewPosition(document.getElementById(that.windowId));
+        }        
+    };
+    
+    this.startNewPosition = function(newWindow){
+        Projekt.newStartPositions +=1;
+        Projekt.yt = 0;
+        Projekt.xl = 0;
+        
+        
+        var posContent = this.getObjectPosition(document.getElementById("content"));
+      
+        newWindow.style.left = (posContent.xl + (Projekt.newStartPositions * 300) + 20) + 'px';
+        newWindow.style.top = (posContent.yt + (++Projekt.yt*20)) + 'px';    
+
+        var posWindow = this.getObjectPosition(newWindow);        
+        if ((posWindow.xl < posContent.xl) ||
+            (posWindow.xr > posContent.xr) || 
+            (posWindow.yt < posContent.yt) ||
+            (posWindow.yb > posContent.yb)){
+                
+                Projekt.newStartPositions = 0;                
+                newWindow.style.left = (posContent.xl + (Projekt.newStartPositions * 300) + 60) + 'px';    
+                newWindow.style.top = (posContent.yt + (++Projekt.yt*30)) + 'px';    
+        }        
+    }; 
+    
+    this.getObjectPosition = function (object) {
+
+        return {
+          xl : object.offsetLeft,
+          xr : object.offsetLeft + object.offsetWidth,
+          yt : object.offsetTop,
+          yb : object.offsetTop + object.offsetHeight
+        };
+    };    
+      
     var that = this;
     var windowInst = document.createElement("div"); 
     windowInst.setAttribute("id", this.windowId);
     windowInst.classList.add("Window");    
     windowInst.setAttribute("title", "Window");
+    windowInst.style.zIndex = ++Projekt.zIndex;    
     document.getElementById("content").appendChild(windowInst);
 
     var topLabel = document.createElement("div"); 
@@ -55,61 +109,7 @@ function Window(_iconURL, _name, _instance) {
     
     windowInst.appendChild(bottomLabel);
 
-    calculateWindowPosition(_instance);
-
-
-    function calculateWindowPosition(_instance) {
-        
-        var posContent = getObjectPosition(document.getElementById("content"));
-        var newWindow = document.getElementById(that.windowId);        
-        newWindow.style.left = posContent.xl + (Projekt.newStartPositions * 300)+(++Projekt.xl)*20 + 'px';
-        console.log(Projekt.yt);
-        console.log(Projekt.xt);
-        console.log(newWindow.style.left);        
-        newWindow.style.top = posContent.yt + (++Projekt.yt*20) + 'px';          
-
-        var posWindow = getObjectPosition(newWindow);
-        if ((posWindow.xl < posContent.xl) ||
-            (posWindow.xr > posContent.xr) || 
-            (posWindow.yt < posContent.yt) ||
-            (posWindow.yb > posContent.yb)){
-            
-                startNewPosition(document.getElementById(that.windowId));
-        }        
-        
-    }
+    this.calculateWindowPosition(this.instanceId);    
     
-    function startNewPosition(newWindow) {
-        Projekt.newStartPositions +=1;
-        Projekt.yt = 0;
-        Projekt.xl = 0;
-        
-        
-        var posContent = getObjectPosition(document.getElementById("content"));
-      
-        newWindow.style.left = (posContent.xl + (Projekt.newStartPositions * 300) + 20) + 'px';
-        newWindow.style.top = (posContent.yt + (++Projekt.yt*20)) + 'px';    
-
-        var posWindow = getObjectPosition(newWindow);        
-        if ((posWindow.xl < posContent.xl) ||
-            (posWindow.xr > posContent.xr) || 
-            (posWindow.yt < posContent.yt) ||
-            (posWindow.yb > posContent.yb)){
-                
-                Projekt.newStartPositions = 0;                
-                newWindow.style.left = (posContent.xl + (Projekt.newStartPositions * 300) + 60) + 'px';    
-                newWindow.style.top = (posContent.yt + (++Projekt.yt*30)) + 'px';    
-        }        
-    }  
-    
-    function getObjectPosition(object) {
-
-        return {
-          xl : object.offsetLeft,
-          xr : object.offsetLeft + object.offsetWidth,
-          yt : object.offsetTop,
-          yb : object.offsetTop + object.offsetHeight
-        };
-    }    
 }
 

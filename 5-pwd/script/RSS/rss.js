@@ -18,7 +18,7 @@ function RSSWindow(_instance) {
                 newMessage.classList.add("rssText");
                 windowMainInstance.innerHTML += xhr.responseText;  
                 var loadIcon = document.getElementById("loadIcon"+that.instanceId);
-                loadIcon.parentNode.removeChild(loadIcon);     
+                loadIcon.style.visibility = 'hidden';
             }
         };
         
