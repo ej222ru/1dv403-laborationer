@@ -1,9 +1,13 @@
 "use strict";
 
 function Window(_iconURL, _name, _instance) {
+    this.instanceId = _instance;
+    this.windowId = "Window"+_instance;   
+    this.windowMainId = "WindowMain"+_instance;   
+    
     var that = this;
     var windowInst = document.createElement("div"); 
-    windowInst.setAttribute("id", "Window"+_instance);
+    windowInst.setAttribute("id", this.windowId);
     windowInst.classList.add("Window");    
     windowInst.setAttribute("title", "Window");
     document.getElementById("content").appendChild(windowInst);
@@ -15,7 +19,6 @@ function Window(_iconURL, _name, _instance) {
     var icon = document.createElement("img");    
     icon.classList.add("labelIcon");
     icon.setAttribute("src", _iconURL);    
-
     topLabel.appendChild(icon);     
     
     var name = document.createElement("div");
@@ -35,13 +38,21 @@ function Window(_iconURL, _name, _instance) {
     var windowMain = document.createElement("div"); 
     windowMain.classList.add("windowMain");    
     windowMain.setAttribute("title", "Main");
-    windowMain.setAttribute("id", "WindowMain"+_instance);
+    windowMain.setAttribute("id", this.windowMainId);
     windowInst.appendChild(windowMain);
 
     
     var bottomLabel = document.createElement("div"); 
     bottomLabel.classList.add("bottomLabel");    
     bottomLabel.setAttribute("title", "Status");
+
+    var loadIcon = document.createElement("img");    
+    loadIcon.classList.add("loadIcon");
+    loadIcon.setAttribute("id","loadIcon"+_instance);    
+    loadIcon.setAttribute("src", "css/pics/ajax-loader.gif");    
+    bottomLabel.appendChild(loadIcon);     
+    
+    
     windowInst.appendChild(bottomLabel);
 
     calculateWindowPosition(_instance);
@@ -50,7 +61,7 @@ function Window(_iconURL, _name, _instance) {
     function calculateWindowPosition(_instance) {
         
         var posContent = getObjectPosition(document.getElementById("content"));
-        var newWindow = document.getElementById("Window"+_instance);        
+        var newWindow = document.getElementById(that.windowId);        
         newWindow.style.left = posContent.xl + (Projekt.newStartPositions * 300)+(++Projekt.xl)*20 + 'px';
         console.log(Projekt.yt);
         console.log(Projekt.xt);
@@ -63,7 +74,7 @@ function Window(_iconURL, _name, _instance) {
             (posWindow.yt < posContent.yt) ||
             (posWindow.yb > posContent.yb)){
             
-                startNewPosition(document.getElementById("Window"+_instance));
+                startNewPosition(document.getElementById(that.windowId));
         }        
         
     }

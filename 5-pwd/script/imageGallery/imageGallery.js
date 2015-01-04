@@ -25,12 +25,15 @@ function ImageGallery(_instance) {
                 console.log(xhr.responseText);   
                 that.responseObjects = JSON.parse(xhr.responseText);
                 that.addThumbs(that.responseObjects, that.instanceId);  
-
+                var loadIcon = document.getElementById("loadIcon"+that.instanceId);
+                loadIcon.parentNode.removeChild(loadIcon);
             }
         };
-        
+//        var loadIcon = document.getElementById("loadIcon"+this.instanceId);
+//        loadIcon.classList.add("loading");        
         xhr.open("GET", this.nextURL, true);
         xhr.send(null);
+
         
         
 

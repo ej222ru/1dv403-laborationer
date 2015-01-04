@@ -54,7 +54,10 @@ body{
     position: absolute;;
     float: left;
 }
+.windowMain{
+    height: 356px;
 
+}
 .appName{
     width: 120;
     float: left;
@@ -100,6 +103,27 @@ body{
     margin: 4px;
 }
 
+.loadIcon{
+    display: block;
+    height: auto;
+    max-width: 16px;
+    float: left;
+    margin: 4px;
+}
+.loadIcon .loading{
+    display: block;
+    height: auto;
+    max-width: 16px;
+    float: left;
+    margin: 4px;
+}
+.loadIcon loading{
+    display: block;
+    height: auto;
+    max-width: 16px;
+    float: left;
+    margin: 4px;
+}
 #memoryIcon{
 
 }
