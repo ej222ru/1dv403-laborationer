@@ -9,6 +9,7 @@
 /*    margin: 0 auto; */
 /*    display:flex; */
     justify-content: center;
+    float: left;
     overflow: auto;
 }
 .image{
