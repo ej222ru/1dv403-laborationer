@@ -109,8 +109,6 @@ function Memory(_rows, _columns, _instance) {
                 picLink.appendChild(memoryPic);                
 
                 memoryPicWrapper.appendChild(picLink); 
-
-
                 memoryTableRow.appendChild(memoryTableCell); 
             }
         }

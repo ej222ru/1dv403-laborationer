@@ -108,7 +108,8 @@ body{
     height: auto;
     max-width: 16px;
     float: left;
-    margin: 4px;
+    margin-top: -2px;
+    margin-left: 6px;
 }
 .loadIcon .loading{
     display: block;
