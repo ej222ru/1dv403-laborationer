@@ -75,30 +75,45 @@ function ImageGallery(_instance) {
                 var index;
                 if (e.target.getAttribute("title") === "thumbPicImg"){
                     index = e.target.parentNode.parentNode.getAttribute("ThumbId");
-    
-                    var imageWindow = document.createElement("div"); 
+
+
+                    var windowInstance = new ImageGallery(++Projekt.instanceId);  
+                    var imageWindow = document.getElementById("Window"+Projekt.instanceId);                    
+//                    var imageWindow = document.createElement("div"); 
                     imageWindow.setAttribute("id", "PicWindow"+index);
-                    imageWindow.classList.add("FullSizePicture");    
-                    imageWindow.setAttribute("title", "PicWindow");
-                    imageWindow.style.height = _thumbObjArray[index].Height;
-                    imageWindow.style.width = _thumbObjArray[index].Width;
-                    imageWindow.style.zIndex = ++Projekt.zIndex;            
+//                    imageWindow.classList.add("FullSizePicture");    
+//                    imageWindow.setAttribute("title", "PicWindow");
+                    imageWindow.style.height = (_thumbObjArray[index].height+80)+"px";
+                    imageWindow.style.width = (_thumbObjArray[index].width+8)+"px";
+//                    imageWindow.style.zIndex = ++Projekt.zIndex;     
+/*                    
+                    var topLabel = document.createElement("div"); 
+                    topLabel.classList.add("topLabel");    
+ 
+                    var remLink = document.createElement("a");
+                    var remPic = document.createElement("img");    
+                    remPic.classList.add("imgClose");
+                    remPic.setAttribute("src", "css/pics/remove_16.png");    
+                    remLink.setAttribute("title", "Close");
+                    remLink.setAttribute("href", "#");
+                    remLink.appendChild(remPic);    
+                    topLabel.appendChild(remLink);                     
+                    imageWindow.appendChild(topLabel);                  
+*/                    
                     
                     var imageLink = document.createElement("a");
-                    imageLink.classList.add("thumbPicLink");
+                    imageLink.classList.add("imageLink");
                     imageLink.setAttribute("href", "#");
-            
                     imageWindow.appendChild(imageLink);
             
                     var image = document.createElement("img");
                     image.classList.add("image");
                     image.setAttribute("title","image");
                     image.setAttribute("src", _thumbObjArray[index].URL);
-                    
                     imageLink.appendChild(image);                    
                     
                     
-                    document.getElementById("content").appendChild(image);
+                    document.getElementById("content").appendChild(imageWindow);
     
                 }
             };  

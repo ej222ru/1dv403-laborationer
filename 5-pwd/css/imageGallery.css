@@ -14,8 +14,7 @@
 .image{
     
     justify-content: center;    
-    border-spacing: 4px 4px;
-    margin: 8px;
+    border-spacing: 0px 0px;
     border: 4px solid yellow;
     justify-content: center;  
     overflow: auto;    
