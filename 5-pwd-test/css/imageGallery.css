@@ -1,0 +1,27 @@
+
+.imgGallery {
+    height: 354px;
+    font-size: 8px;
+    padding-top: 2px;
+    overflow: auto;
+}
+
+.image{
+    justify-content: center;    
+    border-spacing: 0px 0px;
+    border: 4px solid yellow;
+    justify-content: center;  
+    overflow: auto;   
+}
+
+.thumbCell{
+    background-color: grey;
+    float: left;   
+    margin: 2px ;
+    padding: 2px;
+ 
+}
+
+.thumbWrapper{
+    margin: 0 auto;  
+}

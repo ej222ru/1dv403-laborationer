@@ -1,0 +1,102 @@
+@import url("http://meyerweb.com/eric/tools/css/reset/reset.css");
+
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, main, menu, nav, section{ 
+ display: block; 
+}
+
+body{
+    background-color: black;
+}
+
+#container{
+    max-width: 960px; 
+    margin-left:auto;
+    margin-right:auto;
+
+}
+
+#content{
+    height: 640px;   
+    background-color: #A2A3AB;   
+    border: 2px solid yellow;
+}
+
+#divider{
+
+    height: 85px;
+    background-color: black;
+}
+
+#appArea{
+    height: 56px;
+    border: 2px solid #3D402A;
+    margin-top: -71px;
+    border: 2px solid yellow;
+}
+
+.Window{
+    height: 400px;
+    width: 300px;
+    background-color: #CDCFD9;   
+    border: solid yellow 3px;
+    padding: 4px;
+    position: absolute;
+}
+
+.windowMain{
+    height: 356px;
+}
+
+.appName{
+    width: 120;
+    float: left;
+    padding-left: 8px;
+    padding-top: 4px;
+}
+
+.topLabel{
+    height: 24px;
+    border-bottom: solid black 1px;
+    background-color: #525357;
+}
+
+.imgClose {
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
+    margin-top: 4px;
+    float:right;
+}
+
+.bottomLabel{
+    height: 16px;   
+    border-top : solid black 1px;    
+    background-color: #525357;
+    padding-top: 4px; 
+}
+
+.appIcon{
+    height: 50px;
+    width: 50px;
+    border: solid black 1px;
+    background-color: yellow;
+    float: left;
+    margin: 4px;
+}
+
+.labelIcon{
+    height: auto;
+    max-width: 16px;
+    float: left;
+    margin: 4px;
+}
+
+.loadIcon{
+    display: block;
+    height: auto;
+    max-width: 16px;
+    float: left;
+    margin-top: -2px;
+    margin-left: 6px;
+}
