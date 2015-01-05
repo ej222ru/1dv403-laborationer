@@ -4,8 +4,9 @@ function ImageGallery(_instance) {
     var that = this;
     
     Window.call(this,"css/pics/pictures.png", "ImageGallery", _instance);
+    this.initiateWindow();
     this.responseObjects;    
-     this.nextURL = "http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/";        
+    this.nextURL = "http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/";        
     this.thumbURL = 0;
     this.thumbHeight = 0;
     this.thumbWidth = 0;

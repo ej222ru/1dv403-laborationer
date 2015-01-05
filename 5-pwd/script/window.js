@@ -4,15 +4,13 @@ function Window(_iconURL, _name, _instance) {
     this.instanceId = _instance;
     this.windowId = "Window"+_instance;   
     this.windowMainId = "WindowMain"+_instance;  
+    var that = this;
     
     this.calculateWindowPosition = function(_instance) {
         
         var posContent = this.getObjectPosition(document.getElementById("content"));
         var newWindow = document.getElementById(that.windowId);        
         newWindow.style.left = posContent.xl + (Projekt.newStartPositions * 300)+(++Projekt.xl)*20 + 'px';
-        console.log(Projekt.yt);
-        console.log(Projekt.xt);
-        console.log(newWindow.style.left);        
         newWindow.style.top = posContent.yt + (++Projekt.yt*20) + 'px';          
 
         var posWindow = this.getObjectPosition(newWindow);
@@ -58,58 +56,59 @@ function Window(_iconURL, _name, _instance) {
         };
     };    
       
-    var that = this;
-    var windowInst = document.createElement("div"); 
-    windowInst.setAttribute("id", this.windowId);
-    windowInst.classList.add("Window");    
-    windowInst.setAttribute("title", "Window");
-    windowInst.style.zIndex = ++Projekt.zIndex;    
-    document.getElementById("content").appendChild(windowInst);
+    this.initiateWindow = function(){  
 
-    var topLabel = document.createElement("div"); 
-    topLabel.classList.add("topLabel");    
-    windowInst.appendChild(topLabel);
-
-    var icon = document.createElement("img");    
-    icon.classList.add("labelIcon");
-    icon.setAttribute("src", _iconURL);    
-    topLabel.appendChild(icon);     
+        var windowInst = document.createElement("div"); 
+        windowInst.setAttribute("id", this.windowId);
+        windowInst.classList.add("Window");    
+        windowInst.setAttribute("title", "Window");
+        windowInst.style.zIndex = ++Projekt.zIndex;    
+        document.getElementById("content").appendChild(windowInst);
     
-    var name = document.createElement("div");
-    name.classList.add("appName");    
-    name.innerHTML = _name;
-    topLabel.appendChild(name);     
-
-    var remLink = document.createElement("a");
-    var remPic = document.createElement("img");    
-    remPic.classList.add("imgClose");
-    remPic.setAttribute("src", "css/pics/remove_16.png");    
-    remLink.setAttribute("title", "Close");
-    remLink.setAttribute("href", "#");
-    remLink.appendChild(remPic);    
-    topLabel.appendChild(remLink);     
+        var topLabel = document.createElement("div"); 
+        topLabel.classList.add("topLabel");    
+        windowInst.appendChild(topLabel);
     
-    var windowMain = document.createElement("div"); 
-    windowMain.classList.add("windowMain");    
-    windowMain.setAttribute("title", "Main");
-    windowMain.setAttribute("id", this.windowMainId);
-    windowInst.appendChild(windowMain);
-
+        var icon = document.createElement("img");    
+        icon.classList.add("labelIcon");
+        icon.setAttribute("src", _iconURL);    
+        topLabel.appendChild(icon);     
+        
+        var name = document.createElement("div");
+        name.classList.add("appName");    
+        name.innerHTML = _name;
+        topLabel.appendChild(name);     
     
-    var bottomLabel = document.createElement("div"); 
-    bottomLabel.classList.add("bottomLabel");    
-    bottomLabel.setAttribute("title", "Status");
-
-    var loadIcon = document.createElement("img");    
-    loadIcon.classList.add("loadIcon");
-    loadIcon.setAttribute("id","loadIcon"+_instance);    
-    loadIcon.setAttribute("src", "css/pics/ajax-loader.gif");    
-    bottomLabel.appendChild(loadIcon);     
+        var remLink = document.createElement("a");
+        var remPic = document.createElement("img");    
+        remPic.classList.add("imgClose");
+        remPic.setAttribute("src", "css/pics/remove_16.png");    
+        remLink.setAttribute("title", "Close");
+        remLink.setAttribute("href", "#");
+        remLink.appendChild(remPic);    
+        topLabel.appendChild(remLink);     
+        
+        var windowMain = document.createElement("div"); 
+        windowMain.classList.add("windowMain");    
+        windowMain.setAttribute("title", "Main");
+        windowMain.setAttribute("id", this.windowMainId);
+        windowInst.appendChild(windowMain);
     
+        
+        var bottomLabel = document.createElement("div"); 
+        bottomLabel.classList.add("bottomLabel");    
+        bottomLabel.setAttribute("title", "Status");
     
-    windowInst.appendChild(bottomLabel);
-
-    this.calculateWindowPosition(this.instanceId);    
+        var loadIcon = document.createElement("img");    
+        loadIcon.classList.add("loadIcon");
+        loadIcon.setAttribute("id","loadIcon"+_instance);    
+        loadIcon.setAttribute("src", "css/pics/ajax-loader.gif");    
+        bottomLabel.appendChild(loadIcon);     
+        
+        
+        windowInst.appendChild(bottomLabel);
     
+        this.calculateWindowPosition(this.instanceId);    
+    };
 }
 

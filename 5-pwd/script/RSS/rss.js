@@ -3,6 +3,7 @@
 function RSSWindow(_instance) {
 
     Window.call(this,"css/pics/feed.png",  "RSS", _instance);
+    this.initiateWindow();
     var that = this;
     this.nextURL = "http://homepage.lnu.se/staff/tstjo/labbyServer/rssproxy/?url="+escape("http://www.dn.se/m/rss/senaste-nytt");        
 
