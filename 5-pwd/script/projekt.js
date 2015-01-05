@@ -1,5 +1,6 @@
 "use strict";
 
+define(["Window","memory","random","rss","imageGallery"], function(Window, memory, random, rss, imageGallery){
 var Projekt = {
     instanceId: 0,
     zIndex: 1,
@@ -92,15 +93,15 @@ var Projekt = {
     },    
     
     createImageGallery: function(){
-        var myImageGallery = new ImageGallery(++Projekt.instanceId);
+        var myImageGallery = new imageGallery.ImageGallery(++Projekt.instanceId);
         myImageGallery.start();
     },
     createRSSFeed: function(){
-        var myRSS = new RSSWindow(++Projekt.instanceId);
+        var myRSS = new rss.RSSWindow(++Projekt.instanceId);
         myRSS.start();
     },
     createMemoryGame: function(){
-         var myMemory = new Memory(4,4,++Projekt.instanceId);
+         var myMemory = new memory.Memory(4,4,++Projekt.instanceId);
           myMemory.start();
     }    
 };
@@ -108,4 +109,5 @@ var Projekt = {
 
 
 window.addEventListener("load", Projekt.init);
-
+}
+);
