@@ -1,6 +1,6 @@
 "use strict";
-
-function ImageGallery(_instance) {
+define(["Window"], function(Window){
+var ImageGallery = function(_instance) {
     var that = this;
     
     Window.call(this,"css/pics/pictures.png", "ImageGallery", _instance);
@@ -120,5 +120,8 @@ function ImageGallery(_instance) {
     };   
 };
        
-ImageGallery.prototype = new Window();
+
+return ImageGallery;
+ImageGallery.prototype = new Window.Window();
+});
 
