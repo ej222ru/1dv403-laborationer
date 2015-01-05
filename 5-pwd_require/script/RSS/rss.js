@@ -1,6 +1,6 @@
 "use strict";
-
-function RSSWindow(_instance) {
+define(["Window"], function(Window){
+var RSSWindow = function (_instance) {
 
     Window.call(this,"css/pics/feed.png",  "RSS", _instance);
     this.initiateWindow();
@@ -28,5 +28,8 @@ function RSSWindow(_instance) {
     };    
 }
            
-RSSWindow.prototype = new Window();
+return RSSWindow;
+RSSWindow.prototype = new Window.Window();
 
+    
+});

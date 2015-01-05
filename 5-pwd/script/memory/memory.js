@@ -1,6 +1,6 @@
 "use strict";
-define(["Window","random"], function(Window, random){
-var Memory = function(_rows, _columns, _instance) {
+
+function Memory(_rows, _columns, _instance) {
 
     Window.call(this, "css/pics/memoryIcon.png", "MemoryGame", _instance);
     this.initiateWindow();          // Create common window nodes in the DOM
@@ -168,8 +168,7 @@ var Memory = function(_rows, _columns, _instance) {
         var loadIcon = document.getElementById("loadIcon"+this.instanceId);
         loadIcon.style.visibility = 'hidden';       
     };
-};
+}
 
-return Memory;
-Memory.prototype = new Window.Window();
-});
+Memory.prototype = new Window();
+

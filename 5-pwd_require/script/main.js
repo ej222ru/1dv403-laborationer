@@ -1,6 +1,5 @@
 "use strict";
 
-//require(["projekt", "window", "memory/memory", "memory/random", "RSS/rss.js", "imageGallery/imageGallery.js"]);
 require.config({
     paths:{
         "rss": "RSS/rss",

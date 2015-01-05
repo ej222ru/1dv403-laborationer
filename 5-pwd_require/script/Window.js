@@ -1,7 +1,9 @@
 "use strict";
-define("Window", function(){
+define(["projekt"], function(projekt){
 var Window = function(_iconURL, _name, _instance) {
     this.instanceId = _instance;
+    this.projekt = _projekt;
+    
     this.windowId = "Window"+_instance;   
     this.windowMainId = "WindowMain"+_instance;  
     var that = this;
@@ -62,7 +64,7 @@ var Window = function(_iconURL, _name, _instance) {
         windowInst.setAttribute("id", this.windowId);
         windowInst.classList.add("Window");    
         windowInst.setAttribute("title", "Window");
-        windowInst.style.zIndex = ++Projekt.zIndex;    
+        windowInst.style.zIndex = 2;    
         document.getElementById("content").appendChild(windowInst);
     
         var topLabel = document.createElement("div"); 
