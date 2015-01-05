@@ -10,4 +10,4 @@ require.config({
 });
 
 
-require(["projekt"]);
+require(["start"]);

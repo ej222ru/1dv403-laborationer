@@ -1,9 +1,8 @@
 "use strict";
-define(["projekt"], function(projekt){
+define(["projekt", "start"], function(projekt, start){
 var Window = function(_iconURL, _name, _instance) {
     this.instanceId = _instance;
-    this.projekt = _projekt;
-    
+
     this.windowId = "Window"+_instance;   
     this.windowMainId = "WindowMain"+_instance;  
     var that = this;
