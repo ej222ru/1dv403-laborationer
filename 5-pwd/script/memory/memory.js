@@ -61,7 +61,7 @@ function Memory(_rows, _columns, _instance) {
             var result = document.createElement("div");
             var text = document.createElement("p");
             text.innerHTML = "Du klarade det på " + this.clicks + " försök!";
-            text.style.color = white;
+            text.style.color = "white";
             result.appendChild(text); 
             content.appendChild(result); 
         }

@@ -5,18 +5,13 @@ footer, header, hgroup, main, menu, nav, section{
  display: block; 
 } 
 
-
-.memoryBoard{
-    background-color: #BFA;
-    padding: 12px;
-    border: 2px solid #3D402A;
-    
-    
-}
-
 .memoryTable {
     height: 356px;
-    border-spacing: 4px 4px;
+    display:flex; 
+    justify-content: center;     
+}
+
+.memoryPicWrapper {
     display:flex; 
     justify-content: center;     
 }
@@ -25,16 +20,8 @@ tbody{
     border-top: 40px solid transparent;
     margin: 10px;
 }
+
 td{
     height: 64px;
     width: 64px;
-}
-/*
-.memoryPicWrapper img{
-    width: 64px;  
-   height: auto;
-}*/
-.imgCard {
-    margin-left: 4px;
-    margin-top: 4px;
 }
