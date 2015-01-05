@@ -55,7 +55,7 @@ function Window(_iconURL, _name, _instance) {
           yb : object.offsetTop + object.offsetHeight
         };
     };    
-      
+    // Creata nodes in the DOM. By encapsulating they dont run at load  
     this.initiateWindow = function(){  
 
         var windowInst = document.createElement("div"); 

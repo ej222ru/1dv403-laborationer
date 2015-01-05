@@ -3,25 +3,26 @@
 function Memory(_rows, _columns, _instance) {
 
     Window.call(this, "css/pics/memoryIcon.png", "MemoryGame", _instance);
-    this.initiateWindow();
+    this.initiateWindow();          // Create common window nodes in the DOM
     var that = this;
     this.rows = _rows;
     this.columns = _columns;  
     this.pictures = [];
-    this.done = 0;
-    this.clicks =  0;
-    this.flipped =  0;
-    this.turnBackAtTimeoutNode1 = 0;
-    this.turnBackAtTimeoutNode2 = 0;
+    this.done = 0;                  // keeps track of found pairs
+    this.clicks =  0;               // keeps track of attempts
+    this.flipped =  0;              // "open flippes cards" i.e. 0,1 or 2
+    this.turnBackAtTimeoutNode1 = 0;    // first flipped card to "hide" after timeout
+    this.turnBackAtTimeoutNode2 = 0;    // second flipped card to "hide" after timeout
 
     
     this.turnCard = function(e, index){
-        
+        // After timeout two unmatching cards, show backside again
         this.flippedCardsTimeout = function (){
-                that.turnBackAtTimeoutNode1.setAttribute("src", "script/memory/pics/0.png"); 
-                that.turnBackAtTimeoutNode2.setAttribute("src", "script/memory/pics/0.png"); 
+                that.turnBackAtTimeoutNode1.src = "script/memory/pics/0.png"; 
+                that.turnBackAtTimeoutNode2.src = "script/memory/pics/0.png"; 
                 that.flipped = 0;
         };        
+
         var secondSameIndex = false;
         if (this.flipped === 0){
             this.turnBackAtTimeoutNode1 = e.target;
@@ -35,13 +36,13 @@ function Memory(_rows, _columns, _instance) {
             }
         }
 
+        // comapare the two flipped cards if they are same
         if (!secondSameIndex){       
             if (this.flipped < 2){
                 this.flipped +=1;
                 e.target.parentNode.parentNode.parentNode.getAttribute("data-cardID");
                 e.target.setAttribute("data-cardID", index);
-                var str = "script/memory/pics/" + this.pictures[index] + ".png";
-                e.target.setAttribute("src", str);          
+                e.target.src = "script/memory/pics/" + this.pictures[index] + ".png";          
             };
      
             if (this.flipped === 2){
@@ -57,26 +58,52 @@ function Memory(_rows, _columns, _instance) {
                 }
             }
         }      
+
+        // Are we done finding all?
         if (this.done === this.rows * this.columns / 2 ){
             var content = document.getElementById(this.windowMainId);
             var result = document.createElement("div");
+
             var text = document.createElement("p");
             text.innerHTML = "Du klarade det på " + this.clicks + " försök!";
             text.style.color = "white";
-            result.appendChild(text); 
+
             content.appendChild(result); 
+            result.appendChild(text); 
         }
     };
-    
-    
-    
-    this.renderMemoryTable = function(rows, cols, id){
-        
 
+    
+    this.renderMemoryTable = function(rows, cols, windowMainId){
         var i = 0;
         var j = 0;
-        
-        var gameInstance = document.getElementById(id),
+
+/*  
+        WindowMain                              <div>
+            MemoryTable                         <table>
+                MemoryTableBody                 <tbody>
+                    MemoryTableRow              <tr>
+                        memoryTableCell         <td>               
+                            memoryPicWrapper    <div>
+                                picLink         <a>
+                                    memoryPic   <img>
+                        memoryTableCell         <td>               
+                            memoryPicWrapper    <div>
+                                picLink         <a>
+                                    memoryPic   <img>
+                    MemoryTableRow              <tr>
+                        memoryTableCell         <td>               
+                            memoryPicWrapper    <div>
+                                picLink         <a>
+                                    memoryPic   <img>
+                        memoryTableCell         <td>               
+                            memoryPicWrapper    <div>
+                                picLink         <a>
+                                    memoryPic   <img>
+
+*/  // Node tree illustration
+
+        var gameInstance = document.getElementById(windowMainId),
             memoryTable = document.createElement("table"),
             memoryTableBody =  document.createElement("tbody"),
             memoryTableRow,
@@ -87,46 +114,43 @@ function Memory(_rows, _columns, _instance) {
             memoryTable.classList.add("memoryTable");
 
         gameInstance.appendChild(memoryTable);             
-        memoryTable.appendChild(memoryTableBody); 
+        memoryTable.appendChild(memoryTableBody);
+        
+        // Create table rows
         for (i=0;i<rows;i+=1){
             memoryTableRow = document.createElement("tr");                    
             memoryTableBody.appendChild(memoryTableRow); 
+            // Fill a table row
             for (j=0;j<cols;j+=1){
                 memoryTableCell = document.createElement("td");
                 memoryTableCell.setAttribute("data-cardID", i*cols+j);        
 
-                
                 memoryPicWrapper = document.createElement("div");
                 memoryPicWrapper.classList.add("memoryPicWrapper");                  
-                memoryTableCell.appendChild(memoryPicWrapper); 
                 
                 picLink = document.createElement("a");
                 picLink.setAttribute("title", "Card");
-                picLink.setAttribute("href", "#");               
+                picLink.href = "#";               
 
                 memoryPic = document.createElement("img");
                 memoryPic.classList.add("imgCard");                
-                memoryPic.setAttribute("src", "script/memory/pics/0.png");
-                picLink.appendChild(memoryPic);                
-
-                memoryPicWrapper.appendChild(picLink); 
+                memoryPic.src = "script/memory/pics/0.png";
+ 
                 memoryTableRow.appendChild(memoryTableCell); 
+                memoryTableCell.appendChild(memoryPicWrapper); 
+                memoryPicWrapper.appendChild(picLink); 
+                picLink.appendChild(memoryPic);                
+               
             }
         }
     };
   
     this.start = function(){
         that = this;
-        var windowInstance = document.getElementById(this.windowId);
-        var windowInstanceMain = document.getElementById(this.windowMainId);
-        
-//        var gameInstance = document.createElement("div");
-//        gameInstance.setAttribute("id", this.game);
-//        windowInstance.appendChild(gameInstance);
-        
-        this.pictures = RandomGenerator.getPictureArray(this.rows, this.columns);
-console.log(this.pictures); 
 
+        this.pictures = RandomGenerator.getPictureArray(this.rows, this.columns);
+
+        // set click eventhandler on window but act on picture clicked
         var node = document.getElementById(this.windowId);
         node.onclick = function(e){
             var index;
@@ -138,13 +162,13 @@ console.log(this.pictures);
                     that.turnCard(e, index);
                 }
             }
-        };   
+        };  
+     
         this.renderMemoryTable(this.rows, this.columns, this.windowMainId);
         var loadIcon = document.getElementById("loadIcon"+this.instanceId);
         loadIcon.style.visibility = 'hidden';       
-    }
+    };
 }
 
-       
 Memory.prototype = new Window();
 
