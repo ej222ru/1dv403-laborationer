@@ -6,12 +6,11 @@ var Window = function(_iconURL, _name, _instance) {
 
     this.windowId = "Window"+_instance;   
     this.windowMainId = "WindowMain"+_instance;  
-    var that = this;
-    
+
     this.calculateWindowPosition = function(_instance) {
         
         var posContent = this.getObjectPosition(document.getElementById("content"));
-        var newWindow = document.getElementById(that.windowId);        
+        var newWindow = document.getElementById(this.windowId);        
         newWindow.style.left = posContent.xl + (Projekt.newStartPositions * 300)+(++Projekt.xl)*20 + 'px';
         newWindow.style.top = posContent.yt + (++Projekt.yt*20) + 'px';          
 
@@ -21,7 +20,7 @@ var Window = function(_iconURL, _name, _instance) {
             (posWindow.yt < posContent.yt) ||
             (posWindow.yb > posContent.yb)){
             
-                this.startNewPosition(document.getElementById(that.windowId));
+                this.startNewPosition(document.getElementById(this.windowId));
         }        
     };
     
@@ -133,6 +132,7 @@ var Window = function(_iconURL, _name, _instance) {
 */          
         
     };
+
 }
 return Window;
 });
