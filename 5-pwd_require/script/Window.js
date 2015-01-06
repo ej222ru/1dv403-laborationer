@@ -64,7 +64,7 @@ var Window = function(_iconURL, _name, _instance) {
         windowInst.setAttribute("id", this.windowId);
         windowInst.classList.add("Window");    
         windowInst.setAttribute("title", "Window");
-        windowInst.style.zIndex = 2;    
+        windowInst.style.zIndex = Projekt.zIndex;    
         document.getElementById("content").appendChild(windowInst);
     
         var topLabel = document.createElement("div"); 
@@ -109,10 +109,30 @@ var Window = function(_iconURL, _name, _instance) {
         
         
         windowInst.appendChild(bottomLabel);
-    
+
         this.calculateWindowPosition(this.instanceId);    
+
+/*   varför funkar inte detta ???
+        windowInst.onclick = function(e){
+            var Window = null; 
+            if (e.target.getAttribute("title") === "Window")
+                Window = e.target;
+            if (e.target.parentNode.getAttribute("title") === "Window")
+                Window = e.target.parentNode;
+            if (e.target.parentNode.parentNode.getAttribute("title") === "Window")
+                Window = e.target.parentNode.parentNode;
+
+            if (Window){            
+                document.getElementById(Window.getAttribute("id")).style.zIndex = ++Projekt.zIndex;            
+            }
+            if (e.target.parentNode.getAttribute("title") === "Close"){            
+                var node = e.target.parentNode.parentNode.parentNode;  
+                node.parentNode.removeChild (node);
+            };
+        }; 
+*/          
+        
     };
-    
 }
 return Window;
 });

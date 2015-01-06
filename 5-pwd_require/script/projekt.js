@@ -3,18 +3,21 @@
 define(["Window", "memory", "random", "rss", "imageGallery"], function(Window, memory, random, rss, imageGallery){
     
 var Projekt = {
-    zIndex : 1,
-    instanceId : 0,
-    xl : 0,
-    yt : 0,
+    zIndex : 1,         // to ensure last window is set in focus and clicked window are set in focus
+    instanceId : 0,     
+    xl : 0,              // upp left corner of last created window
+    yt : 0,              // upp left corner of last created window
     newStartPositions : 0,
     
     init : function(){
+        // create clickable icons in the bottom bar
         this.imageGallerIcon();        
         this.rssIcon();        
         this.memoryIcon();        
-    
-    
+
+
+
+//  VArför kan jag inte sätta onclick i Window ??
         var removeWindow = document.getElementById("content");
         removeWindow.onclick = function(e){
             var Window = null; 
@@ -24,7 +27,6 @@ var Projekt = {
                 Window = e.target.parentNode;
             if (e.target.parentNode.parentNode.getAttribute("title") === "Window")
                 Window = e.target.parentNode.parentNode;
-                
 
             if (Window){            
                 document.getElementById(Window.getAttribute("id")).style.zIndex = ++Projekt.zIndex;            
@@ -34,7 +36,7 @@ var Projekt = {
                 node.parentNode.removeChild (node);
             };
         }; 
-        
+      
     },
     
     rssIcon : function(){
