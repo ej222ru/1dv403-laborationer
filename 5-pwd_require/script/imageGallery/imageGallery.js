@@ -2,7 +2,7 @@
 define(["Window"], function(Window){
 var ImageGallery = function(_instance) {
     var that = this;
-    
+    var Projekt = require("projekt");    
     Window.call(this,"css/pics/pictures.png", "ImageGallery", _instance);
     this.initiateWindow();
     this.responseObjects;    

@@ -19,7 +19,7 @@ function Window(_iconURL, _name, _instance) {
             (posWindow.yt < posContent.yt) ||
             (posWindow.yb > posContent.yb)){
             
-                this.startNewPosition(document.getElementById(that.windowId));
+            this.startNewPosition(document.getElementById(that.windowId));
         }        
     };
     

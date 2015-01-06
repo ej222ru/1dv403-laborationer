@@ -1,6 +1,7 @@
 "use strict";
 define(["projekt", "start"], function(projekt, start){
 var Window = function(_iconURL, _name, _instance) {
+    var Projekt = require("projekt");
     this.instanceId = _instance;
 
     this.windowId = "Window"+_instance;   

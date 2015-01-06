@@ -1,15 +1,14 @@
 "use strict";
 
 define(["Window", "memory", "random", "rss", "imageGallery"], function(Window, memory, random, rss, imageGallery){
-
+    
 var Projekt = function(){
-    var that = this;
     this.zIndex = 1;
     this.instanceId = 0;
     this.xl = 0;
     this.yt = 0;
     this.newStartPositions = 0;
-
+    var that = this;
     this.init = function(){
         this.imageGallerIcon();        
         this.rssIcon();        
@@ -28,7 +27,7 @@ var Projekt = function(){
                 
 
             if (Window){            
-                document.getElementById(Window.getAttribute("id")).style.zIndex = ++zIndex;            
+                document.getElementById(Window.getAttribute("id")).style.zIndex = ++Projekt.zIndex;            
             }
             if (e.target.parentNode.getAttribute("title") === "Close"){            
                 var node = e.target.parentNode.parentNode.parentNode;  
@@ -96,11 +95,11 @@ var Projekt = function(){
         
     };
     this.createImageGallery = function(){
-        var myImageGallery = new imageGallery(++instanceId);
+        var myImageGallery = new imageGallery(++that.instanceId);
         myImageGallery.start();
     };
     this.createRSSFeed = function(){
-        var myRSS = new rss(++instanceId);
+        var myRSS = new rss(++that.instanceId);
         myRSS.start();
     };
     this.createMemoryGame = function(){
