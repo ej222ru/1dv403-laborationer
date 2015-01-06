@@ -2,14 +2,14 @@
 
 define(["Window", "memory", "random", "rss", "imageGallery"], function(Window, memory, random, rss, imageGallery){
     
-var Projekt = function(){
-    this.zIndex = 1;
-    this.instanceId = 0;
-    this.xl = 0;
-    this.yt = 0;
-    this.newStartPositions = 0;
-    var that = this;
-    this.init = function(){
+var Projekt = {
+    zIndex : 1,
+    instanceId : 0,
+    xl : 0,
+    yt : 0,
+    newStartPositions : 0,
+    
+    init : function(){
         this.imageGallerIcon();        
         this.rssIcon();        
         this.memoryIcon();        
@@ -35,9 +35,9 @@ var Projekt = function(){
             };
         }; 
         
-    };
+    },
     
-    this.rssIcon = function(){
+    rssIcon : function(){
         var appArea = document.getElementById("appArea");
         
         var rssIcon = document.createElement("div");
@@ -53,10 +53,10 @@ var Projekt = function(){
         var rssIconImage = document.createElement("img");
         rssIconImage.setAttribute("src", "css/pics/feed.png");
         linkRssIcon.appendChild(rssIconImage);
-        document.getElementById("linkRssIcon").addEventListener("click", this.createRSSFeed);
+        document.getElementById("linkRssIcon").addEventListener("click", Projekt.createRSSFeed);
         
-    };   
-    this.imageGallerIcon = function(){
+    },   
+    imageGallerIcon : function(){
         var appArea = document.getElementById("appArea");
         
         var imageGalleriIcon = document.createElement("div");
@@ -72,10 +72,10 @@ var Projekt = function(){
         var imageGalleriIconImage = document.createElement("img");
         imageGalleriIconImage.setAttribute("src", "css/pics/pictures.png");
         linkImageGalleriIcon.appendChild(imageGalleriIconImage);
-        document.getElementById("linkImageGalleriIcon").addEventListener("click", this.createImageGallery);
+        document.getElementById("linkImageGalleriIcon").addEventListener("click", Projekt.createImageGallery);
         
-    };    
-    this.memoryIcon = function(){
+    },    
+    memoryIcon : function(){
         var appArea = document.getElementById("appArea");
         
         var memoryIcon = document.createElement("div");
@@ -91,21 +91,21 @@ var Projekt = function(){
         var memoryIconImage = document.createElement("img");
         memoryIconImage.setAttribute("src", "css/pics/memoryIcon.png");
         linkMemoryIcon.appendChild(memoryIconImage);
-        document.getElementById("linkMemoryIcon").addEventListener("click", this.createMemoryGame);
+        document.getElementById("linkMemoryIcon").addEventListener("click", Projekt.createMemoryGame);
         
-    };
-    this.createImageGallery = function(){
-        var myImageGallery = new imageGallery(++that.instanceId);
+    },
+    createImageGallery : function(){
+        var myImageGallery = new imageGallery(++Projekt.instanceId);
         myImageGallery.start();
-    };
-    this.createRSSFeed = function(){
-        var myRSS = new rss(++that.instanceId);
+    },
+    createRSSFeed : function(){
+        var myRSS = new rss(++Projekt.instanceId);
         myRSS.start();
-    };
-    this.createMemoryGame = function(){
-         var myMemory = new memory(4,4,++that.instanceId);
+    },
+    createMemoryGame : function(){
+         var myMemory = new memory(4,4,++Projekt.instanceId);
           myMemory.start();
-    } ;      
+    }    
 };
 /*
 var Projekt = {

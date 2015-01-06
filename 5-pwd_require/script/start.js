@@ -1,7 +1,6 @@
 "use strict";
 define(["projekt"], function(projekt){
-
-    var Projekt = new projekt();
+    var Projekt = require("projekt");
     Projekt.init();
 
 });
