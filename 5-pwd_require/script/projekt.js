@@ -14,29 +14,6 @@ var Projekt = {
         this.imageGallerIcon();        
         this.rssIcon();        
         this.memoryIcon();        
-
-
-
-//  VArför kan jag inte sätta onclick i Window ??
-        var removeWindow = document.getElementById("content");
-        removeWindow.onclick = function(e){
-            var Window = null; 
-            if (e.target.getAttribute("title") === "Window")
-                Window = e.target;
-            if (e.target.parentNode.getAttribute("title") === "Window")
-                Window = e.target.parentNode;
-            if (e.target.parentNode.parentNode.getAttribute("title") === "Window")
-                Window = e.target.parentNode.parentNode;
-
-            if (Window){            
-                document.getElementById(Window.getAttribute("id")).style.zIndex = ++Projekt.zIndex;            
-            }
-            if (e.target.parentNode.getAttribute("title") === "Close"){            
-                var node = e.target.parentNode.parentNode.parentNode;  
-                node.parentNode.removeChild (node);
-            };
-        }; 
-      
     },
     
     rssIcon : function(){

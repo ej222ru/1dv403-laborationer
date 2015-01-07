@@ -13,7 +13,6 @@ var ImageGallery = function(_instance) {
         
         xhr.onreadystatechange = function(){
             if ((xhr.readyState === 4) && (xhr.status === 200)) {
-                console.log(xhr.responseText);   
                 that.responseObjects = JSON.parse(xhr.responseText);
                 that.addThumbs(that.responseObjects, that.instanceId);  
                 var loadIcon = document.getElementById("loadIcon"+that.instanceId);

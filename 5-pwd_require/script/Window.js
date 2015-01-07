@@ -20,7 +20,7 @@ var Window = function(_iconURL, _name, _instance) {
             (posWindow.yt < posContent.yt) ||
             (posWindow.yb > posContent.yb)){
             
-                this.startNewPosition(document.getElementById(this.windowId));
+            this.startNewPosition(document.getElementById(this.windowId));
         }        
     };
     
@@ -109,10 +109,10 @@ var Window = function(_iconURL, _name, _instance) {
         
         windowInst.appendChild(bottomLabel);
 
-        this.calculateWindowPosition(this.instanceId);    
-
-/*   varför funkar inte detta ???
-        windowInst.onclick = function(e){
+        this.calculateWindowPosition(this.instanceId); 
+      
+        this.focusOrRemoveWindow = function(e){
+            // focus Window
             var Window = null; 
             if (e.target.getAttribute("title") === "Window")
                 Window = e.target;
@@ -124,15 +124,14 @@ var Window = function(_iconURL, _name, _instance) {
             if (Window){            
                 document.getElementById(Window.getAttribute("id")).style.zIndex = ++Projekt.zIndex;            
             }
+            // remove Window 
             if (e.target.parentNode.getAttribute("title") === "Close"){            
                 var node = e.target.parentNode.parentNode.parentNode;  
                 node.parentNode.removeChild (node);
             };
         }; 
-*/          
-        
+        windowInst.addEventListener("click", this.focusOrRemoveWindow);          
     };
-
-}
+};
 return Window;
 });
