@@ -20,6 +20,7 @@ var Memory = function(_rows, _columns, _instance) {
         this.flippedCardsTimeout = function (){
                 that.turnBackAtTimeoutNode1.src = "script/memory/pics/0.png"; 
                 that.turnBackAtTimeoutNode2.src = "script/memory/pics/0.png"; 
+                that.flipped = 0;
         };        
 
         var secondSameIndex = false;
