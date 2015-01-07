@@ -140,7 +140,13 @@ var Memory = function(_rows, _columns, _instance) {
                 memoryTableCell.appendChild(memoryPicWrapper); 
                 memoryPicWrapper.appendChild(picLink); 
                 picLink.appendChild(memoryPic);                
-               
+
+                this.createEvent = function(node, index){
+                    node.onclick = function(e){
+                        that.turnCard(e, index);
+                    };  
+                }
+                this.createEvent(picLink, i*cols+j);                  
             }
         }
     };
@@ -149,21 +155,7 @@ var Memory = function(_rows, _columns, _instance) {
         that = this;
 
         this.pictures = RandomGenerator.getPictureArray(this.rows, this.columns);
-
-        // set click eventhandler on window but act on picture clicked
-        var node = document.getElementById(this.windowId);
-        node.onclick = function(e){
-            var index;
-            if (e.target.parentNode.getAttribute("title") === "Card"){
-                index = e.target.parentNode.parentNode.parentNode.getAttribute("data-cardID");
-
-                if ((that.flipped < 2) && (e.target.getAttribute("src") === "script/memory/pics/0.png"))
-                {
-                    that.turnCard(e, index);
-                }
-            }
-        };  
-     
+ 
         this.renderMemoryTable(this.rows, this.columns, this.windowMainId);
         var loadIcon = document.getElementById("loadIcon"+this.instanceId);
         loadIcon.style.visibility = 'hidden';       
