@@ -83,36 +83,48 @@ var ImageGallery = function(_instance) {
             thumbLink.appendChild(thumbImg);
         
             // Set click event on all thumb images, display a larger picture if clicked
-            thumbImg.onclick = function(e){
+
+      
+
+              
+//            thumbImg.addEventListener("click", this.showLargePic);
+            document.onmousedown=that.showLargePic;             
+            this.showLargePic = function(e){
                 var index;
                 if (e.target.getAttribute("title") === "thumbPicImg"){
-                    index = e.target.getAttribute("ThumbId");
-
-                    // Set new actual style parameters for this Window instance
-                    var windowInstance = new ImageGallery(++Projekt.instanceId);  
-                    var imageWindow = document.getElementById("Window"+Projekt.instanceId);                    
-                    var imageWindowMain = document.getElementById("WindowMain"+Projekt.instanceId);                    
-                    imageWindow.style.height = (_thumbObjArray[index].height+52)+"px";
-                    imageWindow.style.width = (_thumbObjArray[index].width+8)+"px";
-                    imageWindowMain.style.height = (_thumbObjArray[index].height+6)+"px";
-                    imageWindowMain.style.width = (_thumbObjArray[index].width+8)+"px";
-                    var loadIcon = document.getElementById("loadIcon"+Projekt.instanceId);
-                    loadIcon.style.visibility = 'hidden';
+                    index = e.target.getAttribute("ThumbId");                    
+                    if (e.button === 2){  // right mouse
+                        var content = document.getElementById("content");  
+                        content.style.backgroundImage = 'url(' + _thumbObjArray[index].URL + ')'; 
+                    }
+                    else
+                    {
+                        // Set new actual style parameters for this Window instance
+                        var windowInstance = new ImageGallery(++Projekt.instanceId);  
+                        var imageWindow = document.getElementById("Window"+Projekt.instanceId);                    
+                        var imageWindowMain = document.getElementById("WindowMain"+Projekt.instanceId);                    
+                        imageWindow.style.height = (_thumbObjArray[index].height+52)+"px";
+                        imageWindow.style.width = (_thumbObjArray[index].width+8)+"px";
+                        imageWindowMain.style.height = (_thumbObjArray[index].height+6)+"px";
+                        imageWindowMain.style.width = (_thumbObjArray[index].width+8)+"px";
+                        var loadIcon = document.getElementById("loadIcon"+Projekt.instanceId);
+                        loadIcon.style.visibility = 'hidden';
+                    
+                        var imageLink = document.createElement("a");
+                        imageLink.classList.add("imageLink");
+                        imageLink.href = "#";
                 
-                    var imageLink = document.createElement("a");
-                    imageLink.classList.add("imageLink");
-                    imageLink.href = "#";
-            
-                    var image = document.createElement("img");
-                    image.classList.add("image");
-                    image.setAttribute("title","image");
-                    image.src = _thumbObjArray[index].URL;
-      
-                    imageWindowMain.appendChild(imageLink);
-                    imageLink.appendChild(image);  
-      
-                    // recalculate position since these pictures can be larger than default Window
-                    windowInstance.calculateWindowPosition(windowInstance.instanceId);
+                        var image = document.createElement("img");
+                        image.classList.add("image");
+                        image.setAttribute("title","image");
+                        image.src = _thumbObjArray[index].URL;
+          
+                        imageWindowMain.appendChild(imageLink);
+                        imageLink.appendChild(image);  
+          
+                        // recalculate position since these pictures can be larger than default Window
+                        windowInstance.calculateWindowPosition(windowInstance.instanceId);
+                    }
                 }
             };  
         };    

@@ -19,6 +19,7 @@ body{
 
 #content{
     height: 960px;   
+    background-image: url(pics/Bakgrundsbild.jpg); 
     background-color: #A2A3AB;   
     border: 2px solid yellow;
 }
@@ -35,7 +36,11 @@ body{
     margin-top: -71px;
     border: 2px solid yellow;
 }
-
+#desktopImage{
+  height: 480px;
+  width: 640px; 
+  border: 1px solid black;
+}
 .Window{
     height: 400px;
     width: 300px;
