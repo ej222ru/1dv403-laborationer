@@ -103,12 +103,16 @@ var Window = function(_iconURL, _name, _instance) {
         var loadIcon = document.createElement("img");    
         loadIcon.classList.add("loadIcon");
         loadIcon.setAttribute("id","loadIcon"+_instance);    
-        loadIcon.setAttribute("src", "css/pics/ajax-loader.gif");    
+        loadIcon.setAttribute("src", "css/pics/ajax-loader.gif");
         bottomLabel.appendChild(loadIcon);     
-        
-        
+        var bottomLabelText = document.createElement("div"); 
+        bottomLabelText.setAttribute("id","bottomLabelText"+_instance);   
+        bottomLabelText.setAttribute("title", "StatusText"); 
+        bottomLabelText.style.color = "White";
+        bottomLabelText.innerHTML = "Laddar, vänta...";
+        bottomLabel.appendChild(bottomLabelText);  
         windowInst.appendChild(bottomLabel);
-
+        
         this.calculateWindowPosition(this.instanceId); 
       
         this.focusOrRemoveWindow = function(e){

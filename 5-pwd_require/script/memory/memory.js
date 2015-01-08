@@ -160,6 +160,7 @@ var Memory = function(_rows, _columns, _instance) {
         this.renderMemoryTable(this.rows, this.columns, this.windowMainId);
         var loadIcon = document.getElementById("loadIcon"+this.instanceId);
         loadIcon.style.visibility = 'hidden';       
+        document.getElementById("bottomLabelText"+this.instanceId).innerHTML = "";
     };
 };
 
