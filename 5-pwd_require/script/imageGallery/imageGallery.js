@@ -17,6 +17,7 @@ var ImageGallery = function(_instance) {
                 that.addThumbs(that.responseObjects, that.instanceId);  
                 var loadIcon = document.getElementById("loadIcon"+that.instanceId);
                 loadIcon.style.visibility = 'hidden';
+                document.getElementById("bottomLabelText"+that.instanceId).innerHTML = "";                
             }
         };
        
@@ -109,6 +110,7 @@ var ImageGallery = function(_instance) {
                         imageWindowMain.style.width = (_thumbObjArray[index].width+8)+"px";
                         var loadIcon = document.getElementById("loadIcon"+Projekt.instanceId);
                         loadIcon.style.visibility = 'hidden';
+                        document.getElementById("bottomLabelText"+Projekt.instanceId).innerHTML = "";    
                     
                         var imageLink = document.createElement("a");
                         imageLink.classList.add("imageLink");
