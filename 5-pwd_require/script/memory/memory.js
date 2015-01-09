@@ -53,7 +53,6 @@ var Memory = function(_rows, _columns, _instance) {
                 }
                 else{
                     // start 1 sec timer, flip back turned cards at timeout
-                    var that = this;
                     setTimeout(this.flippedCardsTimeout, 1000);
                 }
             }
