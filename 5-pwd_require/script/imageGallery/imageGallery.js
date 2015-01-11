@@ -18,7 +18,12 @@ define(["Window"], function(Window){
                     that.addThumbs(that.responseObjects, that.instanceId);  
                     var loadIcon = document.getElementById("loadIcon"+that.instanceId);
                     loadIcon.style.visibility = 'hidden';
-                    document.getElementById("bottomLabelText"+that.instanceId).innerHTML = "";                
+                    document.getElementById("bottomLabelText"+that.instanceId).innerHTML = ""; 
+
+                    var nodeId = "WindowMain"+ that.instanceId+"img"+"0";
+                    var node = document.getElementById(nodeId);  
+                    node.focus();     
+                    
                 }
             };
            
@@ -76,7 +81,8 @@ define(["Window"], function(Window){
                 
                 thumbLink.classList.add("thumbPicLink");
                 thumbLink.href = "#";
-        
+                thumbLink.id = that.windowMainId+"img"+index;  
+                    
                 thumbImg.classList.add("thumbPicImg");
                 thumbImg.setAttribute("title","thumbPicImg");
                 thumbImg.setAttribute("ThumbId", index);                
@@ -97,6 +103,7 @@ define(["Window"], function(Window){
                         if (e.button === 2){  // right mouse
                             var content = document.getElementById("content");  
                             content.style.backgroundImage = 'url(' + _thumbObjArray[index].URL + ')'; 
+                            e.preventDefault();
                         }
                         else
                         {
@@ -130,8 +137,11 @@ define(["Window"], function(Window){
                             windowInstance.calculateWindowPosition(windowInstance.instanceId);
                         }
                     }
+  
                 };  
-            };    
+            };   
+            
+       
         };   
     };
            

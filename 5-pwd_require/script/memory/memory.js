@@ -6,6 +6,7 @@ define(["Window","random"], function(Window, random){
         Window.call(this, "css/pics/memoryIcon.png", "MemoryGame", _instance);
         this.initiateWindow();                  // Create common window nodes in the DOM
 
+
         this.rows       = _rows;
         this.columns    = _columns;  
         this.pictures   = [];
@@ -161,6 +162,9 @@ define(["Window","random"], function(Window, random){
 
                 }
             }
+            var nodeId = windowMainId+"pic"+"00";
+            var node = document.getElementById(nodeId);  
+            node.focus();        
         };
       
         this.start = function(){

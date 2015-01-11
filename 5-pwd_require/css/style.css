@@ -82,6 +82,10 @@ body{
     background-color: #525357;
     padding-top: 4px; 
 }
+.bottomLabel div{
+
+    margin-left: 34px; 
+}
 
 .appIcon{
     height: 50px;
@@ -104,6 +108,6 @@ body{
     height: auto;
     max-width: 16px;
     float: left;
-    margin-top: -2px;
+    margin-top: -18px;
     margin-left: 6px;
 }
