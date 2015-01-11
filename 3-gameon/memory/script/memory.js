@@ -19,12 +19,18 @@ var MemoryGame = {
     },
     turnCard: function(e, index){
         var secondSameIndex = false;
+        var target;
+        if ( e.target.getAttribute("title") == "imgCard")
+            target = e.target;
+        if ( e.target.getAttribute("title") == "Card")
+            target = e.target.childNodes[0];   
+                    
         if (this.flipped === 0){
-            this.turnBackAtTimeoutNode1 = e.target;
+            this.turnBackAtTimeoutNode1 = target;
         }
         else if (this.flipped === 1){
-            if (this.turnBackAtTimeoutNode1 !== e.target){
-                this.turnBackAtTimeoutNode2 = e.target;
+            if (this.turnBackAtTimeoutNode1 !== target){
+                this.turnBackAtTimeoutNode2 = target;
             }
             else{
                 secondSameIndex = true;
@@ -34,15 +40,15 @@ var MemoryGame = {
         if (!secondSameIndex){       
             if (this.flipped < 2){
                 this.flipped +=1;
-                e.target.parentNode.getAttribute("data-cardID");
-                e.target.setAttribute("data-cardID", index);
+//                e.target.setAttribute("data-cardID", index);
                 var str = "memory/pics/" + this.pictures[index] + ".png";
-                e.target.setAttribute("src", str);          
+
+                target.setAttribute("src", str);  
             };
      
             if (this.flipped === 2){
                 this.clicks += 1;
-                if (this.pictures[index] === this.pictures[this.turnBackAtTimeoutNode1.getAttribute("data-cardID")]){
+                if (this.pictures[index] === this.pictures[this.turnBackAtTimeoutNode1.parentNode.getAttribute("data-cardID")]){
                     this.flipped = 0;
                     this.done += 1;
                 }
@@ -88,9 +94,6 @@ var MemoryGame = {
             memoryTableBody.appendChild(memoryTableRow); 
             for (j=0;j<cols;j+=1){
                 memoryTableCell = document.createElement("td");
-                memoryTableCell.setAttribute("data-cardID", i*cols+j);        
-// varför inte sätta id på a-taggen istället??
-
                 picLink = document.createElement("a");
                 picLink.setAttribute("title", "Card");
                 picLink.setAttribute("href", "#");               
@@ -100,6 +103,7 @@ var MemoryGame = {
 
 
                 memoryPic = document.createElement("img");
+                memoryPic.setAttribute("title", "imgCard");                
                 memoryPic.classList.add("imgCard");                
                 memoryPic.setAttribute("src", "memory/pics/0.png");
 //                memoryPic.classList.add("card");
@@ -110,16 +114,33 @@ var MemoryGame = {
 
                 memoryTableRow.appendChild(memoryTableCell); 
                 
-// funkar detta 
+            // funkar detta 
+            
+                picLink.onclick = function(e){
+            // varför finns den i currentTarget
+            // this verkar funka också
+                    var index = e.currentTarget.getAttribute("data-cardID");
+                    if (MemoryGame.flipped < 2){
+                        MemoryGame.turnCard(e, index);
+                    }    
+                };
+            
+                picLink.onkeypress = function(e){
+                    if (!e) var e = window.event;
+                    if ((e.keyCode == 13) && !e.shiftKey){  
+                        var index;
+                        if (e.target.parentNode.getAttribute("title") === "Card"){
+                            index = e.target.currentTarget.getAttribute("data-cardID");
+                            if (MemoryGame.flipped < 2){
+                                MemoryGame.turnCard(e, index);
+                            }
+                        }
+                    }
+                };
 
-    picLink.onclick = function(e){
-// varför finns den i currentTarget
-// this verkar funka också
-        var index = e.currentTarget.getAttribute("data-cardID");
-        if (MemoryGame.flipped < 2){
-            MemoryGame.turnCard(e, index);
-        }    
-    }
+
+
+
     
     
             }

@@ -116,7 +116,7 @@ define(["projekt", "start"], function(projekt, start){
             windowInst.appendChild(bottomLabel);
     
             this.calculateWindowPosition(this.instanceId); 
-          
+            var that = this; 
             this.focusOrRemoveWindow = function(e){
                 // focus Window
                 var Window = null; 
@@ -128,7 +128,11 @@ define(["projekt", "start"], function(projekt, start){
                     Window = e.target.parentNode.parentNode;
     
                 if (Window){            
-                    document.getElementById(Window.getAttribute("id")).style.zIndex = ++Projekt.zIndex;            
+                    document.getElementById(Window.getAttribute("id")).style.zIndex = ++Projekt.zIndex;  
+                    var nodeId = this.childNodes[1].getAttribute("id")+"pic"+"00";
+                    var node = document.getElementById(nodeId);
+                    node.focus();
+
                 }
                 // remove Window 
                 if (e.target.parentNode.getAttribute("title") === "Close"){            

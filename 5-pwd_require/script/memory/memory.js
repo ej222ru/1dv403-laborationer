@@ -17,6 +17,13 @@ define(["Window","random"], function(Window, random){
     
         
         this.turnCard = function(e, index){
+            var target;
+            // also catch enter key
+            if ( e.target.getAttribute("title") == "imgCard")
+                target = e.target;
+            if ( e.target.getAttribute("title") == "Card")
+                target = e.target.childNodes[0]; 
+                
             // After timeout two unmatching cards, show backside again
             this.flippedCardsTimeout = function (){
                     that.turnBackAtTimeoutNode1.src = "script/memory/pics/0.png"; 
@@ -26,11 +33,11 @@ define(["Window","random"], function(Window, random){
     
             var secondSameIndex = false;
             if (this.flipped === 0){
-                this.turnBackAtTimeoutNode1 = e.target;
+                this.turnBackAtTimeoutNode1 = target;
             }
             else if (this.flipped === 1){
-                if (this.turnBackAtTimeoutNode1 !== e.target){
-                    this.turnBackAtTimeoutNode2 = e.target;
+                if (this.turnBackAtTimeoutNode1 !== target){
+                    this.turnBackAtTimeoutNode2 = target;
                 }
                 else{
                     secondSameIndex = true;
@@ -41,14 +48,13 @@ define(["Window","random"], function(Window, random){
             if (!secondSameIndex){       
                 if (this.flipped < 2){
                     this.flipped +=1;
-                    e.target.parentNode.parentNode.parentNode.getAttribute("data-cardID");
-                    e.target.setAttribute("data-cardID", index);
-                    e.target.src = "script/memory/pics/" + this.pictures[index] + ".png";          
+                    target.setAttribute("data-cardID", index);
+                    target.src = "script/memory/pics/" + this.pictures[index] + ".png";          
                 };
          
                 if (this.flipped === 2){
                     this.clicks += 1;
-                    if (this.pictures[index] === this.pictures[this.turnBackAtTimeoutNode1.getAttribute("data-cardID")]){
+                    if (this.pictures[index] === this.pictures[this.turnBackAtTimeoutNode1.parentNode.getAttribute("data-cardID")]){
                         this.flipped = 0;
                         this.done += 1;
                     }
@@ -130,12 +136,16 @@ define(["Window","random"], function(Window, random){
                     
                     picLink = document.createElement("a");
                     picLink.setAttribute("title", "Card");
+                    picLink.setAttribute("data-cardID", i*cols+j);    
+                    picLink.id = windowMainId+"pic"+i*cols+j;    
+                    
                     picLink.href = "#";               
     
                     memoryPic = document.createElement("img");
-                    memoryPic.classList.add("imgCard");                
+                    memoryPic.classList.add("imgCard");    
+                    memoryPic.setAttribute("title", "imgCard");                    
                     memoryPic.src = "script/memory/pics/0.png";
-     
+
                     memoryTableRow.appendChild(memoryTableCell); 
                     memoryTableCell.appendChild(memoryPicWrapper); 
                     memoryPicWrapper.appendChild(picLink); 
@@ -147,7 +157,8 @@ define(["Window","random"], function(Window, random){
                             return false;
                         };  
                     }
-                    this.createEvent(picLink, i*cols+j);                  
+                    this.createEvent(picLink, i*cols+j);      
+
                 }
             }
         };
