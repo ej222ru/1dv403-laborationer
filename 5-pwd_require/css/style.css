@@ -10,6 +10,7 @@ body{
 }
 
 #container{
+    margin-top: 30px;
     max-width: 1080px; 
     height: 960px;      
     margin-left:auto;

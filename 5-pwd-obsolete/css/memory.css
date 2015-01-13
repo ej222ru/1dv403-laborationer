@@ -1,0 +1,27 @@
+@import url("http://meyerweb.com/eric/tools/css/reset/reset.css");
+
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, main, menu, nav, section{ 
+ display: block; 
+} 
+
+.memoryTable {
+    height: 356px;
+    display:flex; 
+    justify-content: center;     
+}
+
+.memoryPicWrapper {
+    display:flex; 
+    justify-content: center;     
+}
+
+tbody{
+    border-top: 40px solid transparent;
+    margin: 10px;
+}
+
+td{
+    height: 64px;
+    width: 64px;
+}

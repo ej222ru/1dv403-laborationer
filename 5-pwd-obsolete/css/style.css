@@ -10,9 +10,8 @@ body{
 }
 
 #container{
-    margin-top: 30px;
     max-width: 1080px; 
-    height: 960px;      
+    height: 960px;     
     margin-left:auto;
     margin-right:auto;
 
@@ -20,7 +19,6 @@ body{
 
 #content{
     height: 960px;   
-    background-image: url(pics/Bakgrundsbild.jpg); 
     background-color: #A2A3AB;   
     border: 2px solid yellow;
 }
@@ -36,13 +34,8 @@ body{
     border: 2px solid #3D402A;
     margin-top: -71px;
     border: 2px solid yellow;
-    background-color: black;       
 }
-#desktopImage{
-  height: 480px;
-  width: 640px; 
-  border: 1px solid black;
-}
+
 .Window{
     height: 400px;
     width: 300px;
@@ -83,15 +76,11 @@ body{
     background-color: #525357;
     padding-top: 4px; 
 }
-.bottomLabel div{
-
-    margin-left: 34px; 
-}
 
 .appIcon{
     height: 50px;
     width: 50px;
-
+    border: solid black 1px;
     background-color: yellow;
     float: left;
     margin: 4px;
@@ -109,6 +98,6 @@ body{
     height: auto;
     max-width: 16px;
     float: left;
-    margin-top: -18px;
+    margin-top: -2px;
     margin-left: 6px;
 }
